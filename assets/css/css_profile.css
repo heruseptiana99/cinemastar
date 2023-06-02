@@ -36,4 +36,13 @@ body {
 	border-radius: 100%;
 	border: 5px solid #fff;
 }
+.button.style1 {
+	background: #e97770;
+	color: #fff;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	border-radius: 10%;
+}
 

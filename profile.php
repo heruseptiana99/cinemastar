@@ -68,7 +68,7 @@
 							</div>
 						</div>
 						<div>
-							<button class="btn btn-primary">Update</button>
+							<a href="#" class="button style1">Update</a>
 							<button class="btn btn-light">Cancel</button>
 						</div>
 					</div>
@@ -97,7 +97,7 @@
 							</div>
 						</div>
 						<div>
-							<button class="btn btn-primary">Update</button>
+							<a href="#" class="button style1">Update</a>
 							<button class="btn btn-light">Cancel</button>
 						</div>
 					</div>
