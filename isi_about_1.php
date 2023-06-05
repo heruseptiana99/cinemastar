@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>ABOUT US CINEMASTAR</title>
+		<title>ARTIKEL 1 CINEMASTAR</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -33,29 +33,33 @@
 
 			<!-- Main -->
 				<div id="main" class="wrapper style2">
-					<div class="title">Tentang Kami</div>
+					<div class="title">Artikel</div>
 					<div class="container">
 
 						<!-- Content -->
 							<div id="content">
 								<article class="box post">
 									<header class="style1">
-										<h2>CinemaStar adalah website yang mereview film luar negeri dan dalam negeri, anda bisa menilai setiap film yang pernah anda tonton, berikan komentar terbaik untuk film favorit anda</h2>
-										<p>Pahami Lebih Lanjut Mengenai CinemaStar</p>
+										<h2>3 Film Komedi dengan Rating Terbaik</h2>
+										<p>Kalau masih bingung harus menonton film komedi apa saja, Kamu sedang membaca artikel yang tepat. Sebab, di sini terdapat rekomendasi sekaligus ulasan film komedi Indonesia terbaik yang lucunya dijamin menyegarkan pikiranmu.</p>
 									</header>
 									<a href="#" class="image featured">
-										<img src="images/about4.png" alt="" />
+										<img src="images/about5.jpg" alt="" />
 									</a>
-									<p>CinemaStar, merupakan Website review film terbesar di Indonesia yang memulai kiprahnya di industri hiburan sejak tahun 1987. Lebih dari 30 tahun, CinemaStar berkomitmen untuk senantiasa memberikan gambaran dari sebuah film yang bersumber dari pengalaman ribuan Reviewers. Sampai dengan Mei tahun ini, CinemaStar memiliki total 120Jt Reviewers yang tersebar di seluruh Indonesia.
-
-										Selain dapat menilai film, Anda Juga dapat memberikan komentar terbaik anda disetiap film yang telah anda tonton. CinemaStar memberikan tempat untuk anda menilai dan meriview film mulai dari film lokal maupun film luar negeri.
-										
-										CinemaStar terus mengikuti perkembangan teknologi dengan terus berupaya memberikan kenyamanan saat memberi review film tanpa gangguan apapun.
-										
-										Untuk menyempurnakan pelayanan kepada reviewers, kami selalu akan terus berbenah menjadi yang terbaik</p>
-
-									<p>Dengan CinemaStar anda dapat meriview film dengan memecah sebuah karya (film) ke dalam penilaian atas unsur-unsurnya seperti cerita, penyutradaraan, akting, musik, setting, alur, suasana dan lain lain. CinemaStar hadir sebagai bentuk solusi dari permasalahan masyarakat yang ragu saat ingin menonton sebuah film, dikarenakan jika hanya mengandalkan trailler saja tidak cukup.
-										Review dan penilaian anda dari sebuah film yang telah anda tonton sangat berguna bagi orang lain yang mengalami masalah tersebut. Jadilah seorang reviewers yang bijak dan bermanfaat bagi orang lain.
+									<p>1. Cek Toko Sebelah 2 <br>
+                                    Pemain: Ernest Prakasa, Laura Basuki, Dion Wiyoko, Adinia Wirasti, Chew Kin Wah, Maya Hasan, Widuri Puteri, Asri Welas <br>
+                                    Sutradara: Ernest Prakasa <br>
+                                    Cek Toko Sebelah 2 merupakan sekuel dari film sebelumnya yang rilis pada tahun 2016 lalu. Melanjutkan kisah dari film pertamanya, Cek Toko Sebelah 2 bercerita tentang Erwin yang ingin melamar pacarnya, Natalie, namun terkendala tuntutan dari calon mertuanya. Sementara pada sisi lain, Koh Afuk mendesak Yohan dan Ayu agar segera memiliki anak. Konflik internal keluarga mereka dibawakan dengan aksi komedi yang mengocok perut penonton!
+									</p>
+                                    <p>2. Naga Naga Naga <br>
+                                    Pemeran: Deddy Mizwar, Beby Tsabina, Tora Sudiro, Wulan Guritno, Darius Sinathrya <br>
+                                    Sutradara: Deddy Mizwar <br>
+                                    Naga Naga Naga merupakan sekuel dari film Nagabonar Jadi 2 (2007). Petualangan keluarga para Naga tak habis-habisnya membuat penonton merasa terhibur. Kali ini, Naga Naga Naga bercerita tentang Naga bersama putra dan cucunya. <br> Kisah berawal saat Naga merasa ada yang salah dengan sikap cucunya yang bernama Monaga. Kasih sayang Naga kepada cucunya yang berlebih menimbulkan masalah yang membuat Bonaga bingung. Pasalnya, kelakuan buruk Monaga membuat hubungan ayah dan ibunya penuh pertengkaran.
+									</p>
+                                    <p>3. Srimulat <br>
+                                    Pemain: Bio One, Elang El Gibran, Ibnu Jamil, Indah Permatasari, Dimas Anggara, Teuku Rifnu Wikana, Erick Estrada, Zulfa Maharani, Morgan Oey, Naimma Aljufri, Erika Carlina, Rukman Rosadi <br>
+                                    Sutradara: Fajar Nugros <br>
+                                    Film ini mengisahkan perjalanan grup lawak legendaris asal Surakarta yang populer di tahun 80-an, mulai dari awal grup ini terbentuk hingga sukses masuk televisi. Melalui film Srimulat: Hil yang Mustahal, penonton akan diajak melihat perjalanan grup srimulat ke ibu kota yang perjalanannya tak berjalan mulus. <br> Selain itu, penonton juga akan disajikan ide dasar dari komedi yang menjadi trademark srimulai hingga saat ini. Aksi kocak anggota grup srimulat siap menghibur kamu!
 									</p>
 								</article>
 							</div>
@@ -109,7 +113,7 @@
 						<header class="style1">
 							<h2>Daftar Sekarang dan Mulai Review Film Favoritmu Sekarang!</h2>
 							<p>
-								Satu Review mu akan sangat membantu orang lain!<br />
+                                Satu Review mu akan sangat membantu orang lain!<br />
 								Login | Daftar sekarang Juga!
 							</p>
 						</header>

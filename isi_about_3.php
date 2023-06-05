@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>ABOUT US CINEMASTAR</title>
+		<title>ARTIKEL 3 CINEMASTAR</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -33,29 +33,33 @@
 
 			<!-- Main -->
 				<div id="main" class="wrapper style2">
-					<div class="title">Tentang Kami</div>
+					<div class="title">Artikel</div>
 					<div class="container">
 
 						<!-- Content -->
 							<div id="content">
 								<article class="box post">
 									<header class="style1">
-										<h2>CinemaStar adalah website yang mereview film luar negeri dan dalam negeri, anda bisa menilai setiap film yang pernah anda tonton, berikan komentar terbaik untuk film favorit anda</h2>
-										<p>Pahami Lebih Lanjut Mengenai CinemaStar</p>
+										<h2>3 Film Action Rating Tertinggi</h2>
+										<p>ada 3 rekomendasi film action dengan Rating tertinggi yang tidak boleh kalian lewatkan</p>
 									</header>
 									<a href="#" class="image featured">
-										<img src="images/about4.png" alt="" />
+										<img src="images/about7.jpg" alt="" />
 									</a>
-									<p>CinemaStar, merupakan Website review film terbesar di Indonesia yang memulai kiprahnya di industri hiburan sejak tahun 1987. Lebih dari 30 tahun, CinemaStar berkomitmen untuk senantiasa memberikan gambaran dari sebuah film yang bersumber dari pengalaman ribuan Reviewers. Sampai dengan Mei tahun ini, CinemaStar memiliki total 120Jt Reviewers yang tersebar di seluruh Indonesia.
-
-										Selain dapat menilai film, Anda Juga dapat memberikan komentar terbaik anda disetiap film yang telah anda tonton. CinemaStar memberikan tempat untuk anda menilai dan meriview film mulai dari film lokal maupun film luar negeri.
-										
-										CinemaStar terus mengikuti perkembangan teknologi dengan terus berupaya memberikan kenyamanan saat memberi review film tanpa gangguan apapun.
-										
-										Untuk menyempurnakan pelayanan kepada reviewers, kami selalu akan terus berbenah menjadi yang terbaik</p>
-
-									<p>Dengan CinemaStar anda dapat meriview film dengan memecah sebuah karya (film) ke dalam penilaian atas unsur-unsurnya seperti cerita, penyutradaraan, akting, musik, setting, alur, suasana dan lain lain. CinemaStar hadir sebagai bentuk solusi dari permasalahan masyarakat yang ragu saat ingin menonton sebuah film, dikarenakan jika hanya mengandalkan trailler saja tidak cukup.
-										Review dan penilaian anda dari sebuah film yang telah anda tonton sangat berguna bagi orang lain yang mengalami masalah tersebut. Jadilah seorang reviewers yang bijak dan bermanfaat bagi orang lain.
+									<p>1. John Wick : Chapter 4 <br>
+                                    Pemain: Keanu Reeves, Donnie Yen, dkk<br>
+                                    Sutradara: Chad Stahelski <br>
+                                    film John Wick: Chapter 4 ini juga akan menjadi film pertama John Wick tanpa adanya kredit penulisan untuk pencipta waralaba Derek Kolstad. Bisa dibilang cukup banyak penggemar dari John Wick yang menunggu kelanjutan dari seri yang satu ini.
+									</p>
+                                    <p>2. Mission: Impossible<br>
+                                    Pemain: Ving Rhames, Simon Pegg, Rebecca Ferguson, Henry Czerny, Vanessa Kirby, dkk <br>
+                                    Sutradara: Christopher McQuarrie <br>
+                                    Mission: Impossible 7 bisa menjadi rekomendasi film action di tahun 2022. Sama seperti sebelumnya, Tom Cruise kembali memerankan karakter Ethan dalam film tersebut. Lalu pastinya ada karakter lain yang tidak kalah penting seperti Hayley Atwell ataupun Pom Klementieff.
+									</p>
+                                    <p>3. THE 355<br>
+                                    Pemain: Jessica Chastain, Lupita Nyong'o dan Diane Kruger<br>
+                                    Sutradara: Kinberg <br>
+                                    Film THE 355 ini akan menceritakan kisah agen CIA yang bergabung dengan pasukan tiga agen internasional untuk menjalankan misi di laut. Mereka ditugaskan untuk mendapatkan kembali senjata rahasia yang jatuh ke tangan tentara bayaran. Selain itu, dalam film THE 355 ini, diceritakan pula bahwa para agen CIA ini juga harus bisa lebih pintar melakukan strategi dari seorang wanita misterius yang menelusuri setiap langkah agen CIA.
 									</p>
 								</article>
 							</div>

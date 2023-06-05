@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>ABOUT US CINEMASTAR</title>
+		<title>ARTIKEL 2 CINEMASTAR</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -33,29 +33,33 @@
 
 			<!-- Main -->
 				<div id="main" class="wrapper style2">
-					<div class="title">Tentang Kami</div>
+					<div class="title">Artikel</div>
 					<div class="container">
 
 						<!-- Content -->
 							<div id="content">
 								<article class="box post">
 									<header class="style1">
-										<h2>CinemaStar adalah website yang mereview film luar negeri dan dalam negeri, anda bisa menilai setiap film yang pernah anda tonton, berikan komentar terbaik untuk film favorit anda</h2>
-										<p>Pahami Lebih Lanjut Mengenai CinemaStar</p>
+										<h2>3 Film Romance Dengan Rating Tertinggi</h2>
+										<p>Mau tahu lebih banyak film romantis Indonesia dengan rating tertinggi?</p>
 									</header>
 									<a href="#" class="image featured">
-										<img src="images/about4.png" alt="" />
+										<img src="images/about6.jpg" alt="" />
 									</a>
-									<p>CinemaStar, merupakan Website review film terbesar di Indonesia yang memulai kiprahnya di industri hiburan sejak tahun 1987. Lebih dari 30 tahun, CinemaStar berkomitmen untuk senantiasa memberikan gambaran dari sebuah film yang bersumber dari pengalaman ribuan Reviewers. Sampai dengan Mei tahun ini, CinemaStar memiliki total 120Jt Reviewers yang tersebar di seluruh Indonesia.
-
-										Selain dapat menilai film, Anda Juga dapat memberikan komentar terbaik anda disetiap film yang telah anda tonton. CinemaStar memberikan tempat untuk anda menilai dan meriview film mulai dari film lokal maupun film luar negeri.
-										
-										CinemaStar terus mengikuti perkembangan teknologi dengan terus berupaya memberikan kenyamanan saat memberi review film tanpa gangguan apapun.
-										
-										Untuk menyempurnakan pelayanan kepada reviewers, kami selalu akan terus berbenah menjadi yang terbaik</p>
-
-									<p>Dengan CinemaStar anda dapat meriview film dengan memecah sebuah karya (film) ke dalam penilaian atas unsur-unsurnya seperti cerita, penyutradaraan, akting, musik, setting, alur, suasana dan lain lain. CinemaStar hadir sebagai bentuk solusi dari permasalahan masyarakat yang ragu saat ingin menonton sebuah film, dikarenakan jika hanya mengandalkan trailler saja tidak cukup.
-										Review dan penilaian anda dari sebuah film yang telah anda tonton sangat berguna bagi orang lain yang mengalami masalah tersebut. Jadilah seorang reviewers yang bijak dan bermanfaat bagi orang lain.
+									<p>1. Until Tomorrow <br>
+                                    Pemain: Clara Bernadeth, Deva Mahenra, dkk <br>
+                                    Sutradara: Hadrah Daeng Ratu <br>
+                                    Mau cari film romantis Indonesia yang bikin nangis? Wajib nonton Until Tomorrow, film drama roman yang diadaptasi dari kisah nyata tragis pasangan Alan Tito dan Daslina Sombi. Berkisah tentang Haka (Deva Mahenra) dan Sarah (Clara Bernadeth) yang sedang merencanakan pernikahan. Sayangnya, Sarah tiba-tiba divonis menderita kanker stadium 3. Haka berusaha mendampingi Sarah berobat, walaupun itu mulai mengancam kehidupan pribadi dan pekerjaannya. Sementara Sarah merasa sangat bersalah karena menahan Haka untuk melanjutkan hidup.
+									</p>
+                                    <p>2. Noktah Merah Perkawinan<br>
+                                    Pemain: Marsha Timothy, Oka Antara, Sheila Dara Aisha, dkk <br>
+                                    Sutradara: Sabrina Rochelle Kalangie <br>
+                                    Siapa yang masih ingat sama sinetron legendaris "Noktah Merah Perkawinan"? Nah, film ini adalah versi remake dari sinetron yang rilis pertama kali di tahun 1996 lalu.Kali ini berkisah tentang rumitnya rumah tangga Ambar (Marsha Timothy) dan Gilang (Oka Antara). Bukannya menyelesaikan masalah, Gilang malah selingkuh sama Yuli (Sheila Dara Aisha), murid Ambar di lokakarya keramik. Dari persitiwa tersebut, Ambar dan Gilang pun dipaksa mempertanyakan apakah pernikahan mereka pantas diselamatkan atau tidak. 
+									</p>
+                                    <p>3. 12 Cerita Glen Anggara<br>
+                                    Pemain: Junior Roberts, Prilly Latuconsina, dkk <br>
+                                    Sutradara: Fajar Bustomi <br>
+                                    Film romantis remaja Indonesia ini mengisahkan percintaan antara sahabat Iqbal (Angga Yunanda), yakni Glen Anggara (Junior Roberts) dan gadis bernama Shena (Prilly Latuconsina). Shena tiba-tiba meminta Glen jadi pacarnya demi mewujudkan 12 keinginannya sebelum maut datang menjemputnya. Apakah Glen bersedia melakukannya?
 									</p>
 								</article>
 							</div>
