@@ -68,8 +68,9 @@
 							</div>
 						</div>
 						<div>
-							<button href="#" class="button style1">Update</button>
-							<button class="btn btn-light">Cancel</button>
+							<button href="#" class="btn btn-primary">Update</button>
+							<a href="index.html" class="btn btn-light">Cancel</a>
+
 						</div>
 					</div>
 					<div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
@@ -97,8 +98,8 @@
 							</div>
 						</div>
 						<div>
-							<button href="#" class="button style1">Update</button>
-							<button class="btn btn-light">Cancel</button>
+							<button href="#" class="btn btn-primary">Update</button>
+							<a href="index.html" class="btn btn-light">Cancel</a>
 						</div>
 					</div>
 				</div>
