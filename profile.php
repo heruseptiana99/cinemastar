@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Account Settings UI Design</title>
+	<title>Account Profile CinemaStar</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -68,8 +68,9 @@
 							</div>
 						</div>
 						<div>
-							<button class="btn btn-primary">Update</button>
-							<button class="btn btn-light">Cancel</button>
+							<button href="#" class="btn btn-primary">Update</button>
+							<a href="index.html" class="btn btn-light">Cancel</a>
+
 						</div>
 					</div>
 					<div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
@@ -97,8 +98,8 @@
 							</div>
 						</div>
 						<div>
-							<button class="btn btn-primary">Update</button>
-							<button class="btn btn-light">Cancel</button>
+							<button href="#" class="btn btn-primary">Update</button>
+							<a href="index.html" class="btn btn-light">Cancel</a>
 						</div>
 					</div>
 				</div>
