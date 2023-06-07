@@ -203,27 +203,27 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">TAMBAH AKTOR</h1>
                     </div>
-                    
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Data Aktor</h6>
                         </div>
                         <div class="card-body">
-                        <form>
+                        <form id="form-aktor" action="proses_aktor.php" method="post">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" placeholder="nama lengkap">
+                            <input type="text" class="form-control" id="nama" name="nama" >
                         </div>
                         <div class="form-group">
                             <label for="tgl_lahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="tgl_lahir" placeholder="name@example.com">
+                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
                         </div>
                         <div class="form-group">
                             <label for="foto">Foto</label>
-                            <input type="file" class="form-control-file" id="foto" placeholder="name@example.com">
+                            <input type="file" class="form-control-file" id="foto" name="foto">
                         </div>
-                            <button type="submit" class="btn btn-primary">Tambah Aktor</button>
+                            <button id="my-button" type="submit" class="btn btn-primary">Tambah Aktor</button>
                             <a href="aktor.php" class="btn btn-danger">Batal</a>
                         </form>
                         </div>
@@ -293,7 +293,11 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
-
+    <script>
+        $('#my-button').click(function() {
+            $('#form-aktor').submit();
+        });
+    </script>
 </body>
 
 </php>

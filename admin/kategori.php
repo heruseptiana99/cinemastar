@@ -1,3 +1,7 @@
+<?php
+  include "connect.php";
+  $query = mysqli_query($conn, "SELECT * FROM kategori");
+  ?>
 <!DOCTYPE php>
 <php lang="en">
 
@@ -220,22 +224,38 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <!-- <tfoot>
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Aksi</th>
                                         </tr>
-                                    </tfoot>
+                                    </tfoot> -->
                                     <tbody>
-                                        <tr>
+                                        <?php if (mysqli_num_rows($query) > 0) {
+                                            ?>
+                                            <?php
+                                            while ($value = mysqli_fetch_array($query)) {
+                                            ?>
+                                            <tr class="text-center">
+                                                <td><?php echo $value["id_kategori"]; ?></td>
+                                                <td><?php echo $value["nama_kategori"]; ?></td>
+                                                <td>
+                                                    <a href="kategori_ubah.php?id_kategori=<?php echo $value["id_kategori"]?>" class="btn btn-warning">Ubah</a>
+                                                    <a href="kategori_dalete.php?id_kategori=<?php echo $value["id_kategori"]?>" class="btn btn-danger">Hapus</a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                            } ?>
+                                        <?php } ?>
+                                        <!-- <tr>
                                             <td>1</td>
                                             <td>User</td>
                                             <td>
                                                 <a href="kategori_ubah.php" class="btn btn-warning">Ubah</a>
                                                 <a href="" class="btn btn-danger">Hapus</a>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>

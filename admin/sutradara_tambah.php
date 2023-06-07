@@ -210,21 +210,20 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Sutradara</h6>
                         </div>
                         <div class="card-body">
-                        <form>
+                        <form id="form-sutradara" action="proses_sutradara.php" method="post">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" placeholder="nama lengkap">
+                            <input type="text" class="form-control" id="nama" name="nama">
                         </div>
                         <div class="form-group">
                             <label for="tgl_lahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="tgl_lahir" placeholder="name@example.com">
+                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" >
                         </div>
-                            <button type="submit" class="btn btn-primary">Tambah Sutradara</button>
+                            <button id="my-button" type="submit" class="btn btn-primary">Tambah Sutradara</button>
                             <a href="sutradara.php" class="btn btn-danger">Batal</a>
                         </form>
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -289,7 +288,11 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
-
+    <script>
+        $('#my-button').click(function() {
+            $('#form-sutradara').submit();
+        });
+    </script>
 </body>
 
 </php>
