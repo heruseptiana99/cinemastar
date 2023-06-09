@@ -1,11 +1,6 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700,900");
 
-/*
-	Escape Velocity by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -2002,18 +1997,21 @@ input, select, textarea {
 			}
 
 		.wrapper.style1 {
-			background: #e97770 url("images/overlay.png");
+			background: #f3f3f3 url("images/overlay.png");
 			color: #eee;
 			color: rgba(255, 255, 255, 0.75);
 		}
 
 			.wrapper.style1 .title {
-				background: #e97770 url("images/overlay.png");
-				color: #fff;
+				background: #f3f3f3 url("images/overlay.png");
+				color: #484d55;
 			}
 
 			.wrapper.style1 h1, .wrapper.style1 h2, .wrapper.style1 h3, .wrapper.style1 h4, .wrapper.style1 h5, .wrapper.style1 h6, .wrapper.style1 strong, .wrapper.style1 b, .wrapper.style1 a {
-				color: #fff;
+				color: #484d55;
+			}
+			.wrapper.style1 .container{
+				color: #484d55;
 			}
 
 		.wrapper.style2 {
@@ -2061,11 +2059,10 @@ input, select, textarea {
 		justify-content: center;
 		position: relative;
 		height: 24em;
+		padding: 0;
 		background: url("../../images/bg2.jpg") center center;
 		background-size: cover;
-		padding: 0;
 	}
-
 		#header:before {
 			content: '';
 			position: absolute;
@@ -2087,6 +2084,7 @@ input, select, textarea {
 		text-align: center;
 		position: relative;
 		top: 1.5em;
+		opacity: 100%;
 	}
 
 		#logo h1 {
@@ -2268,6 +2266,8 @@ input, select, textarea {
 		}
 
 /* Main */
+
+
 
 /* Footer */
 
