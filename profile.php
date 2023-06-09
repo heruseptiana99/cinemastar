@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/css_profile.css">
 </head>
-
 <body>
 	<section class="py-5 my-5">
 		<div class="container">
@@ -21,7 +20,7 @@
 						</div>
 						<h4 class="text-center">Adipati </h4>
 					</div>
-					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+					<div class="nav flex-column nav-pills " id="v-pills-tab" role="tablist" aria-orientation="vertical">
 						<a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
 							<i class="fa fa-home text-center mr-1"></i> 
 							Account
@@ -106,7 +105,6 @@
 			</div>
 		</div>
 	</section>
-
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
