@@ -1,3 +1,16 @@
+<?php
+    include("connect.php");
+    $id_aktor = $_GET['id_aktor'];
+
+    $aktor = mysqli_query($conn, "SELECT * FROM aktor WHERE id_aktor = '$id_aktor'");
+
+    while ($value = mysqli_fetch_array($aktor)) {
+        // $id_sutradara = $value['id_sutradara'];
+        $nama = $value['nama'];
+        $tgl_lahir = $value['tgl_lahir'];
+        $foto = $_value['foto'];
+    }
+?>
 <!DOCTYPE php>
 <php lang="en">
 
@@ -210,20 +223,20 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Aktor</h6>
                         </div>
                         <div class="card-body">
-                        <form>
+                        <form id="form-aktor" action="proses_ubah_aktor.php?id_aktor=<?php echo $id_aktor?>" method="post">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" placeholder="nama lengkap">
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama ?>">
                         </div>
                         <div class="form-group">
                             <label for="tgl_lahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="tgl_lahir" placeholder="name@example.com">
+                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo $tgl_lahir ?>">
                         </div>
                         <div class="form-group">
                             <label for="foto">Foto</label>
-                            <input type="file" class="form-control-file" id="foto" placeholder="name@example.com">
+                            <input type="file" class="form-control-file" id="foto" name="foto"value="<?php echo $foto ?>">
                         </div>
-                            <button type="submit" class="btn btn-warning">Ubah Aktor</button>
+                            <button id="my-button" type="submit" class="btn btn-warning">Ubah Aktor</button>
                             <a href="aktor.php" class="btn btn-danger">Batal</a>
                         </form>
                         </div>
@@ -293,7 +306,11 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
-
+    <script>
+        $('#my-button').click(function() {
+            $('#form-aktor').submit();
+        });
+    </script>
 </body>
 
 </php>

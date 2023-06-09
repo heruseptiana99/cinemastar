@@ -210,12 +210,12 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Kategori</h6>
                         </div>
                         <div class="card-body">
-                        <form>
+                        <form id="form-kategori" action="proses_kategori.php" method="post">
                         <div class="form-group">
                             <label for="nama_kategori">Nama Kategori</label>
-                            <input type="text" class="form-control" id="nama_kategori" placeholder="nama kategori">
+                            <input type="text" class="form-control" id="nama_kategori" name="nama_kategori">
                         </div>
-                            <button type="submit" class="btn btn-primary">Tambah Kategori</button>
+                            <button id="my-button" type="submit" class="btn btn-primary">Tambah Kategori</button>
                             <a href="kategori.php" class="btn btn-danger">Batal</a>
                         </form>
                         </div>
@@ -285,7 +285,11 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
-
+    <script>
+        $('#my-button').click(function() {
+            $('#form-kategori').submit();
+        });
+    </script>
 </body>
 
 </php>
