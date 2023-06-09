@@ -1,3 +1,7 @@
+<?php
+  include "connect.php";
+  $query = mysqli_query($conn, "SELECT * FROM sutradara");
+  ?>
 <!DOCTYPE php>
 <php lang="en">
 
@@ -230,7 +234,7 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>1</td>
                                             <td>User</td>
                                             <td>user@gmail.com</td>
@@ -238,8 +242,25 @@
                                                 <a href="sutradara_ubah.php" class="btn btn-warning">Ubah</a>
                                                 <a href="" class="btn btn-danger">Hapus</a>
                                             </td>
+                                        </tr> -->
+                                        <?php if (mysqli_num_rows($query) > 0) {
+                                        ?>
+                                        <?php
+                                        while ($value = mysqli_fetch_array($query)) {
+                                        ?>
+                                        <tr class="text-center">
+                                            <td><?php echo $value["id_sutradara"]; ?></td>
+                                            <td><?php echo $value["nama"]; ?></td>
+                                            <td><?php echo $value["tgl_lahir"]; ?></td>
+                                            <td>
+                                                <a href="sutradara_ubah.php?id_sutradara=<?php echo $value["id_sutradara"]?>" class="btn btn-warning">Ubah</a>
+                                                <a href="sutradara_dalete.php?id_sutradara=<?php echo $value["id_sutradara"]?>" class="btn btn-danger">Hapus</a>
+                                            </td>
                                         </tr>
-                                    </tbody>
+                                        <?php
+                                        } ?>
+                                    <?php } ?>
+                                    </tbody>                                   
                                 </table>
                             </div>
                         </div>

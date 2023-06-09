@@ -1,3 +1,14 @@
+<?php
+    include("connect.php");
+    $id_kategori = $_GET['id_kategori'];
+
+    $kategori = mysqli_query($conn, "SELECT * FROM kategori WHERE id_kategori = '$id_kategori'");
+
+    while ($value = mysqli_fetch_array($kategori)) {
+        // $id_sutradara = $value['id_sutradara'];
+        $nama_kategori = $value['nama_kategori'];
+    }
+?>
 <!DOCTYPE php>
 <php lang="en">
 
@@ -210,12 +221,12 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Kategori</h6>
                         </div>
                         <div class="card-body">
-                        <form>
+                        <form id="form-kategori" action="proses_ubah_kategori.php?id_kategori=<?php echo $id_kategori?>" method="post">>
                         <div class="form-group">
                             <label for="nama_kategori">Nama Kategori</label>
-                            <input type="text" class="form-control" id="nama_kategori" placeholder="nama kategori">
+                            <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="<?php echo $nama_kategori ?>">
                         </div>
-                            <button type="submit" class="btn btn-warning">Ubah Kategori</button>
+                            <button id="my-button" type="submit" class="btn btn-warning">Ubah Kategori</button>
                             <a href="kategori.php" class="btn btn-danger">Batal</a>
                         </form>
                         </div>
@@ -285,7 +296,11 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
-
+    <script>
+        $('#my-button').click(function() {
+            $('#form-kategori').submit();
+        });
+    </script>
 </body>
 
 </php>

@@ -1,3 +1,15 @@
+<?php
+    include("connect.php");
+    $id_sutradara = $_GET['id_sutradara'];
+
+    $sutradara = mysqli_query($conn, "SELECT * FROM sutradara WHERE id_sutradara = '$id_sutradara'");
+
+    while ($value = mysqli_fetch_array($sutradara)) {
+        // $id_sutradara = $value['id_sutradara'];
+        $nama = $value['nama'];
+        $tgl_lahir = $value['tgl_lahir'];
+    }
+?>
 <!DOCTYPE php>
 <php lang="en">
 
@@ -210,16 +222,16 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Sutradara</h6>
                         </div>
                         <div class="card-body">
-                        <form>
+                        <form id="form-sutradara" action="proses_ubah_sutradara.php?id_sutradara=<?php echo $id_sutradara?>" method="post">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" placeholder="nama lengkap">
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama ?>">
                         </div>
                         <div class="form-group">
                             <label for="tgl_lahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="tgl_lahir" placeholder="name@example.com">
+                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo $tgl_lahir ?>">
                         </div>
-                            <button type="submit" class="btn btn-warning">Ubah Sutradara</button>
+                            <button id="my-button" type="submit" class="btn btn-warning">Ubah Sutradara</button>
                             <a href="sutradara.php" class="btn btn-danger">Batal</a>
                         </form>
                         </div>
@@ -289,7 +301,11 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
-
+    <script>
+        $('#my-button').click(function() {
+            $('#form-sutradara').submit();
+        });
+    </script>
 </body>
 
 </php>
