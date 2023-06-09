@@ -216,7 +216,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
+                                            <th>Judul</th>
                                             <th>Email</th>
                                             <th>Role</th>
                                             <th>Aksi</th>
@@ -225,7 +225,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
+                                            <th>Judul</th>
                                             <th>Email</th>
                                             <th>Role</th>
                                             <th>Aksi</th>
