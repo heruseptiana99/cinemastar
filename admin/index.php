@@ -164,9 +164,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <!--<span class="mr-2 d-none d-lg-inline text-gray-600 small">Cinemastar</span>-->
+                                <img class="img-profile" style="width : 120px;"
+                                    src="images/about2.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -207,23 +207,46 @@
                     <!-- Content Row -->
                     <div class="row">
 
+                        <?php
+                            include('connect.php');
+
+                            $data_user = mysqli_query($conn, "SELECT COUNT(id_user) as jumlah_user  FROM user");
+
+                            while($user = mysqli_fetch_array($data_user)){
+
+                        ?>
+
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="text-align :center;">
+                                                Jumlah User</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"  style="text-align :center;"><?php echo $user['jumlah_user'] ?></div>
                                         </div>
-                                        <div class="col-auto">
+                                        <!--<div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php
+                            }
+                        ?>
+
+
+                        <?php
+                            include('connect.php');
+
+                            $data_aktor = mysqli_query($conn, "SELECT COUNT(id_aktor) as jumlah_aktor  FROM aktor");
+
+                            while($aktor = mysqli_fetch_array($data_aktor)){
+
+                        ?>
+
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -231,46 +254,63 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="text-align :center;">
+                                                Jumlah Aktor</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align :center;"><?php echo $aktor['jumlah_aktor'] ?></div>
                                         </div>
-                                        <div class="col-auto">
+                                        <!--<div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php
+                            }
+                        ?>
+
+
+                        <?php
+                            include('connect.php');
+
+                            $data_sutradara = mysqli_query($conn, "SELECT COUNT(id_sutradara) as jumlah_sutradara  FROM sutradara");
+
+                            while($sutradara = mysqli_fetch_array($data_sutradara)){
+
+                        ?>
+
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="text-align :center;">
+                                                Jumlah Sutradara</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align :center;"><?php echo $sutradara['jumlah_sutradara'] ?></div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
+                                        <!--<div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php
+                            }
+                        ?>
+
+
+
+                        <?php
+                            include('connect.php');
+
+                            $data_film = mysqli_query($conn, "SELECT COUNT(id_film) as jumlah_film  FROM film");
+
+                            while($film = mysqli_fetch_array($data_film)){
+
+                        ?>
 
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -278,18 +318,21 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="text-align :center;">
+                                                Jumlah Film</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align :center;"><?php echo $film['jumlah_film'] ?></div>
                                         </div>
-                                        <div class="col-auto">
+                                        <!--<div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php
+                            }
+                        ?>
 
                     <!-- Content Row -->
 
