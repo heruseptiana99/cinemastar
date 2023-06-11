@@ -67,11 +67,11 @@
             <ul class="filter-list">
 
               <li>
-                <button class="filter-btn">Akction</button>
+                <button class="filter-btn">Action</button>
               </li>
 
               <li>
-                <button class="filter-btn">Romace</button>
+                <button class="filter-btn">Romance</button>
               </li>
 
               <li>
