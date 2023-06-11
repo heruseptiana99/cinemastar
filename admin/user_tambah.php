@@ -13,6 +13,8 @@
 
         <!-- Custom fonts for this template -->
         <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
@@ -210,10 +212,15 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
                         </div>
                         <div class="card-body">
-                        <form>
+                        <form action="user_proses_tambah.php" method="POST" id="form-pelanggan" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="nama" placeholder="nama lengkap">
+                            <small id="text-error-name"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="Telpon">Telepon</label>
+                            <input type="text" class="form-control" id="Telpon" placeholder="Telpon">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -234,7 +241,11 @@
                                 <option value="User">User</option>
                             </select>
                         </div>
-                            <button type="submit" class="btn btn-primary">Tambah User</button>
+                        <div class="from-group">
+                            <label for="foto">Foto</label>
+                            <input type="file" class="form-control-file mb-3" id="foto" placeholder="Foto">
+                        </div>
+                            <button id="my-button" type="button" class="btn btn-primary">Tambah User</button>
                             <a href="user.php" class="btn btn-danger">Batal</a>
                         </form>
                         </div>
@@ -287,6 +298,60 @@
         </div>
     </div>
 
+
+    <script type="text/javascript">
+    $('#my-button').click(function() {
+        if ($('#nama').val().length == 0 || $('#size').val().length == 0 || $('#harga').val().length == 0  || $('#foto_produk').val().length == 0 || $('#keterangan').val().length == 0 ) {
+            if($('#nama').val().length == 0){
+                $('#nama').css({"border-color" : "red"});
+                $('#text-error-name').text('* Silahkan isi nama terlebih dahulu');
+                $('#text-error-name').css({"font-style" : "italic"});
+                $('#text-error-name').css({"color" : "red"});
+            }else{
+                $('#nama').css({"border-color" : "#dee2e6"});
+                $('#text-error-name').hide();
+            }
+            if($('#size').val().length == 0){
+                $('#size').css({"border-color" : "red"});
+                $('#text-error-size').text('* Silahkan isi Ukuran terlebih dahulu');
+                $('#text-error-size').css({"font-style" : "italic"});
+                $('#text-error-size').css({"color" : "red"});
+            }else{
+                $('#size').css({"border-color" : "#dee2e6"});
+                $('#text-error-size').hide();
+            }
+            if($('#harga').val().length == 0){
+                $('#harga').css({"border-color" : "red"});
+                $('#text-error-harga').text('* Silahkan isi harga terlebih dahulu');
+                $('#text-error-harga').css({"font-style" : "italic"});
+                $('#text-error-harga').css({"color" : "red"});
+            }else{
+                $('#harga').css({"border-color" : "#dee2e6"});
+                $('#text-error-harga').hide();
+            } 
+            if($('#foto_produk').val().length == 0){
+                $('#foto_produk').css({"border-color" : "red"});
+                $('#text-error-foto_produk').text('* Silahkan isi foto produk terlebih dahulu');
+                $('#text-error-foto_produk').css({"font-style" : "italic"});
+                $('#text-error-foto_produk').css({"color" : "red"});
+            }else{
+                $('#foto_produk').css({"border-color" : "#dee2e6"});
+                $('#text-error-foto_produk').hide();
+            }  
+            if($('#keterangan').val().length == 0){
+                $('#keterangan').css({"border-color" : "red"});
+                $('#text-error-keterangan').text('* Silahkan isi keterangan terlebih dahulu');
+                $('#text-error-keterangan').css({"font-style" : "italic"});
+                $('#text-error-keterangan').css({"color" : "red"});
+            }else{
+                $('#keterangan').css({"border-color" : "#dee2e6"});
+                $('#text-error-keterangan').hide();
+            }          
+        } else {
+                $('#form-pelanggan').submit();
+        }
+    });
+    </script>
    
     <!-- Bootstrap core JavaScript-->
     <script src="../assets/vendor/jquery/jquery.min.js"></script>
