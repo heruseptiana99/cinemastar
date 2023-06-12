@@ -42,7 +42,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Cinemastar </div>
             </a>
 
             <!-- Divider -->
@@ -82,6 +82,11 @@
                     <a class="nav-link" href="sutradara.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Sutradara</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="komentar.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Komentar</span></a>
                 </li>
 
             <!-- Divider -->
@@ -218,21 +223,21 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center">
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <!-- <tfoot>
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Aksi</th>
                                         </tr>
-                                    </tfoot>
+                                    </tfoot> -->
                                     <tbody>
                                         <!-- <tr>
                                             <td>1</td>
@@ -246,19 +251,20 @@
                                         <?php if (mysqli_num_rows($query) > 0) {
                                         ?>
                                         <?php
+                                        $no = 1;
                                         while ($value = mysqli_fetch_array($query)) {
                                         ?>
                                         <tr class="text-center">
-                                            <td><?php echo $value["id_sutradara"]; ?></td>
+                                            <td><?php echo $no ?></td>
                                             <td><?php echo $value["nama"]; ?></td>
-                                            <td><?php echo $value["tgl_lahir"]; ?></td>
+                                            <td><?php echo date('d-m-Y',strtotime($value["tgl_lahir"])); ?></td>
                                             <td>
                                                 <a href="sutradara_ubah.php?id_sutradara=<?php echo $value["id_sutradara"]?>" class="btn btn-warning">Ubah</a>
                                                 <a href="sutradara_dalete.php?id_sutradara=<?php echo $value["id_sutradara"]?>" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         <?php
-                                        } ?>
+                                        $no++;} ?>
                                     <?php } ?>
                                     </tbody>                                   
                                 </table>

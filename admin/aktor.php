@@ -42,7 +42,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Cinemastar</div>
             </a>
 
             <!-- Divider -->
@@ -82,6 +82,11 @@
                     <a class="nav-link" href="sutradara.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Sutradara</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="komentar.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Komentar</span></a>
                 </li>
 
             <!-- Divider -->
@@ -218,7 +223,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center">
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Tanggal Lahir</th>
@@ -239,13 +244,14 @@
                                         <?php if (mysqli_num_rows($query) > 0) {
                                             ?>
                                             <?php
+                                            $no = 1;
                                             while ($value = mysqli_fetch_array($query)) {
                                             ?>
                                             <tr class="text-center">
-                                                <td><?php echo $value["id_aktor"]; ?></td>
+                                                <td><?php echo $no ?></td>
                                                 <td><?php echo $value["nama"]; ?></td>
-                                                <td><?php echo $value["tgl_lahir"]; ?></td>
-                                                <td><img src="images/<?php echo $value["foto"]; ?>" width="100px"></td>
+                                                <td><?php echo date('d-m-Y',strtotime($value["tgl_lahir"])); ?></td>
+                                                <td><img src="/images/<?php echo $value["foto"]; ?>" width="100px"></td>
                                                 <!-- <img src="images/<?php echo $jajan_pasar['gambar'] ?>" width="100px"> -->
                                                 <td>
                                                     <a href="aktor_ubah.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-warning">Ubah</a>
@@ -253,7 +259,7 @@
                                                 </td>
                                             </tr>
                                             <?php
-                                            } ?>
+                                            $no++;} ?>
                                         <?php } ?>
                                         <!-- <tr>
                                             <td>1</td>

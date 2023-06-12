@@ -8,7 +8,7 @@
         // $id_sutradara = $value['id_sutradara'];
         $nama = $value['nama'];
         $tgl_lahir = $value['tgl_lahir'];
-        $foto = $_value['foto'];
+        $foto = $value['foto'];
     }
 ?>
 <!DOCTYPE php>
@@ -51,7 +51,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Cinemastar</div>
             </a>
 
             <!-- Divider -->
@@ -91,6 +91,11 @@
                     <a class="nav-link" href="sutradara.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Sutradara</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="komentar.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Komentar</span></a>
                 </li>
 
             <!-- Divider -->
@@ -234,6 +239,7 @@
                         </div>
                         <div class="form-group">
                             <label for="foto">Foto</label>
+                            <input type="text" value="<?php echo $foto?>" disabled>
                             <input type="file" class="form-control-file" id="foto" name="foto"value="<?php echo $foto ?>">
                         </div>
                             <button id="my-button" type="submit" class="btn btn-warning">Ubah Aktor</button>
