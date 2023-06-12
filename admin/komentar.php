@@ -1,14 +1,7 @@
 <?php
-    include("connect.php");
-    $id_kategori = $_GET['id_kategori'];
-
-    $kategori = mysqli_query($conn, "SELECT * FROM kategori WHERE id_kategori = '$id_kategori'");
-
-    while ($value = mysqli_fetch_array($kategori)) {
-        // $id_sutradara = $value['id_sutradara'];
-        $nama_kategori = $value['nama_kategori'];
-    }
-?>
+  include "connect.php";
+  $query = mysqli_query($conn, "SELECT * FROM kategori");
+  ?>
 <!DOCTYPE php>
 <php lang="en">
 
@@ -78,7 +71,7 @@
                 </li>
                 
                 <!-- Nav Item - Aktor -->
-                <li class="nav-item ">
+                <li class="nav-item">
                     <a class="nav-link" href="aktor.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Aktor</span></a>
@@ -217,7 +210,8 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">UBAH KATEGORI</h1>
+                        <h1 class="h3 mb-0 text-gray-800">DATA KATEGORI</h1>
+                        <a href="kategori_tambah.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Kategori</a>
                     </div>
                     
                     <!-- DataTales Example -->
@@ -226,14 +220,49 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Kategori</h6>
                         </div>
                         <div class="card-body">
-                        <form id="form-kategori" action="proses_ubah_kategori.php?id_kategori=<?php echo $id_kategori?>" method="post">>
-                        <div class="form-group">
-                            <label for="nama_kategori">Nama Kategori</label>
-                            <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="<?php echo $nama_kategori ?>">
-                        </div>
-                            <button id="my-button" type="submit" class="btn btn-warning">Ubah Kategori</button>
-                            <a href="kategori.php" class="btn btn-danger">Batal</a>
-                        </form>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>No</th>
+                                            <th>Judul Film</th>
+                                            <th>Nama User</th>
+                                            <th>Ranting</th>
+                                            <th>Isi Komentar</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (mysqli_num_rows($query) > 0) {
+                                            ?>
+                                            <?php
+                                            $no = 1;
+                                            while ($value = mysqli_fetch_array($query)) {
+                                            ?>
+                                            <tr class="text-center">
+                                                <td><?php echo $no ?></td>
+                                                <td><?php echo $value["id_film"]; ?></td>
+                                                <td><?php echo $value["id_user"]; ?></td>
+                                                <td><?php echo $value["ranting"]; ?></td>
+                                                <td><?php echo $value["isi_komentar"]; ?></td>
+                                                <td>
+                                                    <a href="komentar_dalete.php?id_komentar=<?php echo $value["id_komentar"]?>" class="btn btn-danger">Hapus</a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                            $no++;} ?>
+                                        <?php } ?>
+                                        <!-- <tr>
+                                            <td>1</td>
+                                            <td>User</td>
+                                            <td>
+                                                <a href="kategori_ubah.php" class="btn btn-warning">Ubah</a>
+                                                <a href="" class="btn btn-danger">Hapus</a>
+                                            </td>
+                                        </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
@@ -301,11 +330,7 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
-    <script>
-        $('#my-button').click(function() {
-            $('#form-kategori').submit();
-        });
-    </script>
+
 </body>
 
 </php>
