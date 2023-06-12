@@ -173,9 +173,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="aktorDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Heru</span>
+                                <img class="img-profile rounded" 
+                                    src="images/user1.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -184,14 +184,14 @@
                                     <i class="fas fa-aktor fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <!--<a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
-                                </a>
+                                </a>-->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -251,7 +251,7 @@
                                                 <td><?php echo $no ?></td>
                                                 <td><?php echo $value["nama"]; ?></td>
                                                 <td><?php echo date('d-m-Y',strtotime($value["tgl_lahir"])); ?></td>
-                                                <td><img src="/images/<?php echo $value["foto"]; ?>" width="100px"></td>
+                                                <td><img src="images/<?php echo $value["foto"]; ?>" width="100px"></td>
                                                 <!-- <img src="images/<?php echo $jajan_pasar['gambar'] ?>" width="100px"> -->
                                                 <td>
                                                     <a href="aktor_ubah.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-warning">Ubah</a>

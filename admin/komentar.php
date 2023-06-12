@@ -1,7 +1,4 @@
-<?php
-  include "connect.php";
-  $query = mysqli_query($conn, "SELECT * FROM kategori");
-  ?>
+
 <!DOCTYPE php>
 <php lang="en">
 
@@ -83,7 +80,7 @@
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Sutradara</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="komentar.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Komentar</span></a>
@@ -106,7 +103,7 @@
 
 
             <!-- Nav Item - Kategori -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="kategori.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Kategori</span></a>
@@ -233,6 +230,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php
+                                    include "connect.php";
+                                    $query = mysqli_query($conn, "SELECT * FROM komentar");
+                                    ?>
                                         <?php if (mysqli_num_rows($query) > 0) {
                                             ?>
                                             <?php
