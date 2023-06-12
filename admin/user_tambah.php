@@ -215,38 +215,43 @@
                         <form action="user_proses_tambah.php" method="POST" id="form-pelanggan" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" placeholder="nama lengkap">
-                            <small id="text-error-name"></small>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="nama lengkap">
+                            <small id="text-error-nama"></small>
                         </div>
                         <div class="form-group">
                             <label for="Telpon">Telepon</label>
-                            <input type="text" class="form-control" id="Telpon" placeholder="Telpon">
+                            <input type="text" class="form-control" id="telp" name="telp" placeholder="Telpon">
+                            <small id="text-error-telp"></small>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                            <small id="text-error-email"></small>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="password">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                            <small id="text-error-password"></small>
                         </div>
                         <div class="form-group">
                             <label for="ulang_password">Ulang Password</label>
-                            <input type="password" class="form-control" id="ulang_password" placeholder="Ulang Password">
+                            <input type="password" class="form-control" id="ulang_password" name="ulang_password" placeholder="Ulang Password">
+                            <small id="text-error-ulang_password"></small>
                         </div>
                         <div class="form-group">
                             <label for="Role">Role</label>
-                            <select class="form-control" id="Role">
+                            <select class="form-control" id="Role" name="role">
                                 <option value="Admin">Admin</option>
                                 <option value="User">User</option>
                             </select>
                         </div>
                         <div class="from-group">
                             <label for="foto">Foto</label>
-                            <input type="file" class="form-control-file mb-3" id="foto" placeholder="Foto">
+                            <input type="file" class="form-control-file" id="foto" name="foto" placeholder="Foto">
+                            <small id="text-error-foto"></small>
                         </div>
-                            <button id="my-button" type="button" class="btn btn-primary">Tambah User</button>
-                            <a href="user.php" class="btn btn-danger">Batal</a>
+                            <button id="my-button" type="button" class="btn btn-primary mt-3">Tambah User</button>
+                            <a href="user.php" class="btn btn-danger mt-3">Batal</a>
                         </form>
                         </div>
                     </div>
@@ -301,52 +306,69 @@
 
     <script type="text/javascript">
     $('#my-button').click(function() {
-        if ($('#nama').val().length == 0 || $('#size').val().length == 0 || $('#harga').val().length == 0  || $('#foto_produk').val().length == 0 || $('#keterangan').val().length == 0 ) {
+        if ($('#nama').val().length == 0 || $('#password').val().length == 0 || $('#email').val().length == 0  || $('#telp').val().length == 0  || $('#foto').val().length == 0  || $('#ulang_password').val().length == 0 || $('#password').val().length !== $('#ulang_password').val().length) {
             if($('#nama').val().length == 0){
                 $('#nama').css({"border-color" : "red"});
-                $('#text-error-name').text('* Silahkan isi nama terlebih dahulu');
-                $('#text-error-name').css({"font-style" : "italic"});
-                $('#text-error-name').css({"color" : "red"});
+                $('#text-error-nama').text('* Silahkan isi nama terlebih dahulu');
+                $('#text-error-nama').css({"font-style" : "italic"});
+                $('#text-error-nama').css({"color" : "red"});
             }else{
                 $('#nama').css({"border-color" : "#dee2e6"});
-                $('#text-error-name').hide();
+                $('#text-error-nama').hide();
             }
-            if($('#size').val().length == 0){
-                $('#size').css({"border-color" : "red"});
-                $('#text-error-size').text('* Silahkan isi Ukuran terlebih dahulu');
-                $('#text-error-size').css({"font-style" : "italic"});
-                $('#text-error-size').css({"color" : "red"});
+            if($('#telp').val().length == 0){
+                $('#telp').css({"border-color" : "red"});
+                $('#text-error-telp').text('* Silahkan isi telp terlebih dahulu');
+                $('#text-error-telp').css({"font-style" : "italic"});
+                $('#text-error-telp').css({"color" : "red"});
             }else{
-                $('#size').css({"border-color" : "#dee2e6"});
-                $('#text-error-size').hide();
+                $('#telp').css({"border-color" : "#dee2e6"});
+                $('#text-error-telp').hide();
             }
-            if($('#harga').val().length == 0){
-                $('#harga').css({"border-color" : "red"});
-                $('#text-error-harga').text('* Silahkan isi harga terlebih dahulu');
-                $('#text-error-harga').css({"font-style" : "italic"});
-                $('#text-error-harga').css({"color" : "red"});
+            if($('#foto').val().length == 0){
+                $('#foto').css({"border-color" : "red"});
+                $('#text-error-foto').text('* Silahkan isi foto terlebih dahulu');
+                $('#text-error-foto').css({"font-style" : "italic"});
+                $('#text-error-foto').css({"color" : "red"});
             }else{
-                $('#harga').css({"border-color" : "#dee2e6"});
-                $('#text-error-harga').hide();
-            } 
-            if($('#foto_produk').val().length == 0){
-                $('#foto_produk').css({"border-color" : "red"});
-                $('#text-error-foto_produk').text('* Silahkan isi foto produk terlebih dahulu');
-                $('#text-error-foto_produk').css({"font-style" : "italic"});
-                $('#text-error-foto_produk').css({"color" : "red"});
+                $('#foto').css({"border-color" : "#dee2e6"});
+                $('#text-error-foto').hide();
+            }
+            if($('#email').val().length == 0){
+                $('#email').css({"border-color" : "red"});
+                $('#text-error-email').text('* Silahkan isi emnail terlebih dahulu');
+                $('#text-error-email').css({"font-style" : "italic"});
+                $('#text-error-email').css({"color" : "red"});
             }else{
-                $('#foto_produk').css({"border-color" : "#dee2e6"});
-                $('#text-error-foto_produk').hide();
-            }  
-            if($('#keterangan').val().length == 0){
-                $('#keterangan').css({"border-color" : "red"});
-                $('#text-error-keterangan').text('* Silahkan isi keterangan terlebih dahulu');
-                $('#text-error-keterangan').css({"font-style" : "italic"});
-                $('#text-error-keterangan').css({"color" : "red"});
+                $('#email').css({"border-color" : "#dee2e6"});
+                $('#text-error-email').hide();
+            }
+            if($('#password').val().length == 0){
+                $('#password').css({"border-color" : "red"});
+                $('#text-error-password').text('* Silahkan isi password terlebih dahulu');
+                $('#text-error-password').css({"font-style" : "italic"});
+                $('#text-error-password').css({"color" : "red"});
             }else{
-                $('#keterangan').css({"border-color" : "#dee2e6"});
-                $('#text-error-keterangan').hide();
-            }          
+                if ($('#password').val().length !== $('#ulang_password').val().length) {
+                    $('#password').css({"border-color" : "red"});
+                    $('#text-error-password').text('* password tidak sama dengan ulang password');
+                    $('#text-error-password').css({"font-style" : "italic"});
+                    $('#text-error-password').css({"color" : "red"});
+                }else{
+                    $('#password').css({"border-color" : "#dee2e6"});
+                    $('#text-error-password').hide();
+                }
+            }
+            if($('#ulang_password').val().length == 0){
+                $('#ulang_password').css({"border-color" : "red"});
+                $('#text-error-ulang_password').text('* Silahkan isi ulang password terlebih dahulu');
+                $('#text-error-ulang_password').css({"font-style" : "italic"});
+                $('#text-error-ulang_password').css({"color" : "red"});
+            }else{
+                $('#ulang_password').css({"border-color" : "#dee2e6"});
+                $('#text-error-ulang_password').hide();
+            }
+           
         } else {
                 $('#form-pelanggan').submit();
         }

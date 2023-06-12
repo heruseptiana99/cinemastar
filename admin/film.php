@@ -60,7 +60,7 @@
             </div>
 
             <!-- Nav Item - User -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link " href="user.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>User</span></a>
@@ -89,7 +89,7 @@
             </div>
 
             <!-- Nav Item - Film -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="film.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Film</span></a>
@@ -201,14 +201,14 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">DATA USER</h1>
-                        <a href="user_tambah.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah User</a>
+                        <h1 class="h3 mb-0 text-gray-800">DATA FILM</h1>
+                        <a href="film_tambah.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Film</a>
                     </div>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Film</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -217,8 +217,11 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Judul</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
+                                            <th>Durasi</th>
+                                            <th>Rating</th>
+                                            <th>Sinopsis</th>                                            
+                                            <th>Tayang</th>                                            
+                                            <th>Tanggal Tayang</th>                                            
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -226,22 +229,35 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Judul</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
+                                            <th>Durasi</th>
+                                            <th>Rating</th>
+                                            <th>Sinopsis</th>                                            
+                                            <th>Tayang</th>                                            
+                                            <th>Tanggal Tayang</th>                                            
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                    <?php 
+                                        include('connect.php');
+                                        $data_film = mysqli_query($conn, "SELECT * FROM film");
+                                        $i=1;
+                                        while($film = mysqli_fetch_array($data_film)) {
+                                    ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>User</td>
-                                            <td>user@gmail.com</td>
-                                            <td>admin</td>
+                                            <td><?= $i++ ?></td>
+                                            <td><?= $film['judul_film'] ?></td>
+                                            <td><?= $film['durasi'] ?></td>
+                                            <td><?= $film['rating'] ?></td>
+                                            <td><?= $film['sinopsis'] ?></td>
+                                            <td><?= $film['jenis_tayang'] ?></td>
+                                            <td><?= $film['tgl_tayang'] ?></td>
                                             <td>
-                                                <a href="user_ubah.php" class="btn btn-warning">Ubah</a>
-                                                <a href="" class="btn btn-danger">Hapus</a>
+                                            <a href="film_ubah.php?id_film=<?= $film['id_film'] ?>" class="btn btn-warning btn-sm btn-block">Ubah</a>
+                                                <a href="film_proses_hapus.php?id_film=<?= $film['id_film'] ?>" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
                                             </td>
                                         </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
