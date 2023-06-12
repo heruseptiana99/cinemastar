@@ -254,9 +254,9 @@
                                             <td><?= $film['judul_film'] ?></td>
                                             <td><?= $film['durasi'] ?></td>
                                             <td><?= $film['rating'] ?></td>
-                                            <td><?= $film['sinopsis'] ?></td>
+                                            <td><?= substr($film['sinopsis'],800) . "[.....]"; ?></td>
                                             <td><?= $film['jenis_tayang'] ?></td>
-                                            <td><?= $film['tgl_tayang'] ?></td>
+                                            <td><?= date('d-m-Y',strtotime($film['tgl_tayang'])); ?></td>
                                             <td>
                                             <a href="film_ubah.php?id_film=<?= $film['id_film'] ?>" class="btn btn-warning btn-sm btn-block">Ubah</a>
                                                 <a href="film_proses_hapus.php?id_film=<?= $film['id_film'] ?>" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>

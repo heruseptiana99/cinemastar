@@ -226,7 +226,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Kategori</h6>
                         </div>
                         <div class="card-body">
-                        <form id="form-kategori" action="proses_ubah_kategori.php?id_kategori=<?php echo $id_kategori?>" method="post">>
+                        <form id="form-kategori" action="proses_ubah_kategori.php?id_kategori=<?php echo $id_kategori?>" method="post">
                         <div class="form-group">
                             <label for="nama_kategori">Nama Kategori</label>
                             <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="<?php echo $nama_kategori ?>">
