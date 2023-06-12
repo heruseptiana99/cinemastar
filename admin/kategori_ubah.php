@@ -49,7 +49,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Cinemastar </div>
             </a>
 
             <!-- Divider -->
@@ -89,6 +89,11 @@
                     <a class="nav-link" href="sutradara.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Sutradara</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="komentar.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Komentar</span></a>
                 </li>
 
             <!-- Divider -->
@@ -221,7 +226,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Kategori</h6>
                         </div>
                         <div class="card-body">
-                        <form id="form-kategori" action="proses_ubah_kategori.php?id_kategori=<?php echo $id_kategori?>" method="post">>
+                        <form id="form-kategori" action="proses_ubah_kategori.php?id_kategori=<?php echo $id_kategori?>" method="post">
                         <div class="form-group">
                             <label for="nama_kategori">Nama Kategori</label>
                             <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="<?php echo $nama_kategori ?>">

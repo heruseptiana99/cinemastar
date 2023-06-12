@@ -38,7 +38,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Cinemastar </div>
             </a>
 
             <!-- Divider -->
@@ -78,6 +78,11 @@
                     <a class="nav-link" href="sutradara.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Sutradara</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="komentar.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Komentar</span></a>
                 </li>
 
             <!-- Divider -->
@@ -204,6 +209,41 @@
                         <h1 class="h3 mb-0 text-gray-800">DATA USER</h1>
                         <a href="user_tambah.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah User</a>
                     </div>
+
+                    <?php 
+                        if(isset($_GET['alert'])){
+                            if ($_GET['alert'] == "berhasil") {
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil ditambahkan!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "gagal"){
+                                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                    <strong>Gagal</strong>, Data gagal ditambah atau diubah!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "berhasil_ubah"){
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil diubah!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "hapus"){
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil dihapus!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }
+                        }
+                    
+                    ?>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -217,8 +257,10 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
+                                            <th>Telepon</th>
                                             <th>Email</th>
                                             <th>Role</th>
+                                            <th>Foto</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -226,22 +268,35 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
+                                            <th>Telepon</th>
                                             <th>Email</th>
                                             <th>Role</th>
+                                            <th>Foto</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                    <?php 
+                                        include('connect.php');
+                                        $data_user = mysqli_query($conn, "SELECT * FROM user");
+                                        $i=1;
+                                        while($user = mysqli_fetch_array($data_user)) {
+                                    ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>User</td>
-                                            <td>user@gmail.com</td>
-                                            <td>admin</td>
+                                            <td><?= $i++ ?></td>
+                                            <td><?= $user['nama'] ?></td>
+                                            <td><?= $user['telp'] ?></td>
+                                            <td><?= $user['email'] ?></td>
+                                            <td><?= $user['role'] ?></td>
+                                            <td><img src="images/profile/<?= $user['foto'] ?>" alt="" width="150px"></td>
                                             <td>
-                                                <a href="user_ubah.php" class="btn btn-warning">Ubah</a>
-                                                <a href="" class="btn btn-danger">Hapus</a>
+                                                <a href="user_ubah.php?id_user=<?= $user['id_user'] ?>" class="btn btn-warning btn-sm btn-block">Ubah</a>
+                                                <a href="user_proses_hapus.php?id_user=<?= $user['id_user'] ?>&foto=<?= $user['foto'] ?>" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
                                             </td>
                                         </tr>
+                                    <?php
+                                        }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>

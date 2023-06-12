@@ -42,7 +42,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Cinemastar </div>
             </a>
 
             <!-- Divider -->
@@ -82,6 +82,11 @@
                     <a class="nav-link" href="sutradara.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Sutradara</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="komentar.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Komentar</span></a>
                 </li>
 
             <!-- Divider -->
@@ -218,7 +223,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center">
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Aksi</th>
@@ -246,7 +251,7 @@
                                                 </td>
                                             </tr>
                                             <?php
-                                            } ?>
+                                            }?>
                                         <?php } ?>
                                         <!-- <tr>
                                             <td>1</td>
