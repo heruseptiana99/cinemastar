@@ -254,8 +254,8 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
-                                            <th>No</th>
+                                        <tr class="text-center">
+                                            <th style="width: 30px;">No</th>
                                             <th>Nama</th>
                                             <th>Telepon</th>
                                             <th>Email</th>
@@ -264,7 +264,7 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <!--<tfoot>
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
@@ -274,7 +274,7 @@
                                             <th>Foto</th>
                                             <th>Aksi</th>
                                         </tr>
-                                    </tfoot>
+                                    </tfoot>-->
                                     <tbody>
                                     <?php 
                                         include('connect.php');
@@ -288,7 +288,14 @@
                                             <td><?= $user['telp'] ?></td>
                                             <td><?= $user['email'] ?></td>
                                             <td><?= $user['role'] ?></td>
-                                            <td><img src="images/profile/<?= $user['foto'] ?>" alt="" width="150px"></td>
+                                            <td class="text-center">
+                                                <?php if($user['foto']=="default.png"){ ?>
+                                                    <img src="../images/<?= $user['foto'] ?>" alt="" width="100px">
+                                                    <?php }else{ ?>
+                                                        <img src="images/profile/<?= $user['foto'] ?>" alt="" width="150px">
+                                                <?php } ?>
+                                            </td>
+
                                             <td>
                                                 <a href="user_ubah.php?id_user=<?= $user['id_user'] ?>" class="btn btn-warning btn-sm btn-block">Ubah</a>
                                                 <a href="user_proses_hapus.php?id_user=<?= $user['id_user'] ?>&foto=<?= $user['foto'] ?>" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
