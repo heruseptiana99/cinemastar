@@ -251,8 +251,7 @@
                                                 <td><?php echo $no ?></td>
                                                 <td><?php echo $value["nama"]; ?></td>
                                                 <td><?php echo date('d-m-Y',strtotime($value["tgl_lahir"])); ?></td>
-                                                <td><img src="images/<?php echo $value["foto"]; ?>" width="150px" height="150px"></td>
-                                                <!-- <img src="images/<?php echo $jajan_pasar['gambar'] ?>" width="100px"> -->
+                                                <td><img src="images/produk/<?php echo $value["foto"]; ?>" width="100px"></td>
                                                 <td>
                                                     <a href="aktor_ubah.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-warning">Ubah</a>
                                                     <a href="aktor_dalete.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-danger">Hapus</a>

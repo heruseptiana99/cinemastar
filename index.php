@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -111,28 +112,37 @@
 									<li><a href="about_us.html" class="button style1 large">INFO LEBIH LANJUT</a></li>
 								</ul>
 							</section>
-
 					</div>
 				</section>
 
 			<!-- Highlights -->
 				<section id="highlights" class="wrapper style3" style="background-color: black;">
 					<div class="title" style="background-color: black; color: white;">FILM - FILM</div>
-					<div class="container" >
+					<div class="container">
 						<ul class="movies-list  has-scrollbar">
-
+							<?php
+								include("admin/connect.php");
+								$data_film = mysqli_query($conn, "SELECT * FROM film");
+								while ($film = mysqli_fetch_array($data_film)) {
+									$id_film = $film['id_film'];	
+									$judul_film = $film['judul_film'];	
+									$rating = $film['rating'];
+									
+								$data_foto = mysqli_query($conn, "SELECT * FROM foto_film WHERE id_film=$id_film ORDER BY id_foto_film DESC limit 2");
+								while ($foto = mysqli_fetch_array($data_foto)) {
+									$foto_gm = $foto['foto'];
+								}
+							?>
 							<li>
-							  <div class="movie-card">
-				
-								<a href="./movie-details.html">
+							  <div class="movie-card">			
+								<a href="film2_detail.php">
 								  <figure class="card-banner">
-									<img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
+									<img src="./admin/images/produk/<?php echo $foto_gm; ?>" width="100px" alt="">
 								  </figure>
 								</a>
-				
 								<div class="title-wrapper">
-								  <a href="./movie-details.html">
-									<h3 class="card-title">The Northman</h3>
+								  <a href="film2_detail.php">
+									<h3 class="card-title"><?= $judul_film ?></h3>
 								  </a>
 				
 								  <time datetime="2022">2022</time>
@@ -156,117 +166,9 @@
 				
 							  </div>
 							</li>
-				
-							<li>
-							  <div class="movie-card">
-				
-								<a href="./movie-details.html">
-								  <figure class="card-banner">
-									<img src="./assets/images/upcoming-2.png"
-									  alt="Doctor Strange in the Multiverse of Madness movie poster">
-								  </figure>
-								</a>
-				
-								<div class="title-wrapper">
-								  <a href="./movie-details.html">
-									<h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
-								  </a>
-				
-								  <time datetime="2022">2022</time>
-								</div>
-				
-								<div class="card-meta">
-								  <div class="badge badge-outline">4K</div>
-				
-								  <div class="duration">
-									<ion-icon name="time-outline"></ion-icon>
-				
-									<time datetime="PT126M">126 min</time>
-								  </div>
-				
-								  <div class="rating">
-									<ion-icon name="star"></ion-icon>
-				
-									<data>NR</data>
-								  </div>
-								</div>
-				
-							  </div>
-							</li>
-				
-							<li>
-							  <div class="movie-card">
-				
-								<a href="./movie-details.html">
-								  <figure class="card-banner">
-									<img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
-								  </figure>
-								</a>
-				
-								<div class="title-wrapper">
-								  <a href="./movie-details.html">
-									<h3 class="card-title">Memory</h3>
-								  </a>
-				
-								  <time datetime="2022">2022</time>
-								</div>
-				
-								<div class="card-meta">
-								  <div class="badge badge-outline">2K</div>
-				
-								  <div class="duration">
-									<ion-icon name="time-outline"></ion-icon>
-				
-									<time datetime="">N/A</time>
-								  </div>
-				
-								  <div class="rating">
-									<ion-icon name="star"></ion-icon>
-				
-									<data>NR</data>
-								  </div>
-								</div>
-				
-							  </div>
-							</li>
-				
-							<li>
-							  <div class="movie-card">
-				
-								<a href="./movie-details.html">
-								  <figure class="card-banner">
-									<img src="./assets/images/upcoming-4.png"
-									  alt="The Unbearable Weight of Massive Talent movie poster">
-								  </figure>
-								</a>
-				
-								<div class="title-wrapper">
-								  <a href="./movie-details.html">
-									<h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
-								  </a>
-				
-								  <time datetime="2022">2022</time>
-								</div>
-				
-								<div class="card-meta">
-								  <div class="badge badge-outline">HD</div>
-				
-								  <div class="duration">
-									<ion-icon name="time-outline"></ion-icon>
-				
-									<time datetime="PT107M">107 min</time>
-								  </div>
-				
-								  <div class="rating">
-									<ion-icon name="star"></ion-icon>
-				
-									<data>NR</data>
-								  </div>
-								</div>
-				
-							  </div>
-							</li>
-				
+							<?php	
+								}
+							?>
 						  </ul>
 						  <ul class="actions special">
 							<li><a href="film2.php" class="button style2 large">LIHAT LEBIH BANYAK</a></li>
