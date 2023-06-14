@@ -224,7 +224,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>No</th>
+                                            <th style="width: 30px;">No</th>
                                             <th>Nama</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Aksi</th>

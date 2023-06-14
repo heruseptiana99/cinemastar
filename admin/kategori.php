@@ -224,7 +224,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>No</th>
+                                            <th style="width: 30px;">No</th>
                                             <th>Nama</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -240,10 +240,11 @@
                                         <?php if (mysqli_num_rows($query) > 0) {
                                             ?>
                                             <?php
+                                            $no = 1;
                                             while ($value = mysqli_fetch_array($query)) {
                                             ?>
                                             <tr class="text-center">
-                                                <td><?php echo $value["id_kategori"]; ?></td>
+                                                <td><?php echo $no ?></td>
                                                 <td><?php echo $value["nama_kategori"]; ?></td>
                                                 <td>
                                                     <a href="kategori_ubah.php?id_kategori=<?php echo $value["id_kategori"]?>" class="btn btn-warning">Ubah</a>
@@ -251,7 +252,7 @@
                                                 </td>
                                             </tr>
                                             <?php
-                                            }?>
+                                            $no++;}?>
                                         <?php } ?>
                                         <!-- <tr>
                                             <td>1</td>

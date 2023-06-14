@@ -224,7 +224,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>No</th>
+                                            <th style="width: 30px;">No</th>
                                             <th>Nama</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Foto</th>
@@ -251,7 +251,7 @@
                                                 <td><?php echo $no ?></td>
                                                 <td><?php echo $value["nama"]; ?></td>
                                                 <td><?php echo date('d-m-Y',strtotime($value["tgl_lahir"])); ?></td>
-                                                <td><img src="images/<?php echo $value["foto"]; ?>" width="100px"></td>
+                                                <td><img src="images/<?php echo $value["foto"]; ?>" width="150px" height="150px"></td>
                                                 <!-- <img src="images/<?php echo $jajan_pasar['gambar'] ?>" width="100px"> -->
                                                 <td>
                                                     <a href="aktor_ubah.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-warning">Ubah</a>

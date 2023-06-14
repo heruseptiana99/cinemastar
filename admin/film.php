@@ -218,19 +218,19 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                                    <thead class="text-center">
                                         <tr>
                                             <th>No</th>
                                             <th>Judul</th>
                                             <th>Durasi</th>
                                             <th>Rating</th>
-                                            <th>Sinopsis</th>                                            
+                                            <th style="width: 500px;">Sinopsis</th>                                            
                                             <th>Tayang</th>                                            
                                             <th>Tanggal Tayang</th>                                            
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <!--<tfoot>
                                         <tr>
                                             <th>No</th>
                                             <th>Judul</th>
@@ -241,7 +241,7 @@
                                             <th>Tanggal Tayang</th>                                            
                                             <th>Aksi</th>
                                         </tr>
-                                    </tfoot>
+                                    </tfoot>-->
                                     <tbody>
                                     <?php 
                                         include('connect.php');
@@ -250,13 +250,13 @@
                                         while($film = mysqli_fetch_array($data_film)) {
                                     ?>
                                         <tr>
-                                            <td><?= $i++ ?></td>
-                                            <td><?= $film['judul_film'] ?></td>
-                                            <td><?= $film['durasi'] ?></td>
-                                            <td><?= $film['rating'] ?></td>
+                                            <td class="text-center"><?= $i++ ?></td>
+                                            <td class="text-center"><?= $film['judul_film'] ?></td>
+                                            <td class="text-center"><?= $film['durasi'] ?></td>
+                                            <td class="text-center"><?= $film['rating'] ?></td>
                                             <td><?= substr($film['sinopsis'],800) . "[.....]"; ?></td>
-                                            <td><?= $film['jenis_tayang'] ?></td>
-                                            <td><?= date('d-m-Y',strtotime($film['tgl_tayang'])); ?></td>
+                                            <td class="text-center"><?= $film['jenis_tayang'] ?></td>
+                                            <td class="text-center"><?= date('d-m-Y',strtotime($film['tgl_tayang'])); ?></td>
                                             <td>
                                             <a href="film_ubah.php?id_film=<?= $film['id_film'] ?>" class="btn btn-warning btn-sm btn-block">Ubah</a>
                                                 <a href="film_proses_hapus.php?id_film=<?= $film['id_film'] ?>" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
