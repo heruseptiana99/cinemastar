@@ -5,7 +5,7 @@
 
     include("connect.php");
     $result = mysqli_query($conn, "INSERT INTO `aktor` (`nama`, `tgl_lahir`,`foto`) 
-    VALUES ('$nama' ,'$tgl_lahir','$foto');");
+    VALUES ('$nama','$tgl_lahir','$foto');");
     
     header("Location:aktor.php");
 ?>
