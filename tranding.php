@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <!--
 	Escape Velocity by HTML5 UP
@@ -16,7 +17,8 @@
             rel="stylesheet">
     
         <!-- Custom styles for this template -->
-        <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="assets/css/tranding.css" rel="stylesheet">
+
 	</head>
 	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
@@ -36,7 +38,19 @@
 			<li><a href="film2.php">Film</a></li>
 			<li><a href="tranding.php">Tranding</a></li>
 			<li><a href="about_us.html">Tentang Kami</a></li>
-			<li><a href="login.html">LOGIN | DAFTAR</a></li>
+			<?php if($_SESSION){ ?>
+				<?php if(isset($_SESSION['id_user'])!==null){ ?>
+					<li>
+						<a href="#" class="icon solid fa-user"> <?= $_SESSION['nama'] ?></a>
+						<ul>
+							<li><a href="profile.php">Profile</a></li>
+							<li><a href="model/beranda_model.php?aksi=logout">Logout</a></li>
+						</ul>
+					</li>
+				<?php } ?>
+				<?php }else{ ?>
+					<li><a href="login.php">LOGIN | DAFTAR</a></li>
+			<?php } ?>
 		</ul>
 	</nav>
 
@@ -46,335 +60,73 @@
 				<div id="main" class="wrapper style2">
 					<div class="title">TRANDING TOP 10</div>
 					<div class="container">
-						<div class="row mt-3">
+						<?php 
+							include('admin/connect.php');
+							$data_film = mysqli_query($conn, "SELECT film.*, AVG(komentar.rating) AS rating_nilai, COUNT(komentar.id_film) AS rating_jumlah FROM film LEFT JOIN komentar ON komentar.id_film = film.id_film GROUP BY film.id_film ORDER BY rating_nilai DESC LIMIT 9;");
+							$i=1;
+							while($film = mysqli_fetch_array($data_film)) {
+								$data_foto = mysqli_query($conn, "SELECT * FROM foto_film WHERE id_film= $film[id_film] ORDER BY id_foto_film DESC");
+								while($foto = mysqli_fetch_array($data_foto)) {
+									$foto_bg = $foto['foto'];
+								}
+						?>
+
+						<div class="row" style="margin-top: 10px;">
 							<div class="col-3 text-right">
-								<a class="btn btn-secondary" disabled><h1>#1</h1></a><br><br>
-								<img src="./assets/images/upcoming-4.png" width="250px">
+								<button class="button style3" style="text-align: center;" disabled>#<?= $i++ ?></button><br><br>
+								<img src="admin/images/produk/<?= $foto_bg ?>" width="250px">
 							</div>
 							<div class="col">
-								<h3>THE UNBEARABLE WIIGHT</h3>
+								<h3 style="font-size: 2rem; margin-bottom: 20px;"><?= strtoupper($film['judul_film']) ?></h3>
 								<img src="images/star.png" alt="" width="20px">
 								<img src="images/star.png" alt="" width="20px">
 								<img src="images/star.png" alt="" width="20px">
 								<img src="images/star.png" alt="" width="20px">
 								<img src="images/star.png" alt="" width="20px">
-								(5) (200)
+								(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>) (<?= $film['rating_jumlah'] ?>)
+								<br>
+								<?php 
+									$data_kategori = mysqli_query($conn, "SELECT * FROM kategori_film INNER JOIN kategori ON kategori.id_kategori = kategori_film.id_kategori WHERE id_film= $film[id_film] ORDER BY id_kategori_film DESC");
+									while($kategori = mysqli_fetch_array($data_kategori)) {
+								?>
+									<span class="badge badge-secondary"><?= $kategori['nama_kategori'] ?></span>
+								<?php 
+									}
+								?>
 								<br>
 								<label for="">Sutradara</label><br>
-									<span class="badge badge-secondary">Erik tohir</span>
-									<span class="badge badge-secondary">Puan Mahalini</span>
-									<span class="badge badge-secondary">Megawati</span><br>
+								<?php 
+									$data_sutradara = mysqli_query($conn, "SELECT * FROM sutradara_film INNER JOIN sutradara ON sutradara.id_sutradara = sutradara_film.id_sutradara WHERE id_film= $film[id_film] ORDER BY id_sutradara_film DESC");
+									while($sutradara = mysqli_fetch_array($data_sutradara)) {
+								?>
+									<span class="badge badge-danger"><?= $sutradara['nama'] ?></span>
+								<?php 
+									}
+								?>
+								<br>
 								<label for="">Aktor</label><br>
-									<span class="badge badge-danger">Erik tohir</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Megawati</span><br>
+								<?php 
+									$data_aktor = mysqli_query($conn, "SELECT * FROM aktor_film INNER JOIN aktor ON aktor.id_aktor = aktor_film.id_aktor WHERE id_film= $film[id_film] ORDER BY id_aktor_film DESC");
+									while($aktor = mysqli_fetch_array($data_aktor)) {
+								?>
+									<span class="badge badge-secondary"><?= $aktor['nama'] ?></span>
+								<?php 
+									}
+								?>
+								<br>
 								<label for="">Sinopsis</label>
-								<p class="text-justify">Nicolas Cage yang kekurangan uang, menerima tawaran untuk tampil dengan bayaran di pesta ulang tahun miliarder fans sejati, Javi. Hal berubah menjadi sangat tak terduga ketika Cage direkrut oleh seorang agen CIA dan dipaksa untuk hidup bersama dengan Javi sekaligus menjadi informan mereka.
-
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fuga, sit suscipit, tempora aperiam illum quam quibusdam totam eum quas dolore libero illo tempore quae sint repudiandae, quis nesciunt saepe.[....]
+								<p class="text-justify">
+									<?= (str_word_count($film['sinopsis']) > 150 ? substr($film['sinopsis'],0,500)."[...]" : $film['sinopsis']) ?>
 								</p>
-								<button class="btn btn-secondary">LIHAT DETAIL</button>
+								<a href="film2_detail.php?id_film=<?= $film['id_film'] ?>" class="button style3 large">LIHAT DETAIL</a>
 							</div>
 						</div>
 
-						<div class="row mt-3">
-							<div class="col-3 text-right">
-								<a class="btn btn-secondary" disabled><h1>#2</h1></a><br><br>
-								<img src="./assets/images/upcoming-4.png" width="250px">
-							</div>
-							<div class="col">
-								<h3>THE UNBEARABLE WIIGHT</h3>
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								(5) (200)
-								<br>
-								<label for="">Sutradara</label><br>
-									<span class="badge badge-secondary">Erik tohir</span>
-									<span class="badge badge-secondary">Puan Mahalini</span>
-									<span class="badge badge-secondary">Megawati</span><br>
-								<label for="">Aktor</label><br>
-									<span class="badge badge-danger">Erik tohir</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Megawati</span><br>
-								<label for="">Sinopsis</label>
-								<p class="text-justify">Nicolas Cage yang kekurangan uang, menerima tawaran untuk tampil dengan bayaran di pesta ulang tahun miliarder fans sejati, Javi. Hal berubah menjadi sangat tak terduga ketika Cage direkrut oleh seorang agen CIA dan dipaksa untuk hidup bersama dengan Javi sekaligus menjadi informan mereka.
+						<?php
+                            }
+                        ?>
 
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fuga, sit suscipit, tempora aperiam illum quam quibusdam totam eum quas dolore libero illo tempore quae sint repudiandae, quis nesciunt saepe.[....]
-								</p>
-								<button class="btn btn-secondary">LIHAT DETAIL</button>
-							</div>
-						</div>
-
-						<div class="row mt-3">
-							<div class="col-3 text-right">
-								<a class="btn btn-secondary" disabled><h1>#3</h1></a><br><br>
-								<img src="./assets/images/upcoming-4.png" width="250px">
-							</div>
-							<div class="col">
-								<h3>THE UNBEARABLE WIIGHT</h3>
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								(5) (200)
-								<br>
-								<label for="">Sutradara</label><br>
-									<span class="badge badge-secondary">Erik tohir</span>
-									<span class="badge badge-secondary">Puan Mahalini</span>
-									<span class="badge badge-secondary">Megawati</span><br>
-								<label for="">Aktor</label><br>
-									<span class="badge badge-danger">Erik tohir</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Megawati</span><br>
-								<label for="">Sinopsis</label>
-								<p class="text-justify">Nicolas Cage yang kekurangan uang, menerima tawaran untuk tampil dengan bayaran di pesta ulang tahun miliarder fans sejati, Javi. Hal berubah menjadi sangat tak terduga ketika Cage direkrut oleh seorang agen CIA dan dipaksa untuk hidup bersama dengan Javi sekaligus menjadi informan mereka.
-
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fuga, sit suscipit, tempora aperiam illum quam quibusdam totam eum quas dolore libero illo tempore quae sint repudiandae, quis nesciunt saepe.[....]
-								</p>
-								<button class="btn btn-secondary">LIHAT DETAIL</button>
-							</div>
-						</div>
-
-						<div class="row mt-3">
-							<div class="col-3 text-right">
-								<a class="btn btn-secondary" disabled><h1>#4</h1></a><br><br>
-								<img src="./assets/images/upcoming-4.png" width="250px">
-							</div>
-							<div class="col">
-								<h3>THE UNBEARABLE WIIGHT</h3>
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								(5) (200)
-								<br>
-								<label for="">Sutradara</label><br>
-									<span class="badge badge-secondary">Erik tohir</span>
-									<span class="badge badge-secondary">Puan Mahalini</span>
-									<span class="badge badge-secondary">Megawati</span><br>
-								<label for="">Aktor</label><br>
-									<span class="badge badge-danger">Erik tohir</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Megawati</span><br>
-								<label for="">Sinopsis</label>
-								<p class="text-justify">Nicolas Cage yang kekurangan uang, menerima tawaran untuk tampil dengan bayaran di pesta ulang tahun miliarder fans sejati, Javi. Hal berubah menjadi sangat tak terduga ketika Cage direkrut oleh seorang agen CIA dan dipaksa untuk hidup bersama dengan Javi sekaligus menjadi informan mereka.
-
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fuga, sit suscipit, tempora aperiam illum quam quibusdam totam eum quas dolore libero illo tempore quae sint repudiandae, quis nesciunt saepe.[....]
-								</p>
-								<button class="btn btn-secondary">LIHAT DETAIL</button>
-							</div>
-						</div>
-
-						<div class="row mt-3">
-							<div class="col-3 text-right">
-								<a class="btn btn-secondary" disabled><h1>#5</h1></a><br><br>
-								<img src="./assets/images/upcoming-4.png" width="250px">
-							</div>
-							<div class="col">
-								<h3>THE UNBEARABLE WIIGHT</h3>
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								(5) (200)
-								<br>
-								<label for="">Sutradara</label><br>
-									<span class="badge badge-secondary">Erik tohir</span>
-									<span class="badge badge-secondary">Puan Mahalini</span>
-									<span class="badge badge-secondary">Megawati</span><br>
-								<label for="">Aktor</label><br>
-									<span class="badge badge-danger">Erik tohir</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Megawati</span><br>
-								<label for="">Sinopsis</label>
-								<p class="text-justify">Nicolas Cage yang kekurangan uang, menerima tawaran untuk tampil dengan bayaran di pesta ulang tahun miliarder fans sejati, Javi. Hal berubah menjadi sangat tak terduga ketika Cage direkrut oleh seorang agen CIA dan dipaksa untuk hidup bersama dengan Javi sekaligus menjadi informan mereka.
-
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fuga, sit suscipit, tempora aperiam illum quam quibusdam totam eum quas dolore libero illo tempore quae sint repudiandae, quis nesciunt saepe.[....]
-								</p>
-								<button class="btn btn-secondary">LIHAT DETAIL</button>
-							</div>
-						</div>
-
-						<div class="row mt-3">
-							<div class="col-3 text-right">
-								<a class="btn btn-secondary" disabled><h1>#6</h1></a><br><br>
-								<img src="./assets/images/upcoming-4.png" width="250px">
-							</div>
-							<div class="col">
-								<h3>THE UNBEARABLE WIIGHT</h3>
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								(5) (200)
-								<br>
-								<label for="">Sutradara</label><br>
-									<span class="badge badge-secondary">Erik tohir</span>
-									<span class="badge badge-secondary">Puan Mahalini</span>
-									<span class="badge badge-secondary">Megawati</span><br>
-								<label for="">Aktor</label><br>
-									<span class="badge badge-danger">Erik tohir</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Megawati</span><br>
-								<label for="">Sinopsis</label>
-								<p class="text-justify">Nicolas Cage yang kekurangan uang, menerima tawaran untuk tampil dengan bayaran di pesta ulang tahun miliarder fans sejati, Javi. Hal berubah menjadi sangat tak terduga ketika Cage direkrut oleh seorang agen CIA dan dipaksa untuk hidup bersama dengan Javi sekaligus menjadi informan mereka.
-
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fuga, sit suscipit, tempora aperiam illum quam quibusdam totam eum quas dolore libero illo tempore quae sint repudiandae, quis nesciunt saepe.[....]
-								</p>
-								<button class="btn btn-secondary">LIHAT DETAIL</button>
-							</div>
-						</div>
-
-						<div class="row mt-3">
-							<div class="col-3 text-right">
-								<a class="btn btn-secondary" disabled><h1>#7</h1></a><br><br>
-								<img src="./assets/images/upcoming-4.png" width="250px">
-							</div>
-							<div class="col">
-								<h3>THE UNBEARABLE WIIGHT</h3>
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								(5) (200)
-								<br>
-								<label for="">Sutradara</label><br>
-									<span class="badge badge-secondary">Erik tohir</span>
-									<span class="badge badge-secondary">Puan Mahalini</span>
-									<span class="badge badge-secondary">Megawati</span><br>
-								<label for="">Aktor</label><br>
-									<span class="badge badge-danger">Erik tohir</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Megawati</span><br>
-								<label for="">Sinopsis</label>
-								<p class="text-justify">Nicolas Cage yang kekurangan uang, menerima tawaran untuk tampil dengan bayaran di pesta ulang tahun miliarder fans sejati, Javi. Hal berubah menjadi sangat tak terduga ketika Cage direkrut oleh seorang agen CIA dan dipaksa untuk hidup bersama dengan Javi sekaligus menjadi informan mereka.
-
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fuga, sit suscipit, tempora aperiam illum quam quibusdam totam eum quas dolore libero illo tempore quae sint repudiandae, quis nesciunt saepe.[....]
-								</p>
-								<button class="btn btn-secondary">LIHAT DETAIL</button>
-							</div>
-						</div>
-
-						<div class="row mt-3">
-							<div class="col-3 text-right">
-								<a class="btn btn-secondary" disabled><h1>#8</h1></a><br><br>
-								<img src="./assets/images/upcoming-4.png" width="250px">
-							</div>
-							<div class="col">
-								<h3>THE UNBEARABLE WIIGHT</h3>
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								(5) (200)
-								<br>
-								<label for="">Sutradara</label><br>
-									<span class="badge badge-secondary">Erik tohir</span>
-									<span class="badge badge-secondary">Puan Mahalini</span>
-									<span class="badge badge-secondary">Megawati</span><br>
-								<label for="">Aktor</label><br>
-									<span class="badge badge-danger">Erik tohir</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Megawati</span><br>
-								<label for="">Sinopsis</label>
-								<p class="text-justify">Nicolas Cage yang kekurangan uang, menerima tawaran untuk tampil dengan bayaran di pesta ulang tahun miliarder fans sejati, Javi. Hal berubah menjadi sangat tak terduga ketika Cage direkrut oleh seorang agen CIA dan dipaksa untuk hidup bersama dengan Javi sekaligus menjadi informan mereka.
-
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fuga, sit suscipit, tempora aperiam illum quam quibusdam totam eum quas dolore libero illo tempore quae sint repudiandae, quis nesciunt saepe.[....]
-								</p>
-								<button class="btn btn-secondary">LIHAT DETAIL</button>
-							</div>
-						</div>
-
-						<div class="row mt-3">
-							<div class="col-3 text-right">
-								<a class="btn btn-secondary" disabled><h1>#9</h1></a><br><br>
-								<img src="./assets/images/upcoming-4.png" width="250px">
-							</div>
-							<div class="col">
-								<h3>THE UNBEARABLE WIIGHT</h3>
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								(5) (200)
-								<br>
-								<label for="">Sutradara</label><br>
-									<span class="badge badge-secondary">Erik tohir</span>
-									<span class="badge badge-secondary">Puan Mahalini</span>
-									<span class="badge badge-secondary">Megawati</span><br>
-								<label for="">Aktor</label><br>
-									<span class="badge badge-danger">Erik tohir</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Megawati</span><br>
-								<label for="">Sinopsis</label>
-								<p class="text-justify">Nicolas Cage yang kekurangan uang, menerima tawaran untuk tampil dengan bayaran di pesta ulang tahun miliarder fans sejati, Javi. Hal berubah menjadi sangat tak terduga ketika Cage direkrut oleh seorang agen CIA dan dipaksa untuk hidup bersama dengan Javi sekaligus menjadi informan mereka.
-
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fuga, sit suscipit, tempora aperiam illum quam quibusdam totam eum quas dolore libero illo tempore quae sint repudiandae, quis nesciunt saepe.[....]
-								</p>
-								<button class="btn btn-secondary">LIHAT DETAIL</button>
-							</div>
-						</div>
-
-						<div class="row mt-3">
-							<div class="col-3 text-right">
-								<a class="btn btn-secondary" disabled><h1>#10</h1></a><br><br>
-								<img src="./assets/images/upcoming-4.png" width="250px">
-							</div>
-							<div class="col">
-								<h3>THE UNBEARABLE WIIGHT</h3>
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								(5) (200)
-								<br>
-								<label for="">Sutradara</label><br>
-									<span class="badge badge-secondary">Erik tohir</span>
-									<span class="badge badge-secondary">Puan Mahalini</span>
-									<span class="badge badge-secondary">Megawati</span><br>
-								<label for="">Aktor</label><br>
-									<span class="badge badge-danger">Erik tohir</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Puan Mahalini</span>
-									<span class="badge badge-danger">Megawati</span><br>
-								<label for="">Sinopsis</label>
-								<p class="text-justify">Nicolas Cage yang kekurangan uang, menerima tawaran untuk tampil dengan bayaran di pesta ulang tahun miliarder fans sejati, Javi. Hal berubah menjadi sangat tak terduga ketika Cage direkrut oleh seorang agen CIA dan dipaksa untuk hidup bersama dengan Javi sekaligus menjadi informan mereka.
-
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fuga, sit suscipit, tempora aperiam illum quam quibusdam totam eum quas dolore libero illo tempore quae sint repudiandae, quis nesciunt saepe.[....]
-								</p>
-								<button class="btn btn-secondary">LIHAT DETAIL</button>
-							</div>
-						</div>
+						
 
 					</div>
 				</div>

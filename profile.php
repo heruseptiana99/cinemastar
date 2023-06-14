@@ -9,6 +9,23 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/css_profile.css">
 </head>
 <body>
+	<?php 
+		session_start();
+		include ('admin/connect.php');
+		$email = $_SESSION['email'];
+
+		$data_user = mysqli_query($conn, "SELECT * FROM user where email='$email'");
+		while ($user = mysqli_fetch_array($data_user)) {
+			$id_user = $user['id_user'];
+			$nama = $user['nama'];
+			$email = $user['email'];
+			$telp = $user['telp'];
+			$foto = $user['foto'];
+			$role = $user['role'];
+		}
+
+	
+	?>
 	<section class="py-5 my-5">
 		<div class="container">
 			<h1 class="mb-5 ms-1 text-center">Account Settings</h1>
@@ -16,9 +33,14 @@
 				<div class="profile-tab-nav border-right">
 					<div class="p-4">
 						<div class="img-circle text-center mb-3">
-							<img src="images/profile1.jpg" alt="Image" class="shadow">
+							<!-- <img src="" alt="Image" class="shadow"> -->
+							<?php if($foto=="default.png"){ ?>
+                                <img src="images/<?= $foto ?>" alt="Image" class="shadow">
+                                <?php }else{ ?>
+                                    <img src="admin/images/profile/<?= $foto ?>" alt="Image" class="shadow">
+                            <?php } ?>
 						</div>
-						<h4 class="text-center">Adipati </h4>
+						<h4 class="text-center"><?= $nama ?> </h4>
 					</div>
 					<div class="nav flex-column nav-pills " id="v-pills-tab" role="tablist" aria-orientation="vertical">
 						<a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
@@ -38,25 +60,25 @@
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>ID User</label>
-								  	<input type="number" class="form-control" value="1">
+								  	<input type="number" class="form-control" value="<?= $id_user ?>">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Nama Lengkap</label>
-								  	<input type="text" class="form-control" value="Adipati">
+								  	<input type="text" class="form-control" value="<?= $nama ?>">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Email</label>
-								  	<input type="text" class="form-control" value="Adipati@gmail.com">
+								  	<input type="text" class="form-control" value="<?= $email ?>">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>No Telepon</label>
-								  	<input type="text" class="form-control" value="089501078017">
+								  	<input type="text" class="form-control" value="<?= $telp ?>">
 								</div>
 							</div>
 							<div class="col-md-12">

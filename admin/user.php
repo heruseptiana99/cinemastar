@@ -283,12 +283,19 @@
                                         while($user = mysqli_fetch_array($data_user)) {
                                     ?>
                                         <tr>
-                                            <td class="text-center"><?= $i++ ?></td>
-                                            <td class="text-center"><?= $user['nama'] ?></td>
-                                            <td class="text-center"><?= $user['telp'] ?></td>
-                                            <td class="text-center"><?= $user['email'] ?></td>
-                                            <td class="text-center"><?= $user['role'] ?></td>
-                                            <td class="text-center"><img src="images/profile/<?= $user['foto'] ?>" alt="" width="150px" height="100px"></td>
+                                            <td><?= $i++ ?></td>
+                                            <td><?= $user['nama'] ?></td>
+                                            <td><?= $user['telp'] ?></td>
+                                            <td><?= $user['email'] ?></td>
+                                            <td><?= $user['role'] ?></td>
+                                            <td class="text-center">
+                                                <?php if($user['foto']=="default.png"){ ?>
+                                                    <img src="../images/<?= $user['foto'] ?>" alt="" width="100px">
+                                                    <?php }else{ ?>
+                                                        <img src="images/profile/<?= $user['foto'] ?>" alt="" width="150px">
+                                                <?php } ?>
+                                            </td>
+
                                             <td>
                                                 <a href="user_ubah.php?id_user=<?= $user['id_user'] ?>" class="btn btn-warning btn-sm btn-block">Ubah</a>
                                                 <a href="user_proses_hapus.php?id_user=<?= $user['id_user'] ?>&foto=<?= $user['foto'] ?>" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>

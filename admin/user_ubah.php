@@ -269,7 +269,11 @@
                         <div class="from-group">
                             <label for="foto">Foto</label>
                             <br>
-                            <img src="images/profile/<?= $foto ?>" alt="" width="150px">
+                            <?php if($foto=="default.png"){ ?>
+                                                    <img src="../images/<?= $foto ?>" alt="" width="100px">
+                                                    <?php }else{ ?>
+                                                        <img src="images/profile/<?= $foto ?>" alt="" width="150px">
+                                                <?php } ?>
                             <input type="text" class="form-control mt-2" name="foto_lama" value="<?= $foto ?>" readonly>
                             <input type="file" class="form-control-file mt-2" id="foto" name="foto" accept="image/*" placeholder="Foto">
                             <small id="text-error-foto"></small>
