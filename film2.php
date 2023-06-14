@@ -84,6 +84,7 @@
             
           <h2 style="color:white; font-size:50px; text-align:center; padding-bottom:80px; padding-top:60px;">Kategori Action</h2>
           <ul class="movies-list  has-scrollbar">
+            
             <li>
               <div class="movie-card">
 
@@ -119,7 +120,6 @@
 
               </div>
             </li>
-
             <li>
               <div class="movie-card">
 
