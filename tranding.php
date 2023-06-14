@@ -16,7 +16,22 @@
             rel="stylesheet">
     
         <!-- Custom styles for this template -->
-        <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+        <!-- <link href="assets/css/sb-admin-2.min.css" rel="stylesheet"> -->
+		<style type="text/css">
+			
+			.row {
+				display: flex;
+				flex-wrap: wrap;
+				margin-right: -0.75rem;
+				margin-left: -0.75rem;
+			}
+			.col {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+		</style>
 	</head>
 	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
