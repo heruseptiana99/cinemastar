@@ -250,13 +250,15 @@
                                         while($film = mysqli_fetch_array($data_film)) {
                                     ?>
                                         <tr>
-                                            <td class="text-center"><?= $i++ ?></td>
-                                            <td class="text-center"><?= $film['judul_film'] ?></td>
-                                            <td class="text-center"><?= $film['durasi'] ?></td>
-                                            <td class="text-center"><?= $film['rating'] ?></td>
-                                            <td><?= substr($film['sinopsis'],800) . "[.....]"; ?></td>
-                                            <td class="text-center"><?= $film['jenis_tayang'] ?></td>
-                                            <td class="text-center"><?= date('d-m-Y',strtotime($film['tgl_tayang'])); ?></td>
+
+                                            <td><?= $i++ ?></td>
+                                            <td><?= $film['judul_film'] ?></td>
+                                            <td><?= $film['durasi'] ?></td>
+                                            <td><?= $film['rating'] ?></td>
+                                            <td><?= substr($film['sinopsis'],1000) . "[.....]"; ?></td>
+                                            <td><?= $film['jenis_tayang'] ?></td>
+                                            <td><?= date('d-m-Y',strtotime($film['tgl_tayang'])); ?></td>
+
                                             <td>
                                             <a href="film_ubah.php?id_film=<?= $film['id_film'] ?>" class="btn btn-warning btn-sm btn-block">Ubah</a>
                                                 <a href="film_proses_hapus.php?id_film=<?= $film['id_film'] ?>" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>

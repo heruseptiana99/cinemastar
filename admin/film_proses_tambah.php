@@ -8,7 +8,8 @@
     $tgl_tayang = $_POST['tgl_tayang'];
     $jenis_tayang = $_POST['jenis_tayang'];
 
-    mysqli_query($conn, "INSERT INTO `film`(`judul_film`, `durasi`, `rating`, `sinopsis`, `link_trailer`, `tgl_tayang`, `jenis_tayang`) VALUES ('$judul_film','$durasi','$rating','$sinopsis','$link_trailer','$tgl_tayang','$jenis_tayang');");
+    mysqli_query($conn, "INSERT INTO `film`(`judul_film`, `durasi`, `rating`, `sinopsis`, 
+    `link_trailer`, `tgl_tayang`, `jenis_tayang`) VALUES ('$judul_film','$durasi','$rating','$sinopsis','$link_trailer','$tgl_tayang','$jenis_tayang');");
 
     $data_film = mysqli_query($conn, "SELECT MAX(Id_film) as id_film_baru FROM film");
     while($film = mysqli_fetch_array($data_film)) {
