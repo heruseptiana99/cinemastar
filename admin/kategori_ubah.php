@@ -230,8 +230,9 @@
                         <div class="form-group">
                             <label for="nama_kategori">Nama Kategori</label>
                             <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="<?php echo $nama_kategori ?>">
+                            <small id="text-error-nama"></small>
                         </div>
-                            <button id="my-button" type="submit" class="btn btn-warning">Ubah Kategori</button>
+                            <button id="my-button" type="button" class="btn btn-warning">Ubah Kategori</button>
                             <a href="kategori.php" class="btn btn-danger">Batal</a>
                         </form>
                         </div>
@@ -301,10 +302,23 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
-    <script>
-        $('#my-button').click(function() {
-            $('#form-kategori').submit();
-        });
+    
+    <script type="text/javascript">
+    $('#my-button').click(function() {
+        if ($('#nama_kategori').val().length == 0) {
+            if($('#nama_kategori').val().length == 0){
+                $('#nama_kategori').css({"border-color" : "red"});
+                $('#text-error-nama').text('* Silahkan isi nama kategori terlebih dahulu');
+                $('#text-error-nama').css({"font-style" : "italic"});
+                $('#text-error-nama').css({"color" : "red"});
+            }else{
+                $('#nama_kategori').css({"border-color" : "#dee2e6"});
+                $('#text-error-nama').hide();
+            }
+        } else {
+                $('#form-kategori').submit();
+        }
+    });
     </script>
 </body>
 

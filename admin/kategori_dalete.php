@@ -4,5 +4,5 @@
  
      $result = mysqli_query($conn, "DELETE FROM kategori WHERE id_kategori = '$id_kategori'");
  
-     header("Location:kategori.php");
+     header("Location:kategori.php?alert=hapus");
 ?>

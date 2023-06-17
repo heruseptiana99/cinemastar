@@ -219,12 +219,14 @@
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="nama" name="nama">
+                            <small id="text-error-nama"></small>
                         </div>
                         <div class="form-group">
                             <label for="tgl_lahir">Tanggal Lahir</label>
                             <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" >
+                            <small id="text-error-ttl"></small>
                         </div>
-                            <button id="my-button" type="submit" class="btn btn-primary">Tambah Sutradara</button>
+                            <button id="my-button" type="button" class="btn btn-primary">Tambah Sutradara</button>
                             <a href="sutradara.php" class="btn btn-danger">Batal</a>
                         </form>
                         </div>
@@ -293,10 +295,32 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
+
     <script>
         $('#my-button').click(function() {
-            $('#form-sutradara').submit();
-        });
+        if ($('#nama').val().length == 0 || $('#tgl_lahir').val().length == 0) {
+            if($('#nama').val().length == 0){
+                $('#nama').css({"border-color" : "red"});
+                $('#text-error-nama').text('* Silahkan isi nama terlebih dahulu');
+                $('#text-error-nama').css({"font-style" : "italic"});
+                $('#text-error-nama').css({"color" : "red"});
+            }else{
+                $('#nama').css({"border-color" : "#dee2e6"});
+                $('#text-error-nama').hide();
+            }
+            if($('#tgl_lahir').val().length == 0){
+                $('#tgl_lahir').css({"border-color" : "red"});
+                $('#text-error-ttl').text('* Silahkan isi tanggal lahir terlebih dahulu');
+                $('#text-error-ttl').css({"font-style" : "italic"});
+                $('#text-error-ttl').css({"color" : "red"});
+            }else{
+                $('#tgl_lahir').css({"border-color" : "#dee2e6"});
+                $('#text-error-ttl').hide();
+            }
+        } else {
+                $('#form-sutradara').submit();
+        }
+    });
     </script>
 </body>
 
