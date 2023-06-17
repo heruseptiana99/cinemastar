@@ -232,7 +232,7 @@
                                     <tbody>
                                     <?php
                                     include "connect.php";
-                                    $query = mysqli_query($conn, "SELECT * FROM komentar");
+                                    $query = mysqli_query($conn, "SELECT komentar.*, film.judul_film, user.nama FROM komentar INNER JOIN film ON film.id_film = komentar.id_film INNER JOIN user ON user.id_user = komentar.id_user");
                                     ?>
                                         <?php if (mysqli_num_rows($query) > 0) {
                                             ?>
@@ -242,9 +242,9 @@
                                             ?>
                                             <tr class="text-center">
                                                 <td><?php echo $no ?></td>
-                                                <td><?php echo $value["id_film"]; ?></td>
-                                                <td><?php echo $value["id_user"]; ?></td>
-                                                <td><?php echo $value["ranting"]; ?></td>
+                                                <td><?php echo $value["judul_film"]; ?></td>
+                                                <td><?php echo $value["nama"]; ?></td>
+                                                <td><?php echo $value["rating"]; ?></td>
                                                 <td><?php echo $value["isi_komentar"]; ?></td>
                                                 <td>
                                                     <a href="komentar_dalete.php?id_komentar=<?php echo $value["id_komentar"]?>" class="btn btn-danger">Hapus</a>

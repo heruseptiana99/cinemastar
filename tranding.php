@@ -34,7 +34,7 @@
 <!-- Nav -->
 	<nav id="nav">
 		<ul>
-			<li class="current"><a href="index.html">Beranda</a></li>
+			<li class="current"><a href="index.php">Beranda</a></li>
 			<li><a href="film2.php">Film</a></li>
 			<li><a href="tranding.php">Tranding</a></li>
 			<li><a href="about_us.html">Tentang Kami</a></li>
@@ -78,12 +78,17 @@
 							</div>
 							<div class="col">
 								<h3 style="font-size: 2rem; margin-bottom: 20px;"><?= strtoupper($film['judul_film']) ?></h3>
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								<img src="images/star.png" alt="" width="20px">
-								(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>) (<?= $film['rating_jumlah'] ?>)
+								<style>.checked { color: red;}</style>
+								<?php 
+									for ($i=1; $i <= $film['rating_nilai'] ; $i++) { 
+										echo "<span class='fa fa-star checked'></span>";
+									}
+									$bintang_hitam = 5-$film['rating_nilai'];
+									for ($i=1; $i <= $bintang_hitam ; $i++) { 
+										echo "<span class='fa fa-star'></span>";
+									}
+								?>
+								(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>/5) ( <small class="icon solid fa-user"></small> <?= $film['rating_jumlah'] ?>)
 								<br>
 								<?php 
 									$data_kategori = mysqli_query($conn, "SELECT * FROM kategori_film INNER JOIN kategori ON kategori.id_kategori = kategori_film.id_kategori WHERE id_film= $film[id_film] ORDER BY id_kategori_film DESC");
