@@ -4,5 +4,5 @@
  
      $result = mysqli_query($conn, "DELETE FROM sutradara WHERE id_sutradara = '$id_sutradara'");
  
-     header("Location:sutradara.php");
+     header("Location:sutradara.php?alert=hapus");
 ?>
