@@ -42,7 +42,7 @@
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-								<li class="current"><a href="index.html">Beranda</a></li>
+								<li class="current"><a href="index.PHP">Beranda</a></li>
 								<li><a href="film2.php">Film</a></li>
 								<li><a href="tranding.php">Tranding</a></li>
 								<li><a href="about_us.html">Tentang Kami</a></li>

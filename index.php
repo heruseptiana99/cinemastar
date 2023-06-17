@@ -114,7 +114,6 @@
 							</section>
 					</div>
 				</section>
-
 			<!-- Highlights -->
 				<section id="highlights" class="wrapper style3" style="background-color: black;">
 					<div class="title" style="background-color: black; color: white;">FILM - FILM</div>
@@ -126,8 +125,9 @@
 								while ($film = mysqli_fetch_array($data_film)) {
 									$id_film = $film['id_film'];	
 									$judul_film = $film['judul_film'];	
+									$durasi_film = $film['durasi'];
+									$tgl_tayang_film = $film['tgl_tayang'];
 									$rating = $film['rating'];
-									
 								$data_foto = mysqli_query($conn, "SELECT * FROM foto_film WHERE id_film=$id_film ORDER BY id_foto_film DESC limit 2");
 								while ($foto = mysqli_fetch_array($data_foto)) {
 									$foto_gm = $foto['foto'];
@@ -135,26 +135,25 @@
 							?>
 							<li>
 							  <div class="movie-card">			
-								<a href="film2_detail.php">
-								  <figure class="card-banner">
-									<img src="./admin/images/produk/<?php echo $foto_gm; ?>" width="100px" alt="">
-								  </figure>
+								<a href="film2_detail.php?id_film=<?= $film['id_film']?>">
+								  <!-- <figure class="card-banner"> -->
+									<img src="./admin/images/produk/<?php echo $foto_gm; ?>" width="230px" alt="">
+								  <!-- </figure> -->
 								</a>
 								<div class="title-wrapper">
-								  <a href="film2_detail.php">
-									<h3 class="card-title"><?= $judul_film ?></h3>
+								  <a href="film2_detail.php?id_film=<?= $film['id_film']?>">
+									<h3 class="card-title"><?= $film['judul_film'] ?></h3>
 								  </a>
-				
-								  <time datetime="2022">2022</time>
+								  <!-- <td><?= date('d-m-Y',strtotime($film['tgl_tayang'])); ?></td> -->
+								  <time datetime="2022"><?= date('Y',strtotime($film['tgl_tayang']))?></time>
 								</div>
 				
 								<div class="card-meta">
-								  <div class="badge badge-outline">HD</div>
+								  <div class="badge badge-outline"><?= $film['rating']?></div>
 				
 								  <div class="duration">
-									<ion-icon name="time-outline"></ion-icon>
-				
-									<time datetime="PT137M">137 min</time>
+									<ion-icon name="time-outline"></ion-icon>				
+									<time datetime="PT137M"><?= $film['durasi'] ?></time>
 								  </div>
 				
 								  <div class="rating">
@@ -163,7 +162,6 @@
 									<data>8.5</data>
 								  </div>
 								</div>
-				
 							  </div>
 							</li>
 							<?php	
@@ -175,8 +173,6 @@
 						</ul>
 					</div>
 				</section>
-
-
 			<!-- Footer -->
 				<section id="footer" class="wrapper">
 					<div class="title">CinemaStar</div>

@@ -35,7 +35,7 @@
                 if($result['role']=="Admin"){
                     header("Location:../admin/index.php");
                 }else{
-                    header("Location:../index.html");
+                    header("Location:../index.php");
                 }
             }else{
                 header("Location:../login.php?alert=gagal_login");
