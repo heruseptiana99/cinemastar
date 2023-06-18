@@ -34,19 +34,12 @@
 		<div id="page-wrapper">
 			<!-- Header -->
 				<section id="header" class="wrapper">
-<<<<<<< HEAD
 
 				<!-- Logo -->
         <div id="logo">
 							<h1><a href="index.html">FILM - FILM</a></h1>
 							<p style="color: white;">Ayo mulai riview Film favorit kamu, disini!</p>
-=======
-					<!-- Logo -->
-						<div id="logo">
-							<h1><a href="index.html">Guardians of The Galaxy Volume 3</a></h1>
-							<p style="color: white;">Di Marvel Studios "Guardians of the Galaxy Vol. 3",  kumpulan <br> orang-orang aneh yang kita cintai terlihat sedikit berbeda akhir-akhir ini.</p>
-							<button class="button style3 large" style="margin-top: 20px;"><a href="film2.php" style="color:white;">LIHAT FILM</a></button>
->>>>>>> d2e6f328053aa64744f33a609e353188881e37b4
+
 						</div>
 
 
@@ -74,74 +67,102 @@
               </nav>
 
 				</section>
-<<<<<<< HEAD
 
-                <section class="movie-detail" >
-=======
         <section class="movie-detail">
->>>>>>> d2e6f328053aa64744f33a609e353188881e37b4
         <div class="container">
-          <figure class="movie-detail-banner">
-<<<<<<< HEAD
-            <img src="images/fast.jpg" alt="Free guy movie poster" >
-=======
-            <img src="./admin/images/produk/<?php echo $foto_gm; ?>" alt="Free guy movie poster" style="margin-bottom: 440%;">
->>>>>>> d2e6f328053aa64744f33a609e353188881e37b4
+
+        <?php 
+					include('admin/connect.php');
+					$data_film = mysqli_query($conn, "SELECT film.*, foto_film.* FROM film 
+          INNER JOIN foto_film ON foto_film.id_film = film.id_film WHERE film.id_film = $_GET[id_film];");
+					// $i=1;
+					while($film = mysqli_fetch_array($data_film)) {
+            $judul_film = $film['judul_film'];
+            $durasi_film = $film['durasi'];
+					  $tgl_tayang_film = $film['tgl_tayang'];
+            $sinopsis = $film['sinopsis'];
+            $link_trailer = $film['link_trailer'];
+						$data_foto = mysqli_query($conn, "SELECT * FROM foto_film WHERE id_film= $film[id_film] ORDER BY
+             id_foto_film DESC");
+						while($foto = mysqli_fetch_array($data_foto)) {
+							$foto_bg = $foto['foto'];
+					  }
+            $data_aktor = mysqli_query($conn, "SELECT * FROM aktor_film WHERE id_film= $film[id_film] ORDER BY
+             id_aktor_film DESC");
+						while($aktor = mysqli_fetch_array($data_aktor)) {
+							$aktor_bg = $aktor['nama_pemeran'];
+            }
+            $data_sutradara = mysqli_query($conn, "SELECT * FROM sutradara_film WHERE id_film= $film[id_film] ORDER BY
+             id_sutradara_film DESC");
+						while($sutradara = mysqli_fetch_array($data_sutradara)) {
+							$sutradara_bg = $sutradara['id_sutradara'];
+            }
+				?>
+        <figure class="movie-detail-banner">
+            <img src="admin/images/produk/<?= $foto_bg ?>" alt="Free guy movie poster" style="margin-bottom: 550%;">
           </figure>
         <div class="movie-detail-content">
           <h1 class="h1 detail-title">
-            FAST X
+          <?= $film['judul_film'] ?>
           </h1>
 			  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 				<style>.checked { color: red;}</style>
 				<h2>Star Rating By CinemaStar</h2>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star"></span>
-				<span class="fa fa-star"></span>
+				(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>/5) 
+								<br>
+								
             <div class="meta-wrapper">
               <div class="ganre-wrapper">
-                <a href="#">Comedy,</a>
-                <a href="#">Action,</a>
-                <a href="#">Adventure,</a>
-                <a href="#">Science Fiction</a>
+              <?php 
+									$data_kategori = mysqli_query($conn, "SELECT * FROM kategori_film INNER JOIN kategori ON kategori.id_kategori = kategori_film.id_kategori WHERE id_film= $film[id_film] ORDER BY id_kategori_film DESC");
+									while($kategori = mysqli_fetch_array($data_kategori)) {
+								?>
+									<div class="badge badge-secondary"style="font-size: 15px;" ><?= $kategori['nama_kategori'] ?></div>
+								<?php 
+									}
+								?>
               </div>
               <div class="date-time">
                 <div>
                   <ion-icon name="calendar-outline"></ion-icon>
-                  <time datetime="2021">23 Agustus 2023</time>
+                  <time datetime="2021"><?= date('d F Y',strtotime($film['tgl_tayang']))?></time>
                 </div>
                 <div>
                   <ion-icon name="time-outline"></ion-icon>
-                  <time datetime="PT115M">115 min</time>
+                  <time datetime="PT115M"><?= $film['durasi'] ?></time>
                 </div>
               </div>
             </div>
 			      <div class="ganre-wrapper">
-				      <p>Aktor :</p>
-                <a href="#">Comedy,</a>
-                <a href="#">Action,</a>
-                <a href="#">Adventure,</a>
-                <a href="#">Science Fiction</a>
-              </div>
 
-			  <div class="ganre-wrapper">
-				<p>Sutradara :</p>
-                <a href="#">Comedy,</a>
-
-                <a href="#">Action,</a>
-
-                <a href="#">Adventure,</a>
-
-                <a href="#">Science Fiction</a>
-              </div>
-
+              <?php 
+									$data_aktor = mysqli_query($conn, "SELECT * FROM aktor_film INNER JOIN aktor ON aktor.id_aktor = aktor_film.id_aktor WHERE id_film= $film[id_film] ORDER BY id_aktor_film DESC");
+									while($aktor = mysqli_fetch_array($data_aktor)) {
+								?>
+									<div class="badge badge-secondary" style="font-size: 15px;">Aktor : <?= $aktor['nama'] ?></div>
+								<?php 
+									}
+								?>  
+            </div>
+			    <div class="ganre-wrapper">
+          <?php 
+						$data_sutradara = mysqli_query($conn, "SELECT * FROM sutradara_film INNER JOIN sutradara ON sutradara.id_sutradara = sutradara_film.id_sutradara WHERE id_film= $film[id_film] ORDER BY id_sutradara_film DESC");
+						while($sutradara = mysqli_fetch_array($data_sutradara)) {
+					?>
+						<div class="badge badge-danger" style="font-size: 15px;">Sutradara : <?= $sutradara['nama']?></div>
+					<?php 
+						}
+					?>
+          
+            
+          </div>
             <p class="storyline" style="text-align: justify;" >
-			Bahasa Indonesia - Selama banyak misi dan melawan rintangan yang mustahil, Dom Toretto dan keluarganya telah mengakali dan mengalahkan setiap musuh di jalan mereka. Sekarang, mereka menghadapi lawan paling mematikan yang pernah mereka hadapi: Ancaman mengerikan yang muncul dari bayang-bayang masa lalu yang dipicu oleh dendam berdarah, dan yang bertekad untuk menghancurkan keluarga ini dan menghancurkan segalanya—dan semua orang—yang dicintai Dom, selamanya. Dalam Fast Five 2011, 
-			
-			<br><br>
-			<iframe width="620" height="315" src="https://www.youtube.com/embed/eoOaKN4qCKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <?= $film['sinopsis'] ?>
+            <br><br>
+			        <iframe width="620" height="315" src="<?= $film['link_trailer'] ?>" 
+              title="YouTube video player" frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen></iframe>
             </p>
           </div>
         </div>
@@ -274,6 +295,10 @@
             ?>
             
           </ul>
+        <?php 
+        } 
+        ?>
+          
         </div>
       </section>
     </article>
