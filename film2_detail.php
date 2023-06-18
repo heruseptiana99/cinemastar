@@ -56,7 +56,7 @@
                   <li class="current"><a href="index.php">Beranda</a></li>
                   <li><a href="film2.php">Film</a></li>
                   <li><a href="tranding.php">Tranding</a></li>
-                  <li><a href="about_us.html">Tentang Kami</a></li>
+                  <li><a href="about_us.php">Tentang Kami</a></li>
                   <?php if($_SESSION){ ?>
                     <?php if(isset($_SESSION['id_user'])!==null){ ?>
                       <li>
