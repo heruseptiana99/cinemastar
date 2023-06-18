@@ -39,7 +39,7 @@
       <div class="card-body m-0 p-0">
             <div class="row align-items-center">
               <div class="col-5 p-4 m-4">
-              <h3 class="mb-2"><b>DAFTAR || <a href="index.html" style="text-decoration:none; color: #e97770;">CINEMASTAR</a></b></h3>
+              <h3 class="mb-2"><b>DAFTAR || <a href="index.php" style="text-decoration:none; color: #e97770;">CINEMASTAR</a></b></h3>
               <form action="model/beranda_model.php" method="POST" id="form-pelanggan" enctype="multipart/form-data">
                         <input type="hidden" name="aksi" value="daftar">
                         <div class="form-group">
