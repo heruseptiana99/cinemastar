@@ -29,6 +29,7 @@
     
         if ($result!=0) {
             if (password_verify($password, $result['password'])) {
+                $_SESSION['id_user'] = $result['id_user'];
                 $_SESSION['email'] = $result['email'];
                 $_SESSION['role'] = $result['role'];
                 $_SESSION['nama'] = $result['nama'];

@@ -40,7 +40,7 @@
       <div class="card-body m-0 p-0">
             <div class="row align-items-center">
               <div class="col-5 p-4 m-4">
-              <h3><b>MASUK || <a href="index.html" style="text-decoration:none; color: #e97770;">CINEMASTAR</a></b></h3><br>
+              <h3><b>MASUK || <a href="index.php" style="text-decoration:none; color: #e97770;">CINEMASTAR</a></b></h3><br>
               <?php 
                   if(isset($_GET['alert'])){
                     if ($_GET['alert'] == "berhasil") {
@@ -57,6 +57,13 @@
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
+                    }elseif($_GET['alert'] == "login_terlebih_dahulu"){
+                      echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                          <strong>Gagal</strong>, Untuk komentar harus login terlebih dahulu!
+                          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                          <span aria-hidden='true'>&times;</span>
+                          </button>
+                      </div>";
                     }elseif($_GET['alert'] == "gagal_login"){
                       echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                           <strong>Gagal</strong>, Email atau password anda salah!

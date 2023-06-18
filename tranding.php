@@ -7,7 +7,7 @@
 -->
 <html>
 	<head>
-		<title>No Sidebar - Escape Velocity by HTML5 UP</title>
+		<title>Tranding CinemaStar</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="./assets/css/main.css">
@@ -37,7 +37,7 @@
 			<li class="current"><a href="index.php">Beranda</a></li>
 			<li><a href="film2.php">Film</a></li>
 			<li><a href="tranding.php">Tranding</a></li>
-			<li><a href="about_us.html">Tentang Kami</a></li>
+			<li><a href="about_us.php">Tentang Kami</a></li>
 			<?php if($_SESSION){ ?>
 				<?php if(isset($_SESSION['id_user'])!==null){ ?>
 					<li>
