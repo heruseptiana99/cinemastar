@@ -103,7 +103,7 @@
 			  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 				<style>.checked { color: red;}</style>
 				<h2>Star Rating By CinemaStar</h2>
-				(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>/5) ( <small class="icon solid fa-user"></small> <?= $film['rating_jumlah'] ?>)
+				(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>/5) 
 								<br>
 								
             <div class="meta-wrapper">
