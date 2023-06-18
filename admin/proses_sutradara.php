@@ -6,5 +6,5 @@
     $result = mysqli_query($conn, "INSERT INTO `sutradara` (`nama`, `tgl_lahir`) 
     VALUES ('$nama' ,'$tgl_lahir');");
     
-    header("Location:sutradara.php");
+    header("Location:sutradara.php?alert=berhasil");
 ?>

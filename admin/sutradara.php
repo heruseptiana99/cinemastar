@@ -42,7 +42,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Cinemastar </div>
             </a>
 
             <!-- Divider -->
@@ -82,6 +82,11 @@
                     <a class="nav-link" href="sutradara.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Sutradara</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="komentar.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Komentar</span></a>
                 </li>
 
             <!-- Divider -->
@@ -168,9 +173,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Heru</span>
+                                <img class="img-profile rounded" 
+                                    src="images/user1.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -179,14 +184,14 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <!--<a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
-                                </a>
+                                </a>-->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -208,6 +213,41 @@
                         <h1 class="h3 mb-0 text-gray-800">DATA SUTRADARA</h1>
                         <a href="sutradara_tambah.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Sutradara</a>
                     </div>
+
+                    <?php 
+                        if(isset($_GET['alert'])){
+                            if ($_GET['alert'] == "berhasil") {
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil ditambahkan!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "gagal"){
+                                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                    <strong>Gagal</strong>, Data gagal ditambah atau diubah!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "berhasil_ubah"){
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil diubah!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "hapus"){
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil dihapus!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }
+                        }
+                    
+                    ?>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -218,21 +258,21 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
-                                            <th>No</th>
+                                        <tr class="text-center">
+                                            <th style="width: 30px;">No</th>
                                             <th>Nama</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <!-- <tfoot>
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Aksi</th>
                                         </tr>
-                                    </tfoot>
+                                    </tfoot> -->
                                     <tbody>
                                         <!-- <tr>
                                             <td>1</td>
@@ -246,19 +286,20 @@
                                         <?php if (mysqli_num_rows($query) > 0) {
                                         ?>
                                         <?php
+                                        $no = 1;
                                         while ($value = mysqli_fetch_array($query)) {
                                         ?>
                                         <tr class="text-center">
-                                            <td><?php echo $value["id_sutradara"]; ?></td>
+                                            <td><?php echo $no ?></td>
                                             <td><?php echo $value["nama"]; ?></td>
-                                            <td><?php echo $value["tgl_lahir"]; ?></td>
+                                            <td><?php echo date('d-m-Y',strtotime($value["tgl_lahir"])); ?></td>
                                             <td>
                                                 <a href="sutradara_ubah.php?id_sutradara=<?php echo $value["id_sutradara"]?>" class="btn btn-warning">Ubah</a>
                                                 <a href="sutradara_dalete.php?id_sutradara=<?php echo $value["id_sutradara"]?>" class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
                                         <?php
-                                        } ?>
+                                        $no++;} ?>
                                     <?php } ?>
                                     </tbody>                                   
                                 </table>
@@ -307,7 +348,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="../login.php">Logout</a>
                 </div>
             </div>
         </div>

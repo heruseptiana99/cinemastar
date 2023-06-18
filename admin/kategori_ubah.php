@@ -49,7 +49,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Cinemastar </div>
             </a>
 
             <!-- Divider -->
@@ -89,6 +89,11 @@
                     <a class="nav-link" href="sutradara.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Sutradara</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="komentar.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Komentar</span></a>
                 </li>
 
             <!-- Divider -->
@@ -175,9 +180,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Heru</span>
+                                <img class="img-profile rounded"
+                                    src="images/user1.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -186,14 +191,14 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <!--<a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
-                                </a>
+                                </a>-->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -221,12 +226,13 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Kategori</h6>
                         </div>
                         <div class="card-body">
-                        <form id="form-kategori" action="proses_ubah_kategori.php?id_kategori=<?php echo $id_kategori?>" method="post">>
+                        <form id="form-kategori" action="proses_ubah_kategori.php?id_kategori=<?php echo $id_kategori?>" method="post">
                         <div class="form-group">
                             <label for="nama_kategori">Nama Kategori</label>
                             <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="<?php echo $nama_kategori ?>">
+                            <small id="text-error-nama"></small>
                         </div>
-                            <button id="my-button" type="submit" class="btn btn-warning">Ubah Kategori</button>
+                            <button id="my-button" type="button" class="btn btn-warning">Ubah Kategori</button>
                             <a href="kategori.php" class="btn btn-danger">Batal</a>
                         </form>
                         </div>
@@ -273,7 +279,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="../login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -296,10 +302,23 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
-    <script>
-        $('#my-button').click(function() {
-            $('#form-kategori').submit();
-        });
+    
+    <script type="text/javascript">
+    $('#my-button').click(function() {
+        if ($('#nama_kategori').val().length == 0) {
+            if($('#nama_kategori').val().length == 0){
+                $('#nama_kategori').css({"border-color" : "red"});
+                $('#text-error-nama').text('* Silahkan isi nama kategori terlebih dahulu');
+                $('#text-error-nama').css({"font-style" : "italic"});
+                $('#text-error-nama').css({"color" : "red"});
+            }else{
+                $('#nama_kategori').css({"border-color" : "#dee2e6"});
+                $('#text-error-nama').hide();
+            }
+        } else {
+                $('#form-kategori').submit();
+        }
+    });
     </script>
 </body>
 

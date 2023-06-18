@@ -13,6 +13,8 @@
 
         <!-- Custom fonts for this template -->
         <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
@@ -38,7 +40,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Cinemastar </div>
             </a>
 
             <!-- Divider -->
@@ -79,6 +81,11 @@
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Sutradara</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="komentar.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Komentar</span></a>
+                </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -102,9 +109,6 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Kategori</span></a>
             </li>
-
-
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -164,9 +168,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Heru</span>
+                                <img class="img-profile rounded"
+                                    src="images/user1.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -175,14 +179,14 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <!--<a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
-                                </a>
+                                </a>-->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -198,6 +202,20 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <?php
+                        include ('connect.php');
+                        $id_user = $_GET['id_user'];
+
+                        $data_user = mysqli_query($conn, "SELECT * FROM user where id_user='$id_user'");
+                        while ($user = mysqli_fetch_array($data_user)) {
+                            $id_user = $user['id_user'];
+                            $nama = $user['nama'];
+                            $email = $user['email'];
+                            $telp = $user['telp'];
+                            $foto = $user['foto'];
+                            $role = $user['role'];
+                        }
+                    ?>
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -210,32 +228,55 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
                         </div>
                         <div class="card-body">
-                        <form>
+                        <form action="user_proses_ubah.php?id_user=<?= $id_user ?>" method="POST" id="form-pelanggan" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" placeholder="nama lengkap">
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $nama ?>" placeholder="nama lengkap">
+                            <small id="text-error-nama"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="Telpon">Telepon</label>
+                            <input type="text" class="form-control" id="telp" name="telp" value="<?= $telp ?>" placeholder="Telpon">
+                            <small id="text-error-telp"></small>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="email" name="email" value="<?= $email ?>" placeholder="name@example.com">
+                            <small id="text-error-email"></small>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="password">
+                            <br>
+                            <small><i>*kosongkan apabila tidak akan diubah</i></small>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            <small id="text-error-password"></small>
                         </div>
                         <div class="form-group">
                             <label for="ulang_password">Ulang Password</label>
-                            <input type="password" class="form-control" id="ulang_password" placeholder="Ulang Password">
+                            <input type="password" class="form-control" id="ulang_password" name="ulang_password" placeholder="Ulang Password">
+                            <small id="text-error-ulang_password"></small>
                         </div>
                         <div class="form-group">
                             <label for="Role">Role</label>
-                            <select class="form-control" id="Role">
-                                <option value="Admin">Admin</option>
-                                <option value="User">User</option>
+                            <select class="form-control" id="Role" name="role">
+                                <option value="Admin" <?php if($role=="Admin"){ echo "selected";} ?>>Admin</option>
+                                <option value="User" <?php if($role=="User"){ echo "selected";} ?>>User</option>
                             </select>
                         </div>
-                            <button type="submit" class="btn btn-warning">Ubah User</button>
-                            <a href="user.php" class="btn btn-danger">Batal</a>
+                        <div class="from-group">
+                            <label for="foto">Foto</label>
+                            <br>
+                            <?php if($foto=="default.png"){ ?>
+                                                    <img src="../images/<?= $foto ?>" alt="" width="100px">
+                                                    <?php }else{ ?>
+                                                        <img src="images/profile/<?= $foto ?>" alt="" width="150px">
+                                                <?php } ?>
+                            <input type="text" class="form-control mt-2" name="foto_lama" value="<?= $foto ?>" readonly>
+                            <input type="file" class="form-control-file mt-2" id="foto" name="foto" accept="image/*" placeholder="Foto">
+                            <small id="text-error-foto"></small>
+                        </div>
+                            <button id="my-button" type="button" class="btn btn-primary mt-3">Ubah User</button>
+                            <a href="user.php" class="btn btn-danger mt-3">Batal</a>
                         </form>
                         </div>
                     </div>
@@ -281,12 +322,57 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="../login.php">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
+
+    <script type="text/javascript">
+    $('#my-button').click(function() {
+        if ($('#nama').val().length == 0 || $('#email').val().length == 0  || $('#telp').val().length == 0  || $('#password').val().length !== $('#ulang_password').val().length) {
+            if($('#nama').val().length == 0){
+                $('#nama').css({"border-color" : "red"});
+                $('#text-error-nama').text('* Silahkan isi nama terlebih dahulu');
+                $('#text-error-nama').css({"font-style" : "italic"});
+                $('#text-error-nama').css({"color" : "red"});
+            }else{
+                $('#nama').css({"border-color" : "#dee2e6"});
+                $('#text-error-nama').hide();
+            }
+            if($('#telp').val().length == 0){
+                $('#telp').css({"border-color" : "red"});
+                $('#text-error-telp').text('* Silahkan isi telp terlebih dahulu');
+                $('#text-error-telp').css({"font-style" : "italic"});
+                $('#text-error-telp').css({"color" : "red"});
+            }else{
+                $('#telp').css({"border-color" : "#dee2e6"});
+                $('#text-error-telp').hide();
+            }
+            if($('#email').val().length == 0){
+                $('#email').css({"border-color" : "red"});
+                $('#text-error-email').text('* Silahkan isi emnail terlebih dahulu');
+                $('#text-error-email').css({"font-style" : "italic"});
+                $('#text-error-email').css({"color" : "red"});
+            }else{
+                $('#email').css({"border-color" : "#dee2e6"});
+                $('#text-error-email').hide();
+            }
+            if ($('#password').val().length !== $('#ulang_password').val().length) {
+                $('#password').css({"border-color" : "red"});
+                $('#text-error-password').text('*password tidak sama dengan ulang password');
+                $('#text-error-password').css({"font-style" : "italic"});
+                $('#text-error-password').css({"color" : "red"});
+            }else{
+                $('#password').css({"border-color" : "#dee2e6"});
+                $('#text-error-password').hide();
+            }
+        } else {
+                $('#form-pelanggan').submit();
+        }
+    });
+    </script>
    
     <!-- Bootstrap core JavaScript-->
     <script src="../assets/vendor/jquery/jquery.min.js"></script>
