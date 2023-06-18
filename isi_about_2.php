@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -21,11 +22,23 @@
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-								<li><a href="#">Beranda</a></li>
-                                <li><a href="#">Film</a></li>
-								<li><a href="#">Tranding</a></li>
-								<li><a href="about_us.html">About Us</a></li>
-								<li><a href="#">Login</a></li>
+								<li><a href="index.php">Beranda</a></li>
+                                <li><a href="film2.php">Film</a></li>
+								<li><a href="tranding2.php">Tranding</a></li>
+								<li><a href="about_us.php">About Us</a></li>
+								<?php if($_SESSION){ ?>
+									<?php if(isset($_SESSION['id_user'])!==null){ ?>
+										<li>
+											<a href="#" class="icon solid fa-user"> <?= $_SESSION['nama'] ?></a>
+											<ul>
+												<li><a href="profile.php">Profile</a></li>
+												<li><a href="model/beranda_model.php?aksi=logout">Logout</a></li>
+											</ul>
+										</li>
+									<?php } ?>
+									<?php }else{ ?>
+										<li><a href="login.php">LOGIN | DAFTAR</a></li>
+								<?php } ?>
 							</ul>
 						</nav>
 

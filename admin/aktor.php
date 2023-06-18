@@ -289,7 +289,7 @@
                                                 <td><img src="images/produk/<?php echo $value["foto"]; ?>" width="100px"></td>
                                                 <td>
                                                     <a href="aktor_ubah.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-warning">Ubah</a>
-                                                    <a href="aktor_dalete.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-danger">Hapus</a>
+                                                    <a href="aktor_dalete.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-danger" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
                                                 </td>
                                             </tr>
                                             <?php

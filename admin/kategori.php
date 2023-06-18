@@ -283,7 +283,7 @@
                                                 <td><?php echo $value["nama_kategori"]; ?></td>
                                                 <td>
                                                     <a href="kategori_ubah.php?id_kategori=<?php echo $value["id_kategori"]?>" class="btn btn-warning">Ubah</a>
-                                                    <a href="kategori_dalete.php?id_kategori=<?php echo $value["id_kategori"]?>" class="btn btn-danger">Hapus</a>
+                                                    <a href="kategori_dalete.php?id_kategori=<?php echo $value["id_kategori"]?>" class="btn btn-danger" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
                                                 </td>
                                             </tr>
                                             <?php
