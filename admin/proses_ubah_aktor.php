@@ -7,5 +7,5 @@
 
     $result = mysqli_query($conn, "UPDATE `aktor` SET 
     nama = '$nama', tgl_lahir = '$tgl_lahir', foto = '$foto' WHERE id_aktor = '$id_aktor';");
-    header("Location:aktor.php");
+    header("Location:aktor.php?alert=berhasil_ubah");
 ?>

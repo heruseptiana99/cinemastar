@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -35,16 +35,28 @@
 							<button class="button style3 large" style="margin-top: 20px;"> <a href="film2.php" style="color: white;">LIHAT FILM</a></button>
 						</div>
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li class="current"><a href="index.html">Beranda</a></li>
-								<li><a href="film2.php">Film</a></li>
-								<li><a href="tranding.php">Tranding</a></li>
-								<li><a href="about_us.html">Tentang Kami</a></li>
-								<li><a href="login.html">LOGIN | DAFTAR</a></li>
-							</ul>
-						</nav>
+			<!-- Nav -->
+			<nav id="nav">
+					<ul>
+						<li class="current"><a href="index.php">Beranda</a></li>
+						<li><a href="film2.php">Film</a></li>
+						<li><a href="tranding.php">Tranding</a></li>
+						<li><a href="about_us.html">Tentang Kami</a></li>
+						<?php if($_SESSION){ ?>
+							<?php if(isset($_SESSION['id_user'])!==null){ ?>
+								<li>
+									<a href="#" class="icon solid fa-user"> <?= $_SESSION['nama'] ?></a>
+									<ul>
+										<li><a href="profile.php">Profile</a></li>
+										<li><a href="model/beranda_model.php?aksi=logout">Logout</a></li>
+									</ul>
+								</li>
+							<?php } ?>
+							<?php }else{ ?>
+								<li><a href="login.php">LOGIN | DAFTAR</a></li>
+						<?php } ?>
+					</ul>
+				</nav>
 
 				</section>
 
@@ -135,6 +147,7 @@
 							?>
 							<li>
 							  <div class="movie-card">			
+
 								<a href="film2_detail.php?id_film=<?= $film['id_film']?>">
 								  <!-- <figure class="card-banner"> -->
 									<img src="./admin/images/produk/<?php echo $foto_gm; ?>" width="230px" alt="">
@@ -143,6 +156,7 @@
 								<div class="title-wrapper">
 								  <a href="film2_detail.php?id_film=<?= $film['id_film']?>">
 									<h3 class="card-title"><?= $film['judul_film'] ?></h3>
+
 								  </a>
 								  <!-- <td><?= date('d-m-Y',strtotime($film['tgl_tayang'])); ?></td> -->
 								  <time datetime="2022"><?= date('Y',strtotime($film['tgl_tayang']))?></time>

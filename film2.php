@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <!--
 	Escape Velocity by HTML5 UP
@@ -39,16 +40,28 @@
 							<p style="color: white;">Ayo mulai riview Film favorit kamu, disini!</p>
 						</div>
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li class="current"><a href="index.PHP">Beranda</a></li>
-								<li><a href="film2.php">Film</a></li>
-								<li><a href="tranding.php">Tranding</a></li>
-								<li><a href="about_us.html">Tentang Kami</a></li>
-								<li><a href="login.html">LOGIN | DAFTAR</a></li>
-							</ul>
-						</nav>
+          <!-- Nav -->
+          <nav id="nav">
+              <ul>
+                <li class="current"><a href="index.php">Beranda</a></li>
+                <li><a href="film2.php">Film</a></li>
+                <li><a href="tranding.php">Tranding</a></li>
+                <li><a href="about_us.html">Tentang Kami</a></li>
+                <?php if($_SESSION){ ?>
+                  <?php if(isset($_SESSION['id_user'])!==null){ ?>
+                    <li>
+                      <a href="#" class="icon solid fa-user"> <?= $_SESSION['nama'] ?></a>
+                      <ul>
+                        <li><a href="profile.php">Profile</a></li>
+                        <li><a href="model/beranda_model.php?aksi=logout">Logout</a></li>
+                      </ul>
+                    </li>
+                  <?php } ?>
+                  <?php }else{ ?>
+                    <li><a href="login.php">LOGIN | DAFTAR</a></li>
+                <?php } ?>
+              </ul>
+            </nav>
 
 				</section>
 
@@ -59,925 +72,83 @@
           <div class="flex-wrapper">
 
             <div class="title-wrapper">
-              <h2 class="h2 section-title"> All Kategori</h2>
+              <h2 class="h2 section-title">
+                <?php 
+                include('admin/connect.php');
+                if($_GET){
+                  echo $_GET['kategori'];
+                }else{
+                  echo "Semua Film";
+                }
+                ?>
+              </h2>
             </div>
 
-            <ul class="filter-list" style="padding-left: 400px;">
-
-              <li>
-                <button class="filter-btn"><a href="#film_action" style="color : white;">Action</a></button>
+            <ul class="filter-list" style="padding-left: 200px;">
+            <li>
+                <button class="filter-btn"><a href="film2.php" style="color : white;">Semua Film</a></button>
               </li>
-
+            <?php 
+                include('admin/connect.php');
+                $data_kategori = mysqli_query($conn, "SELECT * FROM kategori");
+                while($kategori = mysqli_fetch_array($data_kategori)) {
+            ?>
               <li>
-                <button class="filter-btn"><a href="#film_romance" style="color : white;">Romance</a></button>
+                <button class="filter-btn"><a href="?kategori=<?= $kategori['nama_kategori'] ?>" style="color : white;"><?= $kategori['nama_kategori'] ?></a></button>
               </li>
-
-              <li>
-                <button class="filter-btn"><a href="#film_drama" style="color : white;">Drama</a</button>
-              </li>
-
+            <?php 
+                }
+            ?>
             </ul>
 
           </div>
         
           <section id="film_action">
+          <ul class="movies-list">
+          <?php 
+              if($_GET){
+                $data_film = mysqli_query($conn, "SELECT film.*, AVG(komentar.rating) AS rating_nilai, COUNT(komentar.id_film) AS rating_jumlah FROM film LEFT JOIN komentar ON komentar.id_film = film.id_film INNER JOIN kategori_film ON kategori_film.id_film = film.id_film INNER JOIN kategori ON kategori.id_kategori = kategori_film.id_kategori WHERE kategori.nama_kategori='$_GET[kategori]' GROUP BY film.id_film ORDER BY rating_nilai DESC;");
+              }else{
+                $data_film = mysqli_query($conn, "SELECT film.*, AVG(komentar.rating) AS rating_nilai, COUNT(komentar.id_film) AS rating_jumlah FROM film LEFT JOIN komentar ON komentar.id_film = film.id_film GROUP BY film.id_film ORDER BY rating_nilai DESC;");
+              }
+							while($film = mysqli_fetch_array($data_film)) {
+								$data_foto = mysqli_query($conn, "SELECT * FROM foto_film WHERE id_film= $film[id_film] ORDER BY id_foto_film DESC");
+								while($foto = mysqli_fetch_array($data_foto)) {
+									$foto_bg = $foto['foto'];
+								}
+						?>
+            <li>
+              <div class="movie-card">
+                <a href="film2_detail.php?id_film=<?= $film['id_film'] ?>">
+                  <figure class="card-banner">
+                    <img src="admin/images/produk/<?= $foto_bg ?>" alt="The Northman movie poster">
+                  </figure>
+                </a>
+                <div class="title-wrapper">
+                  <a href="film2_detail.php?id_film=<?= $film['id_film'] ?>">
+                    <h3 class="card-title"><?= $film['judul_film'] ?></h3>
+                  </a>
+                  <time datetime="<?= date('Y',strtotime($film["tgl_tayang"])); ?>"><?= date('Y',strtotime($film["tgl_tayang"])); ?></time>
+                </div>
+                <div class="card-meta">
+                  <div class="badge badge-outline"><?= $film['rating'] ?></div>
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+                    <time datetime="PT137M"><?= $film['durasi'] ?> min</time>
+                  </div>
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+                    <data><?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>/5</data>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <?php 
+                }
+            ?>
             
-          <h2 style="color:white; font-size:50px; text-align:center; padding-bottom:80px; padding-top:60px;">Kategori Action</h2>
-          <ul class="movies-list  has-scrollbar">
-            
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Northman</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT137M">137 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>8.5</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-2.png"
-                      alt="Doctor Strange in the Multiverse of Madness movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">4K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT126M">126 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Memory</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">2K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="">N/A</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-4.png"
-                      alt="The Unbearable Weight of Massive Talent movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT107M">107 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Northman</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT137M">137 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>8.5</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-2.png"
-                      alt="Doctor Strange in the Multiverse of Madness movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">4K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT126M">126 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Memory</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">2K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="">N/A</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-4.png"
-                      alt="The Unbearable Weight of Massive Talent movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT107M">107 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-
           </ul>
           </section>
-
-          <section  id="film_romance">
-          <h2 style="color:white; font-size:50px; text-align:center; padding-bottom:80px; padding-top:60px;">Kategori Romance</h2>
-          <ul class="movies-list  has-scrollbar">
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Northman</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT137M">137 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>8.5</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-2.png"
-                      alt="Doctor Strange in the Multiverse of Madness movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">4K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT126M">126 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Memory</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">2K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="">N/A</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-4.png"
-                      alt="The Unbearable Weight of Massive Talent movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT107M">107 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Northman</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT137M">137 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>8.5</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-2.png"
-                      alt="Doctor Strange in the Multiverse of Madness movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">4K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT126M">126 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Memory</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">2K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="">N/A</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-4.png"
-                      alt="The Unbearable Weight of Massive Talent movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT107M">107 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-          </section>
-
-          <section  id="film_drama">
-          <h2 style="color:white; font-size:50px; text-align:center; padding-bottom:80px; padding-top:60px;">Kategori Drama</h2>
-          <ul class="movies-list  has-scrollbar">
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Northman</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT137M">137 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>8.5</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-2.png"
-                      alt="Doctor Strange in the Multiverse of Madness movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">4K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT126M">126 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Memory</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">2K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="">N/A</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-4.png"
-                      alt="The Unbearable Weight of Massive Talent movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT107M">107 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Northman</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT137M">137 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>8.5</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-2.png"
-                      alt="Doctor Strange in the Multiverse of Madness movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">4K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT126M">126 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">Memory</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">2K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="">N/A</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./film2_detail.php">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-4.png"
-                      alt="The Unbearable Weight of Massive Talent movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="./film2_detail.php">
-                    <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
-                  </a>
-
-                  <time datetime="2022">2022</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT107M">107 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>NR</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-          </section>
-
 
         </div>
       </section>
