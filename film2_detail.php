@@ -30,16 +30,15 @@
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
-
 			<!-- Header -->
 				<section id="header" class="wrapper">
-
 					<!-- Logo -->
 						<div id="logo">
 							<h1><a href="index.html">Guardians of The Galaxy Volume 3</a></h1>
 							<p style="color: white;">Di Marvel Studios "Guardians of the Galaxy Vol. 3",  kumpulan <br> orang-orang aneh yang kita cintai terlihat sedikit berbeda akhir-akhir ini.</p>
 							<button class="button style3 large" style="margin-top: 20px;"><a href="film2.php" style="color:white;">LIHAT FILM</a></button>
 						</div>
+
 
             <!-- Nav -->
             <nav id="nav">
@@ -65,25 +64,16 @@
               </nav>
 
 				</section>
-
-                <section class="movie-detail">
+        <section class="movie-detail">
         <div class="container">
-
           <figure class="movie-detail-banner">
-
-            <img src="images/fast.jpg" alt="Free guy movie poster" >
-
-            
-
+            <img src="./admin/images/produk/<?php echo $foto_gm; ?>" alt="Free guy movie poster" style="margin-bottom: 440%;">
           </figure>
-
-          <div class="movie-detail-content">
-
-            <h1 class="h1 detail-title">
-              FAST X
-            </h1>
-
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div class="movie-detail-content">
+          <h1 class="h1 detail-title">
+            FAST X
+          </h1>
+			  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 				<style>.checked { color: red;}</style>
 				<h2>Star Rating By CinemaStar</h2>
 				<span class="fa fa-star checked"></span>
@@ -92,314 +82,236 @@
 				<span class="fa fa-star"></span>
 				<span class="fa fa-star"></span>
             <div class="meta-wrapper">
-
-
               <div class="ganre-wrapper">
                 <a href="#">Comedy,</a>
-
                 <a href="#">Action,</a>
-
                 <a href="#">Adventure,</a>
-
                 <a href="#">Science Fiction</a>
               </div>
-
               <div class="date-time">
-
                 <div>
                   <ion-icon name="calendar-outline"></ion-icon>
-
                   <time datetime="2021">23 Agustus 2023</time>
                 </div>
-
                 <div>
                   <ion-icon name="time-outline"></ion-icon>
-
                   <time datetime="PT115M">115 min</time>
                 </div>
-
               </div>
-
             </div>
-			<div class="ganre-wrapper">
-				<p>Aktor :</p>
+			      <div class="ganre-wrapper">
+				      <p>Aktor :</p>
                 <a href="#">Comedy,</a>
-
                 <a href="#">Action,</a>
-
                 <a href="#">Adventure,</a>
-
                 <a href="#">Science Fiction</a>
-              </div>
-
-			  <div class="ganre-wrapper">
-				<p>Sutradara :</p>
-                <a href="#">Comedy,</a>
-
-                <a href="#">Action,</a>
-
-                <a href="#">Adventure,</a>
-
-                <a href="#">Science Fiction</a>
-              </div>
-
-            <p class="storyline" style="text-align: justify;" >
-			Bahasa Indonesia - Selama banyak misi dan melawan rintangan yang mustahil, Dom Toretto dan keluarganya telah mengakali dan mengalahkan setiap musuh di jalan mereka. Sekarang, mereka menghadapi lawan paling mematikan yang pernah mereka hadapi: Ancaman mengerikan yang muncul dari bayang-bayang masa lalu yang dipicu oleh dendam berdarah, dan yang bertekad untuk menghancurkan keluarga ini dan menghancurkan segalanya—dan semua orang—yang dicintai Dom, selamanya. Dalam Fast Five 2011, 
-			
-			<br><br>
-			<iframe width="620" height="315" src="https://www.youtube.com/embed/eoOaKN4qCKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </p>
-
-			<style>
-body {
-    font-family: 'Lucida Grande', 'Helvetica Neue', sans-serif;
-    font-size: 13px;
-}
-
-#comment_form input, #comment_form textarea {
-    border: 2px solid rgba(0,0,0,0.1);
-    padding: 8px 10px;
-    outline: 0;
-}
-#comment_form input {
-    width: 250px;
-}
-#comment_form textarea {
-    width: 450px;
-	
-}
-
-#comment_form input[type="submit"] {
-    cursor: pointer;
-    background: -webkit-linear-gradient(top, #efefef, #ddd);
-    background: -moz-linear-gradient(top, #efefef, #ddd);
-    background: -ms-linear-gradient(top, #efefef, #ddd);
-    background: -o-linear-gradient(top, #efefef, #ddd);
-    background: linear-gradient(top, #efefef, #ddd);
-    color: #333;
-    text-shadow: 0px 1px 1px rgba(255,255,255,1);
-    border: 1px solid #ccc;
-}
-
-#comment_form input[type="submit"]:hover {
-    background: -webkit-linear-gradient(top, #eee, #ccc);
-    background: -moz-linear-gradient(top, #eee, #ccc);
-    background: -ms-linear-gradient(top, #eee, #ccc);
-    background: -o-linear-gradient(top, #eee, #ccc);
-    background: linear-gradient(top, #eee, #ccc);
-    border: 1px solid #bbb;
-}
-
-#comment_form input[type="submit"]:active {
-    background: -webkit-linear-gradient(top, #ddd, #aaa);
-    background: -moz-linear-gradient(top, #ddd, #aaa);
-    background: -ms-linear-gradient(top, #ddd, #aaa);
-    background: -o-linear-gradient(top, #ddd, #aaa);
-    background: linear-gradient(top, #ddd, #aaa);    
-    border: 1px solid #999;
-}
-
-#comment_form div {
-    margin-bottom: 8px;
-}
-</style>
-<h2>Komentar</h2>
-<div id="comment_form">
-    
-    <div>
-        <input type="text" name="name" id="name" value="" placeholder="Name">
-    </div>
-    <!-- <div>
-        <input type="email" name="email" id="email" value="" placeholder="Email">
-    </div>
-    <div>
-        <input type="url" name="website" id="website" value="" placeholder="Website URL">
-    </div> -->
-    <div>
-        <textarea rows="10" name="comment" id="comment" placeholder="Comment Form by Suckittrees.com"></textarea>
-    </div>
-    <div>
-        <input type="submit" name="submit" value="Add Comment">
-    </div>
-    
-</div>
-
-
-
-            <!-- <div class="details-actions">
-
-             
-
-            </div> -->
-
+            </div>
+			    <div class="ganre-wrapper">
+				  <p>Sutradara :</p>
+            <a href="#">Comedy,</a>
+            <a href="#">Action,</a>
+            <a href="#">Adventure,</a>
+            <a href="#">Science Fiction</a>
           </div>
+            <p class="storyline" style="text-align: justify;" >
+			        Bahasa Indonesia - Selama banyak misi dan melawan rintangan yang mustahil, Dom Toretto dan keluarganya telah mengakali dan mengalahkan setiap musuh di jalan mereka. Sekarang, mereka menghadapi lawan paling mematikan yang pernah mereka hadapi: Ancaman mengerikan yang muncul dari bayang-bayang masa lalu yang dipicu oleh dendam berdarah, dan yang bertekad untuk menghancurkan keluarga ini dan menghancurkan segalanya—dan semua orang—yang dicintai Dom, selamanya. Dalam Fast Five 2011,
+			        <br><br>
+			        <iframe width="620" height="315" src="https://www.youtube.com/embed/eoOaKN4qCKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </p>
+			<style>
+        body {
+            font-family: 'Lucida Grande', 'Helvetica Neue', sans-serif;
+            font-size: 13px;
+        }
 
-        </div>
-      </section>
+        #comment_form input, #comment_form textarea {
+            border: 2px solid rgba(0,0,0,0.1);
+            padding: 8px 10px;
+            outline: 0;
+        }
+        #comment_form input {
+            width: 250px;
+        }
+        #comment_form textarea {
+            width: 450px;
+          
+        }
 
+        #comment_form input[type="submit"] {
+            cursor: pointer;
+            background: -webkit-linear-gradient(top, #efefef, #ddd);
+            background: -moz-linear-gradient(top, #efefef, #ddd);
+            background: -ms-linear-gradient(top, #efefef, #ddd);
+            background: -o-linear-gradient(top, #efefef, #ddd);
+            background: linear-gradient(top, #efefef, #ddd);
+            color: #333;
+            text-shadow: 0px 1px 1px rgba(255,255,255,1);
+            border: 1px solid #ccc;
+        }
 
-      <section class="tv-series">
-        <div class="container">
+        #comment_form input[type="submit"]:hover {
+            background: -webkit-linear-gradient(top, #eee, #ccc);
+            background: -moz-linear-gradient(top, #eee, #ccc);
+            background: -ms-linear-gradient(top, #eee, #ccc);
+            background: -o-linear-gradient(top, #eee, #ccc);
+            background: linear-gradient(top, #eee, #ccc);
+            border: 1px solid #bbb;
+        }
 
-          <p class="section-subtitle">-</p>
-
-          <h2 class="h2 section-title">Film Yang Berkaitan</h2>
-
-          <ul class="movies-list">
-
-            <li>
-              <div class="movie-card">
-
-                <a href="./movie-details.html">
-                  <figure class="card-banner">
-                    <img src="./assets/images/series-1.png" alt="Moon Knight movie poster">
-                  </figure>
+        #comment_form input[type="submit"]:active {
+            background: -webkit-linear-gradient(top, #ddd, #aaa);
+            background: -moz-linear-gradient(top, #ddd, #aaa);
+            background: -ms-linear-gradient(top, #ddd, #aaa);
+            background: -o-linear-gradient(top, #ddd, #aaa);
+            background: linear-gradient(top, #ddd, #aaa);    
+            border: 1px solid #999;
+        }
+        #comment_form div {
+            margin-bottom: 8px;
+        }
+      </style>
+      <h2>Komentar</h2>
+      <div id="comment_form">
+          <div>
+              <input type="text" name="name" id="name" value="" placeholder="Name">
+          </div>
+          <!-- <div>
+              <input type="email" name="email" id="email" value="" placeholder="Email">
+          </div>
+          <div>
+              <input type="url" name="website" id="website" value="" placeholder="Website URL">
+          </div> -->
+          <div>
+              <textarea rows="10" name="comment" id="comment" placeholder="Comment Form by Suckittrees.com"></textarea>
+          </div>
+          <div>
+              <input type="submit" name="submit" value="Add Comment">
+          </div>
+      </div>
+            <!-- <div class="details-actions">
+            </div> -->
+    </div>
+  </div>
+  </section>
+  <section class="tv-series">
+  <div class="container">
+    <p class="section-subtitle">-</p>
+      <h2 class="h2 section-title">Film Yang Berkaitan</h2>
+        <ul class="movies-list">
+          <li>
+            <div class="movie-card">
+              <a href="./movie-details.html">
+                <figure class="card-banner">
+                  <img src="./assets/images/series-1.png" alt="Moon Knight movie poster">
+                </figure>
+              </a>
+              <a href="./movie-details.html">
+                <figure class="card-banner">
+                  <img src="./assets/images/series-1.png" alt="Moon Knight movie poster">
+                </figure>
+              </a>
+            <div class="title-wrapper">
+              <a href="./movie-details.html">
+                <h3 class="card-title">Moon Knight</h3>
                 </a>
-
-                <div class="title-wrapper">
-                  <a href="./movie-details.html">
-                    <h3 class="card-title">Moon Knight</h3>
-                  </a>
-
                   <time datetime="2022">2022</time>
                 </div>
-
                 <div class="card-meta">
                   <div class="badge badge-outline">2K</div>
-
                   <div class="duration">
                     <ion-icon name="time-outline"></ion-icon>
-
                     <time datetime="PT47M">47 min</time>
                   </div>
-
                   <div class="rating">
                     <ion-icon name="star"></ion-icon>
-
                     <data>8.6</data>
                   </div>
                 </div>
-
               </div>
             </li>
-
             <li>
               <div class="movie-card">
-
                 <a href="./movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/series-2.png" alt="Halo movie poster">
                   </figure>
                 </a>
-
                 <div class="title-wrapper">
                   <a href="./movie-details.html">
                     <h3 class="card-title">Halo</h3>
                   </a>
-
                   <time datetime="2022">2022</time>
                 </div>
-
                 <div class="card-meta">
                   <div class="badge badge-outline">2K</div>
-
                   <div class="duration">
                     <ion-icon name="time-outline"></ion-icon>
-
                     <time datetime="PT59M">59 min</time>
                   </div>
-
                   <div class="rating">
                     <ion-icon name="star"></ion-icon>
-
                     <data>8.8</data>
                   </div>
                 </div>
-
               </div>
             </li>
-
             <li>
               <div class="movie-card">
-
                 <a href="./movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/series-3.png" alt="Vikings: Valhalla movie poster">
                   </figure>
                 </a>
-
                 <div class="title-wrapper">
                   <a href="./movie-details.html">
                     <h3 class="card-title">Vikings: Valhalla</h3>
                   </a>
-
                   <time datetime="2022">2022</time>
                 </div>
-
                 <div class="card-meta">
                   <div class="badge badge-outline">2K</div>
-
                   <div class="duration">
                     <ion-icon name="time-outline"></ion-icon>
-
                     <time datetime="PT51M">51 min</time>
                   </div>
-
                   <div class="rating">
                     <ion-icon name="star"></ion-icon>
-
                     <data>8.3</data>
                   </div>
                 </div>
-
               </div>
             </li>
-
             <li>
               <div class="movie-card">
-
                 <a href="./movie-details.html">
                   <figure class="card-banner">
                     <img src="./assets/images/series-4.png" alt="Money Heist movie poster">
                   </figure>
                 </a>
-
                 <div class="title-wrapper">
                   <a href="./movie-details.html">
                     <h3 class="card-title">Money Heist</h3>
                   </a>
-
                   <time datetime="2017">2017</time>
                 </div>
-
                 <div class="card-meta">
                   <div class="badge badge-outline">4K</div>
-
                   <div class="duration">
                     <ion-icon name="time-outline"></ion-icon>
-
                     <time datetime="PT70M">70 min</time>
                   </div>
-
                   <div class="rating">
                     <ion-icon name="star"></ion-icon>
-
                     <data>8.3</data>
                   </div>
                 </div>
-
               </div>
             </li>
-
           </ul>
-
         </div>
       </section>
-
     </article>
   </main>
-
-
       <!-- Footer -->
 				<section id="footer" class="wrapper">
 					<div class="title">CinemaStar</div>
