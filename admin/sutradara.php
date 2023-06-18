@@ -213,6 +213,41 @@
                         <h1 class="h3 mb-0 text-gray-800">DATA SUTRADARA</h1>
                         <a href="sutradara_tambah.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Sutradara</a>
                     </div>
+
+                    <?php 
+                        if(isset($_GET['alert'])){
+                            if ($_GET['alert'] == "berhasil") {
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil ditambahkan!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "gagal"){
+                                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                    <strong>Gagal</strong>, Data gagal ditambah atau diubah!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "berhasil_ubah"){
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil diubah!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "hapus"){
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil dihapus!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }
+                        }
+                    
+                    ?>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -313,7 +348,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="../login.php">Logout</a>
                 </div>
             </div>
         </div>

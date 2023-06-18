@@ -295,7 +295,6 @@
                                                         <img src="images/profile/<?= $user['foto'] ?>" alt="" width="150px">
                                                 <?php } ?>
                                             </td>
-
                                             <td>
                                                 <a href="user_ubah.php?id_user=<?= $user['id_user'] ?>" class="btn btn-warning btn-sm btn-block">Ubah</a>
                                                 <a href="user_proses_hapus.php?id_user=<?= $user['id_user'] ?>&foto=<?= $user['foto'] ?>" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
@@ -351,7 +350,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="../login.php">Logout</a>
                 </div>
             </div>
         </div>

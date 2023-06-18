@@ -6,5 +6,6 @@
 
     $result = mysqli_query($conn, "UPDATE sutradara SET id_sutradara = '$id_sutradara',
     nama = '$nama', tgl_lahir = '$tgl_lahir' WHERE id_sutradara = '$id_sutradara';");
-    header("Location:sutradara.php");
+    header("Location:sutradara.php?alert=berhasil_ubah");
+   
 ?>

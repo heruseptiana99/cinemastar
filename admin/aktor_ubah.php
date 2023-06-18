@@ -232,17 +232,20 @@
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama ?>">
+                            <small id="text-error-nama"></small>
                         </div>
                         <div class="form-group">
                             <label for="tgl_lahir">Tanggal Lahir</label>
                             <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo $tgl_lahir ?>">
+                            <small id="text-error-ttl"></small>
                         </div>
                         <div class="form-group">
                             <label for="foto">Foto</label>
                             <input type="text" value="<?php echo $foto?>" disabled>
                             <input type="file" class="form-control-file" id="foto" name="foto" accept="image/*" value="<?php echo $foto ?>">
+                            <small id="text-error-foto"></small>
                         </div>
-                            <button id="my-button" type="submit" class="btn btn-warning">Ubah Aktor</button>
+                            <button id="my-button" type="button" class="btn btn-primary ">Ubah Aktor</button>
                             <a href="aktor.php" class="btn btn-danger">Batal</a>
                         </form>
                         </div>
@@ -289,11 +292,15 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="../login.php">Logout</a>
                 </div>
             </div>
         </div>
     </div>
+
+
+   
+
 
    
     <!-- Bootstrap core JavaScript-->
@@ -312,11 +319,44 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
+
     <script>
         $('#my-button').click(function() {
-            $('#form-aktor').submit();
-        });
+        if ($('#nama').val().length == 0 || $('#tgl_lahir').val().length == 0  || $('#foto').val().length == 0) {
+            if($('#nama').val().length == 0){
+                $('#nama').css({"border-color" : "red"});
+                $('#text-error-nama').text('* Silahkan isi nama terlebih dahulu');
+                $('#text-error-nama').css({"font-style" : "italic"});
+                $('#text-error-nama').css({"color" : "red"});
+            }else{
+                $('#nama').css({"border-color" : "#dee2e6"});
+                $('#text-error-nama').hide();
+            }
+            if($('#tgl_lahir').val().length == 0){
+                $('#tgl_lahir').css({"border-color" : "red"});
+                $('#text-error-ttl').text('* Silahkan isi tanggal lahir terlebih dahulu');
+                $('#text-error-ttl').css({"font-style" : "italic"});
+                $('#text-error-ttl').css({"color" : "red"});
+            }else{
+                $('#tgl_lahir').css({"border-color" : "#dee2e6"});
+                $('#text-error-ttl').hide();
+            }
+            if($('#foto').val().length == 0){
+                $('#foto').css({"border-color" : "red"});
+                $('#text-error-foto').text('* Silahkan isi foto terlebih dahulu');
+                $('#text-error-foto').css({"font-style" : "italic"});
+                $('#text-error-foto').css({"color" : "red"});
+            }else{
+                $('#foto').css({"border-color" : "#dee2e6"});
+                $('#text-error-foto').hide();
+            }
+        } else {
+                $('#form-aktor').submit();
+        }
+    });
     </script>
+
+
 </body>
 
 </php>

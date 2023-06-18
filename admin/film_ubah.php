@@ -298,8 +298,8 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered"  width="100%" cellspacing="0">
                                             <thead>
-                                                <tr>
-                                                    <th>No</th>
+                                                <tr class="text-center">
+                                                    <th style="width: 30px;">No</th>
                                                     <th>Kategori</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -311,8 +311,8 @@
                                                 while($kategori = mysqli_fetch_array($data_kategori)) {
                                             ?>
                                                 <tr>
-                                                    <td><?= $i = $i+1 ?></td>
-                                                    <td><?= $kategori['nama_kategori'] ?></td>
+                                                    <td  class="text-center"><?= $i = $i+1 ?></td>
+                                                    <td  class="text-center"><?= $kategori['nama_kategori'] ?></td>
                                                     <td>
                                                         <a href="film_proses.php?id_film=<?= $id_film ?>&id_kategori_film=<?= $kategori['id_kategori_film'] ?>&aksi=hapus_kategori" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
                                                     </td>
@@ -341,8 +341,8 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered"  width="100%" cellspacing="0">
                                             <thead>
-                                                <tr>
-                                                    <th>No</th>
+                                                <tr  class="text-center">
+                                                    <th  style="width: 30px;">No</th>
                                                     <th>Sutradara</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -354,8 +354,8 @@
                                                 while($sutradara = mysqli_fetch_array($data_sutradara)) {
                                             ?>
                                                 <tr>
-                                                    <td><?= $i = $i+1 ?></td>
-                                                    <td><?= $sutradara['nama'] ?></td>
+                                                    <td  class="text-center"><?= $i = $i+1 ?></td>
+                                                    <td  class="text-center"><?= $sutradara['nama'] ?></td>
                                                     <td>
                                                         <a href="film_proses.php?id_film=<?= $id_film ?>&id_sutradara_film=<?= $sutradara['id_sutradara_film'] ?>&aksi=hapus_sutradara" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
                                                     </td>
@@ -384,8 +384,8 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered"  width="100%" cellspacing="0">
                                             <thead>
-                                                <tr>
-                                                    <th>No</th>
+                                                <tr class="text-center">
+                                                    <th  style="width: 30px;">No</th>
                                                     <th>Aktor</th>
                                                     <th>Pemeran</th>
                                                     <th>Aksi</th>
@@ -398,9 +398,9 @@
                                                 while($aktor = mysqli_fetch_array($data_aktor)) {
                                             ?>
                                                 <tr>
-                                                    <td><?= $i = $i+1 ?></td>
-                                                    <td><?= $aktor['nama'] ?></td>
-                                                    <td><?= $aktor['nama_pemeran'] ?></td>
+                                                    <td class="text-center"><?= $i = $i+1 ?></td>
+                                                    <td class="text-center"><?= $aktor['nama'] ?></td>
+                                                    <td class="text-center"><?= $aktor['nama_pemeran'] ?></td>
                                                     <td>
                                                         <a href="film_proses.php?id_film=<?= $id_film ?>&id_aktor_film=<?= $aktor['id_aktor_film'] ?>&aksi=hapus_aktor" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
                                                     </td>
@@ -430,8 +430,8 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered"  width="100%" cellspacing="0">
                                             <thead>
-                                                <tr>
-                                                    <th>No</th>
+                                                <tr class="text-center">
+                                                    <th style="width: 30px;">No</th>
                                                     <th>Foto</th>
                                                     <!-- <th>Status</th> -->
                                                     <th>Aksi</th>
@@ -444,9 +444,8 @@
                                                 while($foto = mysqli_fetch_array($data_foto)) {
                                             ?>
                                                 <tr>
-                                                    <td><?= $i = $i+1 ?></td>
-                                                    <td><img src="images/produk/<?= $foto['foto'] ?>" alt="" width="150px"></td>
-                                                    <!-- <td><?= $foto['status'] ?></td> -->
+                                                    <td class="text-center"><?= $i = $i+1 ?></td>
+                                                    <td class="text-center"><img src="images/produk/<?= $foto['foto'] ?>" alt="" width="150px"></td>
                                                     <td>
                                                         <a href="film_proses.php?id_film=<?= $id_film ?>&id_foto_film=<?= $foto['id_foto_film'] ?>&aksi=hapus_foto" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
                                                     </td>
@@ -511,7 +510,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="../login.php">Logout</a>
                 </div>
             </div>
         </div>

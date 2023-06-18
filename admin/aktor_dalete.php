@@ -4,5 +4,5 @@
  
      $result = mysqli_query($conn, "DELETE FROM aktor WHERE id_aktor = '$id_aktor'");
  
-     header("Location:aktor.php");
+     header("Location:aktor.php?alert=hapus");
 ?>
