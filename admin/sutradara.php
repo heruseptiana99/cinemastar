@@ -295,7 +295,7 @@
                                             <td><?php echo date('d-m-Y',strtotime($value["tgl_lahir"])); ?></td>
                                             <td>
                                                 <a href="sutradara_ubah.php?id_sutradara=<?php echo $value["id_sutradara"]?>" class="btn btn-warning">Ubah</a>
-                                                <a href="sutradara_dalete.php?id_sutradara=<?php echo $value["id_sutradara"]?>" class="btn btn-danger">Hapus</a>
+                                                <a href="sutradara_dalete.php?id_sutradara=<?php echo $value["id_sutradara"]?>" class="btn btn-danger" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
                                             </td>
                                         </tr>
                                         <?php
