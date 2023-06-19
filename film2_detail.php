@@ -126,24 +126,28 @@
               </div>
             </div>
             <div class="ganre-wrapper">
+              <div style="font-size: 15px;">Sutradara : 
               <?php 
                 $data_sutradara = mysqli_query($conn, "SELECT * FROM sutradara_film INNER JOIN sutradara ON sutradara.id_sutradara = sutradara_film.id_sutradara WHERE id_film= $film[id_film] ORDER BY id_sutradara_film DESC");
                 while($sutradara = mysqli_fetch_array($data_sutradara)) {
               ?>
-                <div style="font-size: 15px;">Sutradara : <?= $sutradara['nama']?></div>
+                <?= $sutradara['nama']?>
               <?php 
                 }
               ?>
+              </div>
             </div>
 			      <div class="ganre-wrapper">
+              <div style="font-size: 15px;">Aktor : 
               <?php 
 									$data_aktor = mysqli_query($conn, "SELECT * FROM aktor_film INNER JOIN aktor ON aktor.id_aktor = aktor_film.id_aktor WHERE id_film= $film[id_film] ORDER BY id_aktor_film DESC");
 									while($aktor = mysqli_fetch_array($data_aktor)) {
 								?>
-									<div style="font-size: 15px;">Aktor : <?= $aktor['nama'] ?></div>
-								<?php 
+                    <?= $aktor['nama'] ?>,
+              <?php 
 									}
-								?>  
+              ?>  
+              </div>
             </div>
             <p class="storyline" style="text-align: justify;" >
             <?= nl2br($film['sinopsis'])?>

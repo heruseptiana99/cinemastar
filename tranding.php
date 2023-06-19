@@ -63,7 +63,7 @@
 						<?php 
 							include('admin/connect.php');
 							$data_film = mysqli_query($conn, "SELECT film.*, AVG(komentar.rating) AS rating_nilai, COUNT(komentar.id_film) AS rating_jumlah FROM film LEFT JOIN komentar ON komentar.id_film = film.id_film GROUP BY film.id_film ORDER BY rating_nilai DESC LIMIT 9;");
-							$i=1;
+							$p=1;
 							while($film = mysqli_fetch_array($data_film)) {
 								$data_foto = mysqli_query($conn, "SELECT * FROM foto_film WHERE id_film= $film[id_film] ORDER BY id_foto_film DESC");
 								while($foto = mysqli_fetch_array($data_foto)) {
@@ -73,7 +73,7 @@
 
 						<div class="row" style="margin-top: 10px;">
 							<div class="col-3 text-right">
-								<button class="button style3" style="text-align: center;" disabled>#<?= $i++ ?></button><br><br>
+								<button class="button style3" style="text-align: center;" disabled>#<?= $p++ ?></button><br><br>
 								<img src="admin/images/produk/<?= $foto_bg ?>" width="250px">
 							</div>
 							<div class="col">
