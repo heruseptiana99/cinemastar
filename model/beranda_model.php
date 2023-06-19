@@ -33,6 +33,7 @@
                 $_SESSION['email'] = $result['email'];
                 $_SESSION['role'] = $result['role'];
                 $_SESSION['nama'] = $result['nama'];
+                $_SESSION['foto'] = $result['foto'];
                 if($result['role']=="Admin"){
                     header("Location:../admin/index.php");
                 }else{
