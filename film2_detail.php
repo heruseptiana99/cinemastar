@@ -90,6 +90,7 @@
           </h1>
 			  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 				<style>.checked { color: red;}</style>
+
         <?php 
 									for ($i=1; $i <= $film['rating_nilai'] ; $i++) { 
 										echo "<span class='fa fa-star checked'></span>";
@@ -100,6 +101,7 @@
 									}
 								?>
 				(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>/5) 
+
 								<br>
 								
             <div class="meta-wrapper">
