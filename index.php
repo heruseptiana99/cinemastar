@@ -171,7 +171,9 @@
 								  </div>
 								  <div class="rating">
 									<ion-icon name="star"></ion-icon>
-									<data>8.5</data>
+									<data>
+									<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>/5 
+									</data>
 								  </div>
 								</div>
 							  </div>
