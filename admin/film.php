@@ -255,7 +255,7 @@
                                             <td><?= $film['judul_film'] ?></td>
                                             <td><?= $film['durasi'] ?></td>
                                             <td><?= $film['rating'] ?></td>
-                                            <td><?= substr($film['sinopsis'],1000) . "[.....]"; ?></td>
+                                            <td class="text-justify"><?= (str_word_count($film['sinopsis']) > 150 ? substr($film['sinopsis'],0,500)."[...]" : $film['sinopsis']) ?></td>
                                             <td><?= $film['jenis_tayang'] ?></td>
                                             <td><?= date('d-m-Y',strtotime($film['tgl_tayang'])); ?></td>
 

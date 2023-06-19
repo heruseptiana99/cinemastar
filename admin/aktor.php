@@ -266,15 +266,6 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Foto</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </tfoot> -->
                                     <tbody>
                                         <?php if (mysqli_num_rows($query) > 0) {
                                             ?>
@@ -286,7 +277,7 @@
                                                 <td><?php echo $no ?></td>
                                                 <td><?php echo $value["nama"]; ?></td>
                                                 <td><?php echo date('d-m-Y',strtotime($value["tgl_lahir"])); ?></td>
-                                                <td><img src="images/produk/<?php echo $value["foto"]; ?>" width="100px"></td>
+                                                <td><img src="images/aktor/<?php echo $value["foto"]; ?>" width="100px"></td>
                                                 <td>
                                                     <a href="aktor_ubah.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-warning">Ubah</a>
                                                     <a href="aktor_dalete.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-danger" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
@@ -295,16 +286,6 @@
                                             <?php
                                             $no++;} ?>
                                         <?php } ?>
-                                        <!-- <tr>
-                                            <td>1</td>
-                                            <td>User</td>
-                                            <td>aktor@gmail.com</td>
-                                            <td>admin</td>
-                                            <td>
-                                                <a href="aktor_ubah.php" class="btn btn-warning">Ubah</a>
-                                                <a href="" class="btn btn-danger">Hapus</a>
-                                            </td>
-                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>

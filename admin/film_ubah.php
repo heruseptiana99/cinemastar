@@ -273,7 +273,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="sinopsis">Sinopsis</label>
-                                    <textarea name="sinopsis" id="sinopsis" class="form-control" rows="10"><?= nl2br($sinopsis) ?></textarea>
+                                    <textarea name="sinopsis" id="sinopsis" class="form-control" rows="10"><?= $sinopsis ?></textarea>
                                     <small id="text-error-sinopsis"></small>
                                 </div>
                                     <button id="my-button" type="button" class="btn btn-primary mt-3">Ubah Film</button>

@@ -228,7 +228,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Aktor</h6>
                         </div>
                         <div class="card-body">
-                        <form id="form-aktor" action="proses_ubah_aktor.php?id_aktor=<?php echo $id_aktor?>" method="post">
+                        <form id="form-aktor" action="proses_ubah_aktor.php?id_aktor=<?php echo $id_aktor?>" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama ?>">
@@ -241,8 +241,8 @@
                         </div>
                         <div class="form-group">
                             <label for="foto">Foto</label>
-                            <input type="text" value="<?php echo $foto?>" disabled>
-                            <input type="file" class="form-control-file" id="foto" name="foto" accept="image/*" value="<?php echo $foto ?>">
+                            <input type="text" value="<?php echo $foto?>" name="foto_lama" readonly>
+                            <input type="file" class="form-control-file" id="foto" name="foto" accept="image/*">
                             <small id="text-error-foto"></small>
                         </div>
                             <button id="my-button" type="button" class="btn btn-primary ">Ubah Aktor</button>
@@ -322,7 +322,7 @@
 
     <script>
         $('#my-button').click(function() {
-        if ($('#nama').val().length == 0 || $('#tgl_lahir').val().length == 0  || $('#foto').val().length == 0) {
+        if ($('#nama').val().length == 0 || $('#tgl_lahir').val().length == 0 ) {
             if($('#nama').val().length == 0){
                 $('#nama').css({"border-color" : "red"});
                 $('#text-error-nama').text('* Silahkan isi nama terlebih dahulu');
@@ -340,15 +340,6 @@
             }else{
                 $('#tgl_lahir').css({"border-color" : "#dee2e6"});
                 $('#text-error-ttl').hide();
-            }
-            if($('#foto').val().length == 0){
-                $('#foto').css({"border-color" : "red"});
-                $('#text-error-foto').text('* Silahkan isi foto terlebih dahulu');
-                $('#text-error-foto').css({"font-style" : "italic"});
-                $('#text-error-foto').css({"color" : "red"});
-            }else{
-                $('#foto').css({"border-color" : "#dee2e6"});
-                $('#text-error-foto').hide();
             }
         } else {
                 $('#form-aktor').submit();

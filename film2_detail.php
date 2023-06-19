@@ -72,34 +72,17 @@
         <div class="container">
 
         <?php 
-					include('admin/connect.php');
-					$data_film = mysqli_query($conn, "SELECT film.*, foto_film.* FROM film 
-          INNER JOIN foto_film ON foto_film.id_film = film.id_film WHERE film.id_film = $_GET[id_film];");
-					// $i=1;
-					while($film = mysqli_fetch_array($data_film)) {
-            $judul_film = $film['judul_film'];
-            $durasi_film = $film['durasi'];
-					  $tgl_tayang_film = $film['tgl_tayang'];
-            $sinopsis = $film['sinopsis'];
-            $link_trailer = $film['link_trailer'];
-						$data_foto = mysqli_query($conn, "SELECT * FROM foto_film WHERE id_film= $film[id_film] ORDER BY
-             id_foto_film DESC");
-						while($foto = mysqli_fetch_array($data_foto)) {
-							$foto_bg = $foto['foto'];
-					  }
-            $data_aktor = mysqli_query($conn, "SELECT * FROM aktor_film WHERE id_film= $film[id_film] ORDER BY
-             id_aktor_film DESC");
-						while($aktor = mysqli_fetch_array($data_aktor)) {
-							$aktor_bg = $aktor['nama_pemeran'];
-            }
-            $data_sutradara = mysqli_query($conn, "SELECT * FROM sutradara_film WHERE id_film= $film[id_film] ORDER BY
-             id_sutradara_film DESC");
-						while($sutradara = mysqli_fetch_array($data_sutradara)) {
-							$sutradara_bg = $sutradara['id_sutradara'];
-            }
-				?>
+							include('admin/connect.php');
+							$data_film = mysqli_query($conn, "SELECT film.*, AVG(komentar.rating) AS rating_nilai, COUNT(komentar.id_film) AS rating_jumlah FROM film LEFT JOIN komentar ON komentar.id_film = film.id_film WHERE film.id_film = $_GET[id_film] GROUP BY film.id_film;");
+							$i=1;
+							while($film = mysqli_fetch_array($data_film)) {
+								$data_foto = mysqli_query($conn, "SELECT * FROM foto_film WHERE id_film= $film[id_film] ORDER BY id_foto_film DESC");
+								while($foto = mysqli_fetch_array($data_foto)) {
+									$foto_bg = $foto['foto'];
+								}
+						?>
         <figure class="movie-detail-banner">
-            <img src="admin/images/produk/<?= $foto_bg ?>" alt="Free guy movie poster" style="margin-bottom: 550%;">
+            <img src="admin/images/produk/<?= $foto_bg ?>" alt="Free guy movie poster" >
           </figure>
         <div class="movie-detail-content">
           <h1 class="h1 detail-title">
@@ -107,7 +90,15 @@
           </h1>
 			  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 				<style>.checked { color: red;}</style>
-				<h2>Star Rating By CinemaStar</h2>
+        <?php 
+									for ($i=1; $i <= $film['rating_nilai'] ; $i++) { 
+										echo "<span class='fa fa-star checked'></span>";
+									}
+									$bintang_hitam = 5-$film['rating_nilai'];
+									for ($i=1; $i <= $bintang_hitam ; $i++) { 
+										echo "<span class='fa fa-star'></span>";
+									}
+								?>
 				(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>/5) 
 								<br>
 								
@@ -117,8 +108,9 @@
 									$data_kategori = mysqli_query($conn, "SELECT * FROM kategori_film INNER JOIN kategori ON kategori.id_kategori = kategori_film.id_kategori WHERE id_film= $film[id_film] ORDER BY id_kategori_film DESC");
 									while($kategori = mysqli_fetch_array($data_kategori)) {
 								?>
-									<div class="badge badge-secondary"style="font-size: 15px;" ><?= $kategori['nama_kategori'] ?></div>
+									<div style="font-size: 15px;" ><?= $kategori['nama_kategori'] ?></div>
 								<?php 
+                    $kategori_terkait = $kategori['nama_kategori'];
 									}
 								?>
               </div>
@@ -129,35 +121,32 @@
                 </div>
                 <div>
                   <ion-icon name="time-outline"></ion-icon>
-                  <time datetime="PT115M"><?= $film['durasi'] ?></time>
+                  <time datetime="PT115M"><?= $film['durasi'] ?> min</time>
                 </div>
               </div>
             </div>
+            <div class="ganre-wrapper">
+              <?php 
+                $data_sutradara = mysqli_query($conn, "SELECT * FROM sutradara_film INNER JOIN sutradara ON sutradara.id_sutradara = sutradara_film.id_sutradara WHERE id_film= $film[id_film] ORDER BY id_sutradara_film DESC");
+                while($sutradara = mysqli_fetch_array($data_sutradara)) {
+              ?>
+                <div style="font-size: 15px;">Sutradara : <?= $sutradara['nama']?></div>
+              <?php 
+                }
+              ?>
+            </div>
 			      <div class="ganre-wrapper">
-
               <?php 
 									$data_aktor = mysqli_query($conn, "SELECT * FROM aktor_film INNER JOIN aktor ON aktor.id_aktor = aktor_film.id_aktor WHERE id_film= $film[id_film] ORDER BY id_aktor_film DESC");
 									while($aktor = mysqli_fetch_array($data_aktor)) {
 								?>
-									<div class="badge badge-secondary" style="font-size: 15px;">Aktor : <?= $aktor['nama'] ?></div>
+									<div style="font-size: 15px;">Aktor : <?= $aktor['nama'] ?></div>
 								<?php 
 									}
 								?>  
             </div>
-			    <div class="ganre-wrapper">
-          <?php 
-						$data_sutradara = mysqli_query($conn, "SELECT * FROM sutradara_film INNER JOIN sutradara ON sutradara.id_sutradara = sutradara_film.id_sutradara WHERE id_film= $film[id_film] ORDER BY id_sutradara_film DESC");
-						while($sutradara = mysqli_fetch_array($data_sutradara)) {
-					?>
-						<div class="badge badge-danger" style="font-size: 15px;">Sutradara : <?= $sutradara['nama']?></div>
-					<?php 
-						}
-					?>
-          
-            
-          </div>
             <p class="storyline" style="text-align: justify;" >
-            <?= $film['sinopsis'] ?>
+            <?= nl2br($film['sinopsis'])?>
             <br><br>
 			        <iframe width="620" height="315" src="<?= $film['link_trailer'] ?>" 
               title="YouTube video player" frameborder="0" 
@@ -173,7 +162,7 @@
               <div class="card-body">
                 <h1 style="font-size: 25px;">KOMENTAR | REVIEW</h1>
                 <form action="model/komentar_model.php" method="POST">
-                  <input type="hidden" name="id_user" value="<?= $_SESSION['id_user'] ?>">
+                  <input type="hidden" name="id_user" value="<?php if($_SESSION){echo $_SESSION['id_user'];} ?>">
                   <input type="hidden" name="id_film" value="<?= $_GET['id_film'] ?>">
                   <div class="rating"> 
                     <input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label> 
@@ -234,30 +223,14 @@
         </div>
       </section>
 
-        #comment_form input[type="submit"] {
-            cursor: pointer;
-            background: -webkit-linear-gradient(top, #efefef, #ddd);
-            background: -moz-linear-gradient(top, #efefef, #ddd);
-            background: -ms-linear-gradient(top, #efefef, #ddd);
-            background: -o-linear-gradient(top, #efefef, #ddd);
-            background: linear-gradient(top, #efefef, #ddd);
-            color: #333;
-            text-shadow: 0px 1px 1px rgba(255,255,255,1);
-            border: 1px solid #ccc;
-        }
-
-
       <section class="tv-series">
         <div class="container">
 
           <h2 class="h2 section-title">Film Yang Berkaitan</h2>
           <ul class="movies-list">
           <?php 
-              if($_GET){
-                $data_film = mysqli_query($conn, "SELECT film.*, AVG(komentar.rating) AS rating_nilai, COUNT(komentar.id_film) AS rating_jumlah FROM film LEFT JOIN komentar ON komentar.id_film = film.id_film INNER JOIN kategori_film ON kategori_film.id_film = film.id_film INNER JOIN kategori ON kategori.id_kategori = kategori_film.id_kategori GROUP BY film.id_film ORDER BY rating_nilai DESC;");
-              }else{
-                $data_film = mysqli_query($conn, "SELECT film.*, AVG(komentar.rating) AS rating_nilai, COUNT(komentar.id_film) AS rating_jumlah FROM film LEFT JOIN komentar ON komentar.id_film = film.id_film GROUP BY film.id_film ORDER BY rating_nilai DESC;");
-              }
+             
+              $data_film = mysqli_query($conn, "SELECT film.*, AVG(komentar.rating) AS rating_nilai, COUNT(komentar.id_film) AS rating_jumlah FROM film LEFT JOIN komentar ON komentar.id_film = film.id_film INNER JOIN kategori_film ON kategori_film.id_film = film.id_film INNER JOIN kategori ON kategori.id_kategori = kategori_film.id_kategori WHERE kategori.nama_kategori='$kategori_terkait'  AND film.id_film!=$_GET[id_film] GROUP BY film.id_film ORDER BY rating_nilai DESC LIMIT 4;");
 							while($film = mysqli_fetch_array($data_film)) {
 								$data_foto = mysqli_query($conn, "SELECT * FROM foto_film WHERE id_film= $film[id_film] ORDER BY id_foto_film DESC");
 								while($foto = mysqli_fetch_array($data_foto)) {

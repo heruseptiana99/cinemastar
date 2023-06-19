@@ -215,7 +215,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Aktor</h6>
                         </div>
                         <div class="card-body">
-                        <form id="form-aktor" action="proses_aktor.php" method="post">
+                        <form id="form-aktor" action="proses_aktor.php" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="nama" name="nama" >

@@ -122,28 +122,28 @@
 						<div class="row aln-center">
 							<div class="col-3 col-12-medium">
 								<section class="highlight">
-									<a href="#" class="image featured rounded"><img src="images/heruseptiana.jpg"  width="200px" height="250px" style="border-radius: 100%;" alt="" /></a>
+									<a href="#" class="image featured rounded"><img src="images/heruseptiana.jpg"  width="200px"  style="border-radius: 100%;" alt="" /></a>
 									<h3><a href="#">Heru Septiana</a></h3>
 									<p>Sekolah Tinggi Teknologi Bandung</p>
 								</section>
 							</div>
 							<div class="col-3 col-12-medium">
 								<section class="highlight">
-									<a href="#" class="image featured"><img src="images/saiful.jpg"  width="200px" height="250px" style="border-radius: 100%;" alt="" /></a>
+									<a href="#" class="image featured"><img src="images/saiful.jpg"  width="200px"  style="border-radius: 100%;" alt="" /></a>
 									<h3><a href="#">M. Saifullah Candra</a></h3>
 									<p>Universitas Pesantren Tinggi darul Ulum</p>
 								</section>
 							</div>
 							<div class="col-3 col-12-medium">
 								<section class="highlight">
-									<a href="#" class="image featured"><img src="images/farid.jpg"  width="200px" height="250px" style="border-radius: 100%;" alt="" /></a>
+									<a href="#" class="image featured"><img src="images/farid.jpg"  width="200px"  style="border-radius: 100%;" alt="" /></a>
 									<h3><a href="#">Muh. Farid Fatwa</a></h3>
 									<p>Universitas DIPA Makasar</p>
 								</section>
 							</div>
 							<div class="col-3 col-12-medium">
 								<section class="highlight">
-									<a href="#" class="image featured"><img src="images/nada1.jpg" width="200px" height="250px" style="border-radius: 100%;" alt="" /></a>
+									<a href="#" class="image featured"><img src="images/nada1.jpg" width="200px"  style="border-radius: 100%;" alt="" /></a>
 									<h3><a href="#">Fidhina Fina Dalila</a></h3>
 									<p> Universitas Alma Ata Yogyakarta </p>
 								</section>
