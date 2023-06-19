@@ -167,7 +167,7 @@
 				
 								  <div class="duration">
 									<ion-icon name="time-outline"></ion-icon>				
-									<time datetime="PT137M"><?= $film['durasi'] ?></time>
+									<time datetime="PT137M"><?= $film['durasi'] ?>min</time>
 								  </div>
 								  <div class="rating">
 									<ion-icon name="star"></ion-icon>
