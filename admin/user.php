@@ -284,11 +284,11 @@
                                         while($user = mysqli_fetch_array($data_user)) {
                                     ?>
                                         <tr>
-                                            <td><?= $i++ ?></td>
-                                            <td><?= $user['nama'] ?></td>
-                                            <td><?= $user['telp'] ?></td>
-                                            <td><?= $user['email'] ?></td>
-                                            <td><?= $user['role'] ?></td>
+                                            <td class="text-center"><?= $i++ ?></td>
+                                            <td class="text-center"><?= $user['nama'] ?></td>
+                                            <td class="text-center"><?= $user['telp'] ?></td>
+                                            <td class="text-center"><?= $user['email'] ?></td>
+                                            <td class="text-center"><?= $user['role'] ?></td>
                                             <td class="text-center">
                                                 <?php if($user['foto']=="default.png"){ ?>
                                                     <img src="../images/<?= $user['foto'] ?>" alt="" width="100px">
