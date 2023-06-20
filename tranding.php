@@ -62,7 +62,7 @@
 					<div class="container">
 						<?php 
 							include('admin/connect.php');
-							$data_film = mysqli_query($conn, "SELECT film.*, AVG(komentar.rating) AS rating_nilai, COUNT(komentar.id_film) AS rating_jumlah FROM film LEFT JOIN komentar ON komentar.id_film = film.id_film GROUP BY film.id_film ORDER BY rating_nilai DESC LIMIT 9;");
+							$data_film = mysqli_query($conn, "SELECT film.*, AVG(komentar.rating) AS rating_nilai, COUNT(komentar.id_film) AS rating_jumlah FROM film LEFT JOIN komentar ON komentar.id_film = film.id_film GROUP BY film.id_film ORDER BY rating_nilai DESC LIMIT 10;");
 							$p=1;
 							while($film = mysqli_fetch_array($data_film)) {
 								$data_foto = mysqli_query($conn, "SELECT * FROM foto_film WHERE id_film= $film[id_film] ORDER BY id_foto_film DESC");
@@ -80,15 +80,16 @@
 								<h3 style="font-size: 2rem; margin-bottom: 20px;"><?= strtoupper($film['judul_film']) ?></h3>
 								<style>.checked { color: red;}</style>
 								<?php 
-									for ($i=1; $i <= $film['rating_nilai'] ; $i++) { 
+									$ratinng_bintang = floor($film['rating_nilai']);
+									for ($i=1; $i <= $ratinng_bintang ; $i++) { 
 										echo "<span class='fa fa-star checked'></span>";
 									}
-									$bintang_hitam = 5-$film['rating_nilai'];
+									$bintang_hitam = 5-$ratinng_bintang;
 									for ($i=1; $i <= $bintang_hitam ; $i++) { 
 										echo "<span class='fa fa-star'></span>";
 									}
 								?>
-								(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>/5) ( <small class="icon solid fa-user"></small> <?= $film['rating_jumlah'] ?>)
+								(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo round($film['rating_nilai'],1);} ?>/5) ( <img src="images/user.png" alt="" width="12px"> <?= $film['rating_jumlah'] ?>)
 								<br>
 								<?php 
 									$data_kategori = mysqli_query($conn, "SELECT * FROM kategori_film INNER JOIN kategori ON kategori.id_kategori = kategori_film.id_kategori WHERE id_film= $film[id_film] ORDER BY id_kategori_film DESC");
