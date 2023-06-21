@@ -117,7 +117,7 @@
 				</section>
 
 				<section id="highlights" class="wrapper style2">
-					<div class="title">Our Tim</div>
+					<div class="title">Our Team</div>
 					<div class="container">
 						<div class="row aln-center">
 							<div class="col-3 col-12-medium">
