@@ -1,4 +1,4 @@
-
+<?php session_start() ?>
 <!DOCTYPE php>
 <php lang="en">
 
@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Cinemastar - Komentar</title>
 
         <!-- Custom fonts for this template -->
         <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -170,9 +170,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Heru</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama'] ?></span>
                                 <img class="img-profile rounded"
-                                    src="images/user1.jpg">
+                                    src="<?php if($_SESSION['foto']=="default.png"){echo "../images/default.png";}else{ echo "images/profile/".$_SESSION['foto'];} ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -210,6 +210,41 @@
                         <h1 class="h3 mb-0 text-gray-800">DATA KOMENTAR</h1>
                         <!--<a href="kategori_tambah.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Kategori</a>-->
                     </div>
+
+                    <?php 
+                        if(isset($_GET['alert'])){
+                            if ($_GET['alert'] == "berhasil") {
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil ditambahkan!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "gagal"){
+                                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                    <strong>Gagal</strong>, Data gagal ditambah atau diubah!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "berhasil_ubah"){
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil diubah!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }elseif($_GET['alert'] == "hapus"){
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <strong>Berhasil</strong>, Data berhasil dihapus!
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>";
+                            }
+                        }
+                    
+                    ?>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -247,7 +282,7 @@
                                                 <td><?php echo $value["rating"]; ?></td>
                                                 <td><?php echo $value["isi_komentar"]; ?></td>
                                                 <td>
-                                                    <a href="komentar_dalete.php?id_komentar=<?php echo $value["id_komentar"]?>" class="btn btn-danger">Hapus</a>
+                                                    <a href="komentar_dalete.php?id_komentar=<?php echo $value["id_komentar"]?>" class="btn btn-danger" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')" >Hapus</a>
                                                 </td>
                                             </tr>
                                             <?php
@@ -308,7 +343,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../login.php">Logout</a>
+                    <a class="btn btn-primary" href="../model/beranda_model.php?aksi=logout">Logout</a>
                 </div>
             </div>
         </div>

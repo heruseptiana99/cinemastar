@@ -50,7 +50,14 @@
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    }elseif($_GET['alert'] == "gagal_email_sudah_ada"){
+                    }elseif ($_GET['alert'] == "berhasil_riset") {
+                      echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                          <strong>Berhasil</strong>, Password anda berhasil diriset, Silahkan Login!
+                          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                          <span aria-hidden='true'>&times;</span>
+                          </button>
+                      </div>";
+                  }elseif($_GET['alert'] == "gagal_email_sudah_ada"){
                         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <strong>Gagal</strong>, Email anda sudah terdaftar!
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -78,7 +85,14 @@
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    }
+                    }elseif($_GET['alert'] == "email_terkirim"){
+                      echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                          <strong>Berhasil</strong>, Silahkan cek Email anda untuk meriset password anda!
+                          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                          <span aria-hidden='true'>&times;</span>
+                          </button>
+                      </div>";
+                  }
                 }
               ?>
               <form action="model/beranda_model.php" method="POST" id="form-pelanggan" enctype="multipart/form-data">
@@ -94,9 +108,12 @@
                     <small id="text-error-password"></small>
                 </div>
                 <div class="form-group">
-                  <label class="form-check-label">Belum punya akun? <a href="daftar.php">Klik link disini!</a></label>
+                  <label class="form-check-label"><a href="lupa_password.php">Lupa Password?</a></label>
                 </div>
                 <button id="my-button" type="button"class="btn btn-tema btn-block">MASUK</button>
+                <div class="form-group">
+                  <label class="form-check-label">Belum punya akun? <a href="daftar.php">Klik link disini!</a></label>
+                </div>
               </form>
               </div>
               <div class="col align-self-start">

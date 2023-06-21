@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE php>
 <php lang="en">
 
@@ -9,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Cinemastar - Dashboard</title>
 
         <!-- Custom fonts for this template -->
         <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -169,9 +170,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Heru </span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama'] ?></span>
                                 <img class="img-profile rounded"
-                                    src="images/user1.jpg">
+                                    src="<?php if($_SESSION['foto']=="default.png"){echo "../images/default.png";}else{ echo "images/profile/".$_SESSION['foto'];} ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

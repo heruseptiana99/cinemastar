@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <?php
   include "connect.php";
   $query = mysqli_query($conn, "SELECT * FROM aktor");
@@ -13,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Cinemastar - Aktor</title>
 
         <!-- Custom fonts for this template -->
         <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -173,9 +174,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="aktorDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Heru</span>
-                                <img class="img-profile rounded" 
-                                    src="images/user1.jpg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama'] ?></span>
+                                <img class="img-profile rounded"
+                                    src="<?php if($_SESSION['foto']=="default.png"){echo "../images/default.png";}else{ echo "images/profile/".$_SESSION['foto'];} ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -266,15 +267,6 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Foto</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </tfoot> -->
                                     <tbody>
                                         <?php if (mysqli_num_rows($query) > 0) {
                                             ?>
@@ -286,7 +278,7 @@
                                                 <td><?php echo $no ?></td>
                                                 <td><?php echo $value["nama"]; ?></td>
                                                 <td><?php echo date('d-m-Y',strtotime($value["tgl_lahir"])); ?></td>
-                                                <td><img src="images/produk/<?php echo $value["foto"]; ?>" width="100px"></td>
+                                                <td><img src="images/aktor/<?php echo $value["foto"]; ?>" width="100px"></td>
                                                 <td>
                                                     <a href="aktor_ubah.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-warning">Ubah</a>
                                                     <a href="aktor_dalete.php?id_aktor=<?php echo $value["id_aktor"]?>" class="btn btn-danger" onclick="return confirm('Yakin dihapus, data yang ber-relasi juga akan terhapus!')">Hapus</a>
@@ -295,16 +287,6 @@
                                             <?php
                                             $no++;} ?>
                                         <?php } ?>
-                                        <!-- <tr>
-                                            <td>1</td>
-                                            <td>User</td>
-                                            <td>aktor@gmail.com</td>
-                                            <td>admin</td>
-                                            <td>
-                                                <a href="aktor_ubah.php" class="btn btn-warning">Ubah</a>
-                                                <a href="" class="btn btn-danger">Hapus</a>
-                                            </td>
-                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -352,7 +334,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../login.php">Logout</a>
+                    <a class="btn btn-primary" href="../model/beranda_model.php?aksi=logout">Logout</a>
                 </div>
             </div>
         </div>
