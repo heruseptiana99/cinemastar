@@ -16,7 +16,4 @@
         $id_film_baru = $film['id_film_baru'];
     }
     header("Location:film_ubah.php?id_film=$id_film_baru");
-
-
-
 ?>

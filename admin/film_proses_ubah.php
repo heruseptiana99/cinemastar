@@ -11,9 +11,4 @@
 
         mysqli_query($conn, "UPDATE film SET judul_film = '$judul_film', durasi = '$durasi', rating='$rating', sinopsis = '$sinopsis', link_trailer = '$link_trailer', tgl_tayang = '$tgl_tayang', jenis_tayang = '$jenis_tayang' WHERE id_film = '$id_film' ");
         header("Location:film.php?alert=berhasil_ubah");
-
-    
-    
-
-
 ?>

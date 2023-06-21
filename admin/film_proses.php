@@ -55,5 +55,3 @@
         header("Location:film_ubah.php?id_film=$id_film" . "&alert=hapus");
 
     }
-
-?>

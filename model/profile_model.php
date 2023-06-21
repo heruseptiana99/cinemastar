@@ -46,11 +46,3 @@
             header("Location:../profile.php?alert=gagal_password");
         }
     }
-    
-
-    
-    
-    
-
-
-?>

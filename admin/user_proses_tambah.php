@@ -27,7 +27,4 @@
             header("Location:user.php?alert=gagal");
         }
     }   
-    
-
-
 ?>

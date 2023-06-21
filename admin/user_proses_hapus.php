@@ -8,7 +8,4 @@
     mysqli_query($conn, "DELETE FROM komentar WHERE id_user = '$id_user' ");
 
     header("Location:user.php?alert=hapus");
-
-
-
 ?>

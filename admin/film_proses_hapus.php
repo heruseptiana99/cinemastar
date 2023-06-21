@@ -9,7 +9,4 @@
     mysqli_query($conn, "DELETE FROM film WHERE id_film = '$id_film' ");
     
     header("Location:film.php?alert=hapus");
-
-
-
 ?>
