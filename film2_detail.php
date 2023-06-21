@@ -92,15 +92,16 @@
 				<style>.checked { color: red;}</style>
 
         <?php 
-									for ($i=1; $i <= $film['rating_nilai'] ; $i++) { 
+									$ratinng_bintang = floor($film['rating_nilai']);
+									for ($i=1; $i <= $ratinng_bintang ; $i++) { 
 										echo "<span class='fa fa-star checked'></span>";
 									}
-									$bintang_hitam = 5-$film['rating_nilai'];
+									$bintang_hitam = 5-$ratinng_bintang;
 									for ($i=1; $i <= $bintang_hitam ; $i++) { 
 										echo "<span class='fa fa-star'></span>";
 									}
 								?>
-				(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>/5) 
+								(<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo round($film['rating_nilai'],1);} ?>/5) 
 
 								<br>
 								
@@ -264,7 +265,7 @@
                   </div>
                   <div class="rating">
                     <ion-icon name="star"></ion-icon>
-                    <data><?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo $film['rating_nilai'];} ?>/5</data>
+                    <data><?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo round($film['rating_nilai']);} ?>/5</data>
                   </div>
                 </div>
               </div>

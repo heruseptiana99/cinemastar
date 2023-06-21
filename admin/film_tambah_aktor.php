@@ -240,7 +240,7 @@
                             <small id="text-error-nama_pemeran"></small>
 
                         </div>
-                            <button id="my-button" type="button" class="btn btn-primary mt-3">Tambah User</button>
+                            <button id="my-button" type="button" class="btn btn-primary mt-3">Tambah Aktor</button>
                             <a href="film_ubah.php?id_film=<?= $id_film ?>" class="btn btn-danger mt-3">Batal</a>
                         </form>
                         </div>

@@ -234,7 +234,7 @@
                                 ?>
                             </select>
                         </div>
-                            <button type="submit" class="btn btn-primary mt-3">Tambah Kategori Film</button>
+                            <button type="submit" class="btn btn-primary mt-3">Tambah Sutradara</button>
                             <a href="film_ubah.php?id_film=<?= $id_film ?>" class="btn btn-danger mt-3">Batal</a>
                         </form>
                         </div>

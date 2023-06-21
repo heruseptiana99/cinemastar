@@ -252,12 +252,12 @@
                                     ?>
                                         <tr>
 
-                                            <td><?= $i++ ?></td>
-                                            <td><?= $film['judul_film'] ?></td>
-                                            <td><?= $film['durasi'] ?></td>
-                                            <td><?= $film['rating'] ?></td>
+                                            <td class="text-center"><?= $i++ ?></td>
+                                            <td class="text-center"><?= $film['judul_film'] ?></td>
+                                            <td class="text-center"><?= $film['durasi'] ?></td>
+                                            <td class="text-center"><?= $film['rating'] ?></td>
                                             <td class="text-justify"><?= (str_word_count($film['sinopsis']) > 150 ? substr($film['sinopsis'],0,500)."[...]" : $film['sinopsis']) ?></td>
-                                            <td><?= $film['jenis_tayang'] ?></td>
+                                            <td class="text-center"><?= $film['jenis_tayang'] ?></td>
                                             <td><?= date('d-m-Y',strtotime($film['tgl_tayang'])); ?></td>
 
                                             <td>
