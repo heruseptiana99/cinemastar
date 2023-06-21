@@ -102,7 +102,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Email</label>
-								  	<input type="text" class="form-control" id="email" name="email" value="<?= $email ?>" readonly>
+								  	<input type="text" class="form-control" id="email" name="email" value="<?= $email ?>">
 									  <small id="text-error-email"></small>
 								</div>
 							</div>

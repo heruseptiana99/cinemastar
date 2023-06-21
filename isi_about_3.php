@@ -19,30 +19,31 @@
 							<p>Review Film Luar Negeri dan Dalam Negeri</p>
 						</div>
 
-					<!-- Nav -->
-						<nav id="nav">
+	<!-- Nav -->
+	<nav id="nav">
+			<ul>
+				<li class="current"><a href="index.php">Beranda</a></li>
+				<li><a href="film2.php">Film</a></li>
+				<li><a href="tranding.php">Tranding</a></li>
+				<li><a href="about_us.php">Tentang Kami</a></li>
+				<?php if($_SESSION){ ?>
+					<?php if(isset($_SESSION['id_user'])!==null){ ?>
+						<li>
+							<a href="#" class="icon solid fa-user"> <?= $_SESSION['nama'] ?></a>
 							<ul>
-								<li><a href="index.php">Beranda</a></li>
-                                <li><a href="film2.php">Film</a></li>
-								<li><a href="tranding.php">Tranding</a></li>
-								<li><a href="about_us.php">About Us</a></li>
-								<?php if($_SESSION){ ?>
-									<?php if(isset($_SESSION['id_user'])!==null){ ?>
-										<li>
-											<a href="#" class="icon solid fa-user"> <?= $_SESSION['nama'] ?></a>
-											<ul>
-												<li><a href="profile.php">Profile</a></li>
-												<li><a href="model/beranda_model.php?aksi=logout">Logout</a></li>
-											</ul>
-										</li>
-									<?php } ?>
-									<?php }else{ ?>
-										<li><a href="login.php">LOGIN | DAFTAR</a></li>
-								<?php } ?>
+								<li><a href="profile.php">Profile</a></li>
+								<li><a href="model/beranda_model.php?aksi=logout">Logout</a></li>
 							</ul>
-						</nav>
+						</li>
+					<?php } ?>
+					<?php }else{ ?>
+						<li><a href="login.php">LOGIN | DAFTAR</a></li>
+				<?php } ?>
+			</ul>
+		</nav>
 
-				</section>
+		</section>
+
 
 			<!-- Main -->
 				<div id="main" class="wrapper style2">

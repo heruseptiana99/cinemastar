@@ -19,28 +19,28 @@
 							<p>Review Film Luar Negeri dan Dalam Negeri</p>
 						</div>
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li class="current"><a href="index.php">Beranda</a></li>
-								<li><a href="film2.php">Film</a></li>
-								<li><a href="tranding.php">Tranding</a></li>
-								<li><a href="about_us.html">Tentang Kami</a></li>
-								<?php if($_SESSION){ ?>
-									<?php if(isset($_SESSION['id_user'])!==null){ ?>
-									<li>
-										<a href="#" class="icon solid fa-user"> <?= $_SESSION['nama'] ?></a>
-										<ul>
-											<li><a href="profile.php">Profile</a></li>
-											<li><a href="model/beranda_model.php?aksi=logout">Logout</a></li>
-										</ul>
-									</li>
-									<?php } ?>
-								<?php }else{ ?>
-									<li><a href="login.php">LOGIN | DAFTAR</a></li>
-								<?php } ?>
-							</ul>
-						</nav>
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li class="current"><a href="index.php">Beranda</a></li>
+						<li><a href="film2.php">Film</a></li>
+						<li><a href="tranding.php">Tranding</a></li>
+						<li><a href="about_us.php">Tentang Kami</a></li>
+						<?php if($_SESSION){ ?>
+							<?php if(isset($_SESSION['id_user'])!==null){ ?>
+								<li>
+									<a href="#" class="icon solid fa-user"> <?= $_SESSION['nama'] ?></a>
+									<ul>
+										<li><a href="profile.php">Profile</a></li>
+										<li><a href="model/beranda_model.php?aksi=logout">Logout</a></li>
+									</ul>
+								</li>
+							<?php } ?>
+							<?php }else{ ?>
+								<li><a href="login.php">LOGIN | DAFTAR</a></li>
+						<?php } ?>
+					</ul>
+				</nav>
 
 
 				</section>
@@ -117,33 +117,33 @@
 				</section>
 
 				<section id="highlights" class="wrapper style2">
-					<div class="title">Our Tim</div>
+					<div class="title">Our Team</div>
 					<div class="container">
 						<div class="row aln-center">
 							<div class="col-3 col-12-medium">
 								<section class="highlight">
-									<a href="#" class="image featured rounded"><img src="images/heruseptiana.jpg"  width="200px" height="250px" style="border-radius: 100%;" alt="" /></a>
+									<a href="#" class="image featured rounded"><img src="images/heruseptiana.jpg"  width="200px"  style="border-radius: 100%;" alt="" /></a>
 									<h3><a href="#">Heru Septiana</a></h3>
 									<p>Sekolah Tinggi Teknologi Bandung</p>
 								</section>
 							</div>
 							<div class="col-3 col-12-medium">
 								<section class="highlight">
-									<a href="#" class="image featured"><img src="images/saiful.jpg"  width="200px" height="250px" style="border-radius: 100%;" alt="" /></a>
+									<a href="#" class="image featured"><img src="images/saiful.jpg"  width="200px"  style="border-radius: 100%;" alt="" /></a>
 									<h3><a href="#">M. Saifullah Candra</a></h3>
 									<p>Universitas Pesantren Tinggi darul Ulum</p>
 								</section>
 							</div>
 							<div class="col-3 col-12-medium">
 								<section class="highlight">
-									<a href="#" class="image featured"><img src="images/farid.jpg"  width="200px" height="250px" style="border-radius: 100%;" alt="" /></a>
+									<a href="#" class="image featured"><img src="images/farid.jpg"  width="200px"  style="border-radius: 100%;" alt="" /></a>
 									<h3><a href="#">Muh. Farid Fatwa</a></h3>
 									<p>Universitas DIPA Makasar</p>
 								</section>
 							</div>
 							<div class="col-3 col-12-medium">
 								<section class="highlight">
-									<a href="#" class="image featured"><img src="images/nada1.jpg" width="200px" height="250px" style="border-radius: 100%;" alt="" /></a>
+									<a href="#" class="image featured"><img src="images/nada1.jpg" width="200px"  style="border-radius: 100%;" alt="" /></a>
 									<h3><a href="#">Fidhina Fina Dalila</a></h3>
 									<p> Universitas Alma Ata Yogyakarta </p>
 								</section>
