@@ -133,7 +133,7 @@
 						<ul class="movies-list  has-scrollbar">
 							<?php
 								include("admin/connect.php");
-								$data_film = mysqli_query($conn, "SELECT * FROM film");
+								$data_film = mysqli_query($conn, "SELECT film.*, AVG(komentar.rating) AS rating_nilai, COUNT(komentar.id_film) AS rating_jumlah FROM film LEFT JOIN komentar ON komentar.id_film = film.id_film INNER JOIN kategori_film ON kategori_film.id_film = film.id_film INNER JOIN kategori ON kategori.id_kategori = kategori_film.id_kategori GROUP BY film.id_film ORDER BY rating_nilai DESC LIMIT 4;");
 								while ($film = mysqli_fetch_array($data_film)) {
 									$id_film = $film['id_film'];	
 									$judul_film = $film['judul_film'];	
@@ -167,11 +167,13 @@
 				
 								  <div class="duration">
 									<ion-icon name="time-outline"></ion-icon>				
-									<time datetime="PT137M"><?= $film['durasi'] ?></time>
+									<time datetime="PT137M"><?= $film['durasi'] ?>min</time>
 								  </div>
 								  <div class="rating">
 									<ion-icon name="star"></ion-icon>
-									<data>8.5</data>
+									<data>
+									<?php if($film['rating_nilai']==NULL){ echo "0";}else{ echo round($film['rating_nilai'], 1);} ?>/5 
+									</data>
 								  </div>
 								</div>
 							  </div>

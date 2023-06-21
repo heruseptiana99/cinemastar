@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <?php
     include("connect.php");
     $id_aktor = $_GET['id_aktor'];
@@ -22,7 +23,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Cinemastar - Aktor</title>
 
         <!-- Custom fonts for this template -->
         <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -182,9 +183,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Heru</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama'] ?></span>
                                 <img class="img-profile rounded"
-                                    src="images/user1.jpg">
+                                    src="<?php if($_SESSION['foto']=="default.png"){echo "../images/default.png";}else{ echo "images/profile/".$_SESSION['foto'];} ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -228,7 +229,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Data Aktor</h6>
                         </div>
                         <div class="card-body">
-                        <form id="form-aktor" action="proses_ubah_aktor.php?id_aktor=<?php echo $id_aktor?>" method="post">
+                        <form id="form-aktor" action="proses_ubah_aktor.php?id_aktor=<?php echo $id_aktor?>" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama ?>">
@@ -241,8 +242,8 @@
                         </div>
                         <div class="form-group">
                             <label for="foto">Foto</label>
-                            <input type="text" value="<?php echo $foto?>" disabled>
-                            <input type="file" class="form-control-file" id="foto" name="foto" accept="image/*" value="<?php echo $foto ?>">
+                            <input type="text" value="<?php echo $foto?>" name="foto_lama" readonly>
+                            <input type="file" class="form-control-file" id="foto" name="foto" accept="image/*">
                             <small id="text-error-foto"></small>
                         </div>
                             <button id="my-button" type="button" class="btn btn-primary ">Ubah Aktor</button>
@@ -292,7 +293,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../login.php">Logout</a>
+                    <a class="btn btn-primary" href="../model/beranda_model.php?aksi=logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -322,7 +323,7 @@
 
     <script>
         $('#my-button').click(function() {
-        if ($('#nama').val().length == 0 || $('#tgl_lahir').val().length == 0  || $('#foto').val().length == 0) {
+        if ($('#nama').val().length == 0 || $('#tgl_lahir').val().length == 0 ) {
             if($('#nama').val().length == 0){
                 $('#nama').css({"border-color" : "red"});
                 $('#text-error-nama').text('* Silahkan isi nama terlebih dahulu');
@@ -340,15 +341,6 @@
             }else{
                 $('#tgl_lahir').css({"border-color" : "#dee2e6"});
                 $('#text-error-ttl').hide();
-            }
-            if($('#foto').val().length == 0){
-                $('#foto').css({"border-color" : "red"});
-                $('#text-error-foto').text('* Silahkan isi foto terlebih dahulu');
-                $('#text-error-foto').css({"font-style" : "italic"});
-                $('#text-error-foto').css({"color" : "red"});
-            }else{
-                $('#foto').css({"border-color" : "#dee2e6"});
-                $('#text-error-foto').hide();
             }
         } else {
                 $('#form-aktor').submit();
